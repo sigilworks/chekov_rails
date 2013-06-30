@@ -1,3 +1,7 @@
+#
+# These presenters should probably be made into helpers instead? Or moved to app/entities?
+#
+
 require 'taskrow'
 
 class CommentView
