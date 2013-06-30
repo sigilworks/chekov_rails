@@ -1,3 +1,5 @@
+# Application, Browser, Comment, Permission, Role, Status, Task, Team, User
+
 class User < ActiveRecord::Base
   belongs_to :role
   belongs_to :team

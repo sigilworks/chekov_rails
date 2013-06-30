@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  application_id: 
+  build_observed: MyString
+  description: MyText
+  bz_id: 1
+  reporter_id: 
+  assignee_id: 
+  status_id: 
+  browser_id: 
+
+two:
+  application_id: 
+  build_observed: MyString
+  description: MyText
+  bz_id: 1
+  reporter_id: 
+  assignee_id: 
+  status_id: 
+  browser_id: 

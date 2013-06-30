@@ -1,0 +1,33 @@
+%h1 Listing tasks
+
+%table
+  %tr
+    %th Application
+    %th Build observed
+    %th Description
+    %th Bz
+    %th Reporter
+    %th Assignee
+    %th Status
+    %th Browser
+    %th
+    %th
+    %th
+
+  - @tasks.each do |task|
+    %tr
+      %td= task.application
+      %td= task.build_observed
+      %td= task.description
+      %td= task.bz_id
+      %td= task.reporter
+      %td= task.assignee
+      %td= task.status
+      %td= task.browser
+      %td= link_to 'Show', task
+      %td= link_to 'Edit', edit_task_path(task)
+      %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Task', new_task_path

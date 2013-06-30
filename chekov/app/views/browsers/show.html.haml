@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @browser.name
+%p
+  %b Shortname:
+  = @browser.shortname
+
+= link_to 'Edit', edit_browser_path(@browser)
+\|
+= link_to 'Back', browsers_path

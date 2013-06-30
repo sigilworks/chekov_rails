@@ -6,10 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
     Application.create([ { name: 'RO' }, { name: 'MDC' }, { name: 'DB' }, { name: 'OTHER' } ])
 
-    Browsers.create([
+    Browser.create([
         { name: 'Internet Explorer (all)', shortname: 'MSIE*' },
         { name: 'Internet Explorer 6', shortname: 'MSIE 6' },
         { name: 'Internet Explorer 7', shortname: 'MSIE 7' },
@@ -27,7 +26,7 @@
         { name: 'All browsers', shortname: 'ALL' }
     ])
 
-    Permissions.create([ { name: 'ADMIN' }, { name: 'READ_ONLY' }, { name: 'ADD_ONLY' } ])
+    Permission.create([ { name: 'ADMIN' }, { name: 'READ_ONLY' }, { name: 'ADD_ONLY' } ])
 
     Role.create([ { name: 'ASSIGNEE' }, { name: 'REPORTER' }, { name: 'COMMENTER' }, { name: 'ANY' } ])
 

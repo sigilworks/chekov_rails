@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @status.name
+%p
+  %b Description:
+  = @status.description
+%p
+  %b Shortname:
+  = @status.shortname
+
+= link_to 'Edit', edit_status_path(@status)
+\|
+= link_to 'Back', statuses_path
