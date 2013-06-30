@@ -1,5 +1,8 @@
 == Chekov (Rails-based)
 	
-	* Running Rails 4.0 and Ruby 2.0
-	* Testing tools: Rspec, Capybara, Cucumber, FactoryGirl
-	* View tools: HAML, SCSS, CoffeeScript
+* Running Rails 4.0 and Ruby 2.0
+
+* Testing tools: Rspec, Capybara, Cucumber, FactoryGirl
+
+* View tools: HAML, SCSS, CoffeeScript
+	
