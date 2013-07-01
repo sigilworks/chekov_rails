@@ -1,20 +1,12 @@
 Chekov::Application.routes.draw do
   resources :tasks
-
   resources :users
-
   resources :comments
-
   resources :browsers
-
   resources :statuses
-
   resources :teams
-
   resources :permissions
-
   resources :roles
-
   resources :applications
 
   # The priority is based upon order of creation: first created -> highest priority.
