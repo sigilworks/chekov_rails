@@ -22,18 +22,11 @@ module Chekov
     
     config.generators do |g|
         g.template_engine :haml
-
-        # you can also specify a different test framework or ORM here
-        # g.test_framework  :rspec
-        # g.orm             :mongoid
+        g.test_framework  :rspec
     end  
     
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/app/entities)
-
-
-
-    
   end
 end

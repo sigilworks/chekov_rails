@@ -77,13 +77,13 @@ ActiveRecord::Schema.define(version: 20130630181348) do
     t.string   "last_name"
     t.integer  "role_id"
     t.integer  "team_id"
-    t.integer  "permissions_id"
+    t.integer  "permission_id"
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["permissions_id"], name: "index_users_on_permissions_id"
+  add_index "users", ["permission_id"], name: "index_users_on_permission_id"
   add_index "users", ["role_id"], name: "index_users_on_role_id"
   add_index "users", ["team_id"], name: "index_users_on_team_id"
 
