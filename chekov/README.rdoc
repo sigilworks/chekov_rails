@@ -1,8 +1,8 @@
-== Chekov (Rails-based)
-	
+== Chekov...on Rails
+
 * Running Rails 4.0 and Ruby 2.0
 
 * Testing tools: Rspec, Capybara, Cucumber, FactoryGirl
 
 * View tools: HAML, SCSS, CoffeeScript
-	
+
