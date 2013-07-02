@@ -1,4 +1,36 @@
-%h1
-  *
-  %span.app-name> chekov
-  %div app?
+
+= render :partial => "partials/headermenu"
+
+%div#app-wrapper
+%header
+  %h1
+    *
+    %span.app-name> chekov
+  %select
+    %option{ :value => 'all' }@all tasks
+    -#@foreach($statuses as $idx => $status)
+    -#  <option value="{{ $status['value'] }}">{{ $status['label'] }}</option>
+    -#@endforeach
+
+  %span#new-task-button
+    %button#new-task-init.chekov-button
+      %span.plus +
+      new task
+
+  %span#task-table-stats
+
+  %hr
+
+%div.main
+  %div.home
+
+    %table#task-table{ :role => 'main' }
+      %thead
+        %tr.header-row
+          %th.id-header id
+          %th app
+          %th build
+          %th description
+          %th browser
+          %th bz id
+          %th reporter

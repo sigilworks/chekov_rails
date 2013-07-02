@@ -40,10 +40,10 @@
 
     Team.create([ { name: 'PRODUCT' }, { name: 'DEVELOPMENT' }, { name: 'OPS' }, { name: 'MGMT' }, { name: 'OTHER' } ])
 
-    User.create( first_name: ' ', last_name: ' ', role_id: 1, team_id: 5, permissions_id: 2, username: 'nobody' )
-    User.create( first_name: 'Timothy', last_name: 'Palmer', role_id: 4, team_id: 2, permissions_id: 1, username: 'tpalmer' )
-    User.create( first_name: 'John', last_name: 'Doe', role_id: 4, team_id: 2, permissions_id: 1, username: 'jdoe' )
-    User.create( first_name: 'Jane', last_name: 'Roe', role_id: 4, team_id: 1, permissions_id: 1, username: 'jroe' )
-    User.create( first_name: 'Bob', last_name: 'Smith', role_id: 4, team_id: 2, permissions_id: 1, username: 'rsmith' )
-    User.create( first_name: 'Justin', last_name: 'Time', role_id: 4, team_id: 2, permissions_id: 1, username: 'jtime' )
-    User.create( first_name: 'Justin', last_name: 'Case', role_id: 4, team_id: 1, permissions_id: 1, username: 'jcase' )
+    User.create( first_name: ' ', last_name: ' ', role_id: 1, team_id: 5, permission_id: 2, username: 'nobody' )
+    User.create( first_name: 'Timothy', last_name: 'Palmer', role_id: 4, team_id: 2, permission_id: 1, username: 'tpalmer' )
+    User.create( first_name: 'John', last_name: 'Doe', role_id: 4, team_id: 2, permission_id: 1, username: 'jdoe' )
+    User.create( first_name: 'Jane', last_name: 'Roe', role_id: 4, team_id: 1, permission_id: 1, username: 'jroe' )
+    User.create( first_name: 'Bob', last_name: 'Smith', role_id: 4, team_id: 2, permission_id: 1, username: 'rsmith' )
+    User.create( first_name: 'Justin', last_name: 'Time', role_id: 4, team_id: 2, permission_id: 1, username: 'jtime' )
+    User.create( first_name: 'Justin', last_name: 'Case', role_id: 4, team_id: 1, permission_id: 1, username: 'jcase' )
