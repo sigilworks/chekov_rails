@@ -51,12 +51,14 @@ group :test do
 	gem 'guard-cucumber'
 	gem 'guard-livereload'
 	gem 'rb-fsevent' # Guard needs this
-	gem 'growl' # optional - if you like notifications on Mac 
+	gem 'growl' # optional - if you like notifications on Mac
 end
 
 # Debugging
+gem 'pry'
 gem 'rails-pry'
 gem 'better_errors'
+# gem 'binding_of_caller'
 
 # templates
 gem 'haml'
