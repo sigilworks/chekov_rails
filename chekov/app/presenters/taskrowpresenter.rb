@@ -1,30 +1,35 @@
+require 'taskrowpresenter'
+require 'userpresenter'
 
-# /*
-#  * This entity is a View DTO that takes a
-#  * Task model and converts it to a table row,
-#  * formatted for direct inclusion in the page.
-#  */
-# class TaskRow {
+# This entity is a View DTO that takes a
+# Task model and converts it to a table row,
+# formatted for direct inclusion in the page.
 
-# 	public $id;
-# 	public $app;
-# 	public $build;
-# 	public $description;
-# 	public $browser;
-# 	public $bzId;
-# 	public $reporter;
-# 	public $comments_count;
-# 	public $status;
+class TaskRowPresenter
 
-#     public function __construct($task) {
-# 		$this->id = (int) $task->task_id;
-# 		$this->app = (int) $task->application;
-# 		$this->build = empty($task->build_observed) ? '' : $task->build_observed;
-# 		$this->description = empty($task->description) ? '' : $task->description;
-# 		$this->browser = (int) $task->browser;
-# 		$this->bzId = empty($task->bugzilla_ref_id) ? '' : $task->bugzilla_ref_id;
-# 		$this->reporter = (int) $task->reporter;
-# 		$this->comments_count = (int) Comment::where_taskid($task->task_id)->count();
-# 		$this->status = (int) $task->status;
-#     }
-# }
+  def initialize(task)
+    @task = task
+  end
+
+  def comments_count
+    @task.comments.count
+  end
+
+  def assignee
+    UserPresenter.new(@task.assignee)
+  end
+
+  def reporter
+    UserPresenter.new(@task.reporter)
+  end
+
+  def status_class
+    @task.status.shortname
+  end
+
+  # method missing to delegate to @user or super
+  def method_missing(name, *args)
+    @task.send(name, *args)
+  end
+
+end

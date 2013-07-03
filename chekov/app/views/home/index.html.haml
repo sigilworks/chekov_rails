@@ -2,35 +2,46 @@
 = render :partial => "partials/headermenu"
 
 %div#app-wrapper
-%header
-  %h1
-    *
-    %span.app-name> chekov
-  %select
-    %option{ :value => 'all' }@all tasks
-    -#@foreach($statuses as $idx => $status)
-    -#  <option value="{{ $status['value'] }}">{{ $status['label'] }}</option>
-    -#@endforeach
+  %header
+    %h1
+      *
+      %span.app-name> chekov
+    %select
+      %option{ :value => 'all' }@all tasks
+      - @status_list.each do |status|
+        %option{ :value => status.shortname }@#{status.shortname}
 
-  %span#new-task-button
-    %button#new-task-init.chekov-button
-      %span.plus +
-      new task
 
-  %span#task-table-stats
+    %span#new-task-button
+      %button#new-task-init.chekov-button
+        %span.plus +
+        new task
 
-  %hr
+    %span#task-table-stats
 
-%div.main
-  %div.home
+    %hr
 
-    %table#task-table{ :role => 'main' }
-      %thead
-        %tr.header-row
-          %th.id-header id
-          %th app
-          %th build
-          %th description
-          %th browser
-          %th bz id
-          %th reporter
+  %div.main
+    %div.home
+
+      %table#task-table{ :role => 'main' }
+        %thead
+          %tr.header-row
+            %th.id-header id
+            %th app
+            %th build
+            %th description
+            %th browser
+            %th bz id
+            %th reporter
+
+        - tasklist.each do |task|
+          %tr{ :class => [ "task-list", task.status_class ]}
+            %td.id-cell
+              = render :partial => "partials/tableidcell", :locals => { :task => task }
+            %td=task.application.name
+            %td=task.build_observed
+            %td=task.description
+            %td=task.browser.shortname
+            %td=task.bz_id
+            %td=task.reporter.index_name

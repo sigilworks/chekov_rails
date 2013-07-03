@@ -11,8 +11,9 @@ class UserPresenter
 	end
 
 	# Smith, J.
-	def short_name
-		"#{@user.last_name}, #{@user.first_name[0]}."
+	def index_name
+		"#{@user.last_name}, #{@user.first_name[0]}." if !@user.last_name.strip.empty?
+		""
 	end
 
 	# JS

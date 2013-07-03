@@ -1,0 +1,13 @@
+
+%span
+  %a{ :class => [ 'delete-row', 'icon-hidden' ], :data => { :rowid => task.id }, :href => "#" }X
+
+%span
+  %a{ :class => [ 'edit-row', 'icon-hidden' ], :href => edit_task_path(:id => task.id) }E
+
+%span
+  %a{ :class => [ 'add-comment', 'icon-hidden' ], :href => new_comment_path(:id => task.id) }+
+
+%span{ :class => [ 'comment-expander', 'arrow-right' ], :data => { :comment_count => task.comments_count }}
+
+=task.id
