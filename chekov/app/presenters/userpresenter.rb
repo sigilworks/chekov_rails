@@ -43,6 +43,7 @@ class UserPresenter
 	# method missing to delegate to @user or super
 	def method_missing(name, *args)
 		@user.send(name, *args)
+		super
 	end
 
 end
