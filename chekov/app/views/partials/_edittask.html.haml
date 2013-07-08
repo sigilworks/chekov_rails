@@ -1,0 +1,6 @@
+
+%select#new-browser{ :name => "new-browser" }
+  - edit_view.browsers.by_groups.each do |group, browsers|
+    %optgroup{ :label => !group.empty? ? " --- #{group} --- " : '' }
+      - browsers.each do |browser|
+        %option{ :value => browser.id }#{browser.name}

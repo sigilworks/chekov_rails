@@ -7,8 +7,8 @@
           %li= msg
 
   .field
-    = f.label :application
-    = f.text_field :application
+    = f.label :application_id
+    = f.text_field :application_id
   .field
     = f.label :build_observed
     = f.text_field :build_observed
@@ -19,16 +19,16 @@
     = f.label :bz_id
     = f.number_field :bz_id
   .field
-    = f.label :reporter
-    = f.text_field :reporter
+    = f.label :reporter_id
+    = f.text_field :reporter_id
   .field
-    = f.label :assignee
-    = f.text_field :assignee
+    = f.label :assignee_id
+    = f.text_field :assignee_id
   .field
-    = f.label :status
-    = f.text_field :status
+    = f.label :status_id
+    = f.text_field :status_id
   .field
-    = f.label :browser
-    = f.text_field :browser
+    = f.label :browser_id
+    = f.text_field :browser_id
   .actions
     = f.submit 'Save'

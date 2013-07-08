@@ -2,28 +2,28 @@
 
 %table
   %tr
-    %th Application
+    %th Application_id
     %th Build observed
     %th Description
     %th Bz
-    %th Reporter
-    %th Assignee
-    %th Status
-    %th Browser
+    %th Reporter_id
+    %th Assignee_id
+    %th Status_id
+    %th Browser_id
     %th
     %th
     %th
 
   - @tasks.each do |task|
     %tr
-      %td= task.application
+      %td= task.application.id
       %td= task.build_observed
       %td= task.description
       %td= task.bz_id
-      %td= task.reporter
-      %td= task.assignee
-      %td= task.status
-      %td= task.browser
+      %td= task.reporter.id
+      %td= task.assignee.id
+      %td= task.status.id
+      %td= task.browser.id
       %td= link_to 'Show', task
       %td= link_to 'Edit', edit_task_path(task)
       %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }

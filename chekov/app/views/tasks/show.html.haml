@@ -1,8 +1,8 @@
 %p#notice= notice
 
 %p
-  %b Application:
-  = @task.application
+  %b Application_id:
+  = @task.application_id
 %p
   %b Build observed:
   = @task.build_observed
@@ -13,17 +13,17 @@
   %b Bz:
   = @task.bz_id
 %p
-  %b Reporter:
-  = @task.reporter
+  %b Reporter_id:
+  = @task.reporter.id
 %p
-  %b Assignee:
-  = @task.assignee
+  %b Assignee_id:
+  = @task.assignee.id
 %p
-  %b Status:
-  = @task.status
+  %b Status_id:
+  = @task.status.id
 %p
-  %b Browser:
-  = @task.browser
+  %b Browser_id:
+  = @task.browser.id
 
 = link_to 'Edit', edit_task_path(@task)
 \|

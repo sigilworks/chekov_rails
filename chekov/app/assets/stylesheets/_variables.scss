@@ -1,3 +1,26 @@
 
 // COLORS
 $black: #333;
+$lt-black: #555;
+
+$stats-attention: #F5C51C;
+$stats-closed: #FD8282;
+
+$green-bkgd: #D2FCA5;
+$green-border: #A0D16B;
+$open-bkgd: transparent;
+$open-border: rgba(0,0,0,0.15);
+$new-bkgd: rgba(0, 0, 0, 0.05);
+$new-border: #BBB;
+$red-bkgd: #FAC3B9;
+$red-border: #DC0000;
+$reopened-bkgd: rgba(252, 245, 165, 0.34);
+$reopened-border: #FCE9A5;
+$yellow-bkgd: #FCE9A5;
+$yellow-border: #FFDE5C;
+
+
+// FONTS
+$display-font: 'Open Sans', 'Droid Sans', sans-serif;
+$header-font: 'Open Sans', sans-serif;
+$base-font-size: 11px;

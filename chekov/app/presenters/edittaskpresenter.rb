@@ -1,0 +1,57 @@
+require 'userpresenter'
+require 'browserlistpresenter'
+
+# application_id: 1,
+# build_observed: "b16",
+# description: "You gotta fix that thing on the part that's broken...ok?",
+# bz_id: 12345,
+# reporter_id: 2,
+# assignee_id: 2,
+# status_id: 2,
+# browser_id: 14,
+# created_at: "2013-07-03T12:02:00.884Z",
+# updated_at: "2013-07-08T14:15:27.049Z"
+
+# App: RO
+# Build:
+# Status: CLOSED
+# Browser: <BrowserList>
+# BZ id:
+# Reporter: Palmer, T.
+# Assignee: Palmer, T.
+# Description: qwerty...
+
+
+class EditTaskPresenter
+
+  def initialize(task)
+    @task = task
+    @browser_list = BrowserListPresenter.new
+  end
+
+  def browsers
+    @browser_list
+  end
+
+  def comments_count
+    @task.comments.count
+  end
+
+  def assignee
+    UserPresenter.new(@task.assignee)
+  end
+
+  def reporter
+    UserPresenter.new(@task.reporter)
+  end
+
+  def status_class
+    @task.status.name.upcase
+  end
+
+  # method missing to delegate to @user or super
+  def method_missing(name, *args)
+    @task.send(name, *args)
+  end
+
+end
