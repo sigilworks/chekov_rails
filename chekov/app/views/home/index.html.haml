@@ -17,7 +17,7 @@
         %span.plus +
         new task
 
-    %span#task-table-stats
+    = render :partial => "partials/taskstats", :locals => { :stats => stats }
 
     %hr
 
@@ -36,12 +36,12 @@
             %th reporter
 
         - tasklist.each do |task|
-          %tr{ :class => [ "task-list", task.status_class ]}
+          %tr{ :class => [ "task-list", task.status_name ]}
             %td.id-cell
               = render :partial => "partials/tableidcell", :locals => { :task => task }
             %td=task.application.name
             %td=task.build_observed
-            %td=task.description
+            %td.description=task.description
             %td=task.browser.shortname
             %td=task.bz_id
             %td=task.reporter.index_name

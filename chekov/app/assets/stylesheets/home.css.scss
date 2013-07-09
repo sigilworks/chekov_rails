@@ -1,12 +1,24 @@
 @import "_globals";
 
+// MIXINS:
+// replaces link with hidden icon that appears on rollover
+@mixin icon-only-link($url, $posH: 0, $posV: 0, $height: 20px, $width: 16px) {
+  height: $height; width: $width; background: $url no-repeat $posH $posV transparent;
+  display: inline-block; text-indent: -9999px;
+}
+
+// @mixin boxshadow($fromX, $fromY, $fromZ, $fromColor, $toX, $toY, $toZ, $toColor) {}
+// @mixin button-gradient($from, $to) {}
+// @mixin arrow-right($color, $size) {}
+// @mixin bkgd-pos-transition($time, $style) {}
+
 h1					{ color: $black; }
 h1 .app-name 		{ color: #EEE; font-weight: normal; }
 
 body                      { font-family: $display-font; font-size: $base-font-size; color: $black; line-height: 25px;
-                            background: url('/img/patterns/first_aid_kit.png'); }
+                            margin: 0; padding: 0; }
 
-#app-wrapper              { width: 1280px; margin: 0 auto 5em auto; background: #FFF; border: 15px solid #FFF;
+#app-wrapper              { width: 80%; min-width: 1000px; margin: 0 auto 5em auto; background: #FFF; border: 15px solid #FFF;
 
     header h1             { font-size: 28pt; font-family: 'Droid Sans'; margin: 0 0 10px 0; letter-spacing: 0px;
                             -webkit-text-stroke: 1px #777; color: #FFF; text-shadow: 1px 2px 1px #CCC; }
@@ -16,8 +28,8 @@ body                      { font-family: $display-font; font-size: $base-font-si
                             line-height: 28px; font-family: $header-font; }
 }
 
-menu                      { margin: 0; padding: 1px 5px; list-style: none; text-align: right; background: rgba(0,0,0,0.65);
-                            background: url('../img/header-nav.png') repeat 0px -32px scroll transparent; color: #F8F8F8;
+menu                      { margin: 0; padding: 5px 25px; list-style: none; text-align: right; background: rgba(0,0,0,0.65);
+                            background: url('header-nav.png') repeat 0px -32px scroll transparent; color: #F8F8F8;
 
     li                    { display: inline-block; }
 }
@@ -29,7 +41,7 @@ menu                      { margin: 0; padding: 1px 5px; list-style: none; text-
                             border-right: 0 none; border-top: 6px solid transparent; border-bottom: 6px solid transparent;
                             border-left: 6px solid #999; cursor: pointer; }
 
-#welcome                  { display: inline-block; width: 225px; text-align: left; }
+#welcome                  { display: inline-block; text-align: left; }
 #task-table-stats         { display: inline-block; width: 50%; text-align: right; }
 #stats-open               { font-weight: bold; }
 #stats-attention          { font-weight: bold; color: $stats-attention; }
@@ -38,10 +50,13 @@ menu                      { margin: 0; padding: 1px 5px; list-style: none; text-
 
 .plus                     { font-size: 16px; font-weight: bold; }
 
-table                     { width: 100%; }
+hr                        { border-width: 2px 0 0 0; border-style: dotted; border-color: #AAA; }
+
+table                     { width: 99%; border-collapse: collapse; border-spacing: 0; margin: 7px auto 0; }
 th                        { white-space: nowrap; font-variant: small-caps; }
-td                        { text-align: center; }
-td.description            { text-align: left; padding: 0 5px; vertical-align: top; }
+td                        { text-align: center; white-space: nowrap; padding: 5px 10px; }
+td.description            { text-align: left; vertical-align: top; white-space: normal; }
+tr                        { vertical-align: top; }
 tr.closed td              { text-decoration: line-through; }
 tr.closed td.id-cell      { text-decoration: none; }
 
@@ -125,7 +140,6 @@ tr.closed td.id-cell      { text-decoration: none; }
 
 #new-comment        {
     .description    { margin-top: 30px; }
-    ul              {  }
     li              { display: block; line-height: 8px; }
 }
 
@@ -153,9 +167,9 @@ div.comments-display      { border-width: 0 3px 3px 3px; border-radius: 0 0 5px 
 th.id-header              { text-align: right; padding-right: 55px; }
 td.id-cell                { text-align: left; }
 
-/* a.delete-row              { opacity: 0.35; .icon-only-link(url('../img/headerIcons.png'), -213px, 0px) }
-a.edit-row                { opacity: 0.3; .icon-only-link(url('../img/iconsOther16-8bit.png'), 0px, -132px); }
-a.add-comment             { opacity: 0.3; .icon-only-link(url('../img/iconsOther16-8bit.png'), 0px, -85px); } */
+a.delete-row              { opacity: 0.35; @include icon-only-link(url('headerIcons.png'), -213px, 0px); }
+a.add-comment             { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -85px); }
+a.edit-row                { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -132px); }
 
 .icon-visible             { visibility: visible; }
-/* .icon-hidden              { visibility: hidden; } */
+.icon-hidden              { visibility: hidden;  }

@@ -23,7 +23,7 @@ class TaskRowPresenter
     UserPresenter.new(@task.reporter)
   end
 
-  def status_class
+  def status_name
     @task.status.shortname
   end
 

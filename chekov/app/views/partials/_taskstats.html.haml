@@ -1,0 +1,8 @@
+
+%span#task-table-stats
+	%span#stats-open=stats.fetch :open, 0
+	open,
+	%span#stats-attention=stats.fetch :need_attention, 0
+	need attention,
+	%span#stats-closed=stats.fetch :closed, 0
+	closed

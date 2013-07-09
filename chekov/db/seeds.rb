@@ -47,3 +47,5 @@
     User.create( first_name: 'Bob', last_name: 'Smith', role_id: 4, team_id: 2, permission_id: 1, username: 'rsmith' )
     User.create( first_name: 'Justin', last_name: 'Time', role_id: 4, team_id: 2, permission_id: 1, username: 'jtime' )
     User.create( first_name: 'Justin', last_name: 'Case', role_id: 4, team_id: 1, permission_id: 1, username: 'jcase' )
+
+## TODO: NEED TASK SEEDS!
