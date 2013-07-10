@@ -17,9 +17,9 @@ module HomeHelper
 
   def stats
     {
-      :open => Task.all.where(:status_id => 1).count,
-      :need_attention => Task.all.where(:status_id => 3..5).count,
-      :closed => Task.all.where(:status_id => 0).count
+      :open => Task.all.where(:status_id => 2).count,
+      :need_attention => Task.all.where(:status_id => 4..6).count,
+      :closed => Task.all.where(:status_id => 1).count
     }
   end
 end
