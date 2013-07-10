@@ -3,9 +3,6 @@
 $black: #333;
 $lt-black: #555;
 
-$stats-attention: #F5C51C;
-$stats-closed: #FD8282;
-
 $green-bkgd: rgba(210, 252, 165, 0.39); // #D2FCA5;
 $green-border: #A0D16B;
 $open-bkgd: transparent;
@@ -19,6 +16,8 @@ $reopened-border: #FCE9A5;
 $yellow-bkgd: rgba(252, 233, 165, 0.4); // #FCE9A5;
 $yellow-border: #FFDE5C;
 
+$stats-attention: #F5C51C;
+$stats-closed: #A0D16B; // #FD8282;
 
 // FONTS
 $display-font: 'Open Sans', 'Droid Sans', sans-serif;
