@@ -8,6 +8,6 @@
 %span
   %a{ :class => [ 'add-comment', 'icon-hidden' ], :href => new_comment_path(:id => task.id) }+
 
-%span{ :class => [ 'comment-expander', 'arrow-right' ], :data => { :comment_count => task.comments_count }}
+%span{ :class => [ 'comment-expander', if task.has_comments? then 'arrow-right' end ], :data => { :comment_count => task.comments_count }}
 
 =task.id

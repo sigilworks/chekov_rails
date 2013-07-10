@@ -1,9 +1,9 @@
 require 'taskrowpresenter'
 require 'userpresenter'
 
-# This entity is a View DTO that takes a
+# This entity is a View presenter that takes a
 # Task model and converts it to a table row,
-# formatted for direct inclusion in the page.
+# formatted for inclusion in the page.
 
 class TaskRowPresenter
 
@@ -12,7 +12,11 @@ class TaskRowPresenter
   end
 
   def comments_count
-    @task.comments.count
+    @task.comments.count || 0
+  end
+
+  def has_comments?
+    comments_count > 0
   end
 
   def assignee
