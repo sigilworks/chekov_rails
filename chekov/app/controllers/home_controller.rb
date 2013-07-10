@@ -5,11 +5,26 @@ class HomeController < ApplicationController
 
   	@user = User.find(2)
   	@status_list = Status.all
-  	@tasks = Task.all
+
+  	filter = is_valid_status(params[:filter]) ? params[:filter] : 'all'
+  	@tasks = filtered_tasks(filter)
 
     respond_to do |format|
       format.html
     end
+
   end
+
+
+  private
+
+  	def is_valid_status(param)
+		param.in? Status.all.map(&:shortname)
+  	end
+
+  	def filtered_tasks(filter)
+		filter == 'all' ? Task.all : Task.where(:status_id => Status.where(:shortname => filter))
+  	end
+
 
 end
