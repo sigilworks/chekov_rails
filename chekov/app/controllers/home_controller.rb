@@ -23,7 +23,9 @@ class HomeController < ApplicationController
   	end
 
   	def filtered_tasks(filter)
-		filter == 'all' ? Task.all.order('updated_at DESC') : Task.where(:status_id => Status.where(:shortname => filter)).order('updated_at DESC')
+		filter == 'all' ? 
+			Task.all.order('updated_at DESC') : 
+			Task.where(:status_id => Status.where(:shortname => filter)).order('updated_at DESC')
   	end
 
 end
