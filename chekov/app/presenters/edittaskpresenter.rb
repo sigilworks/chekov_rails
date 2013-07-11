@@ -49,6 +49,10 @@ class EditTaskPresenter
     @task.status.name.upcase
   end
 
+  def status_name
+    @task.status.name.downcase
+  end
+
   # method missing to delegate to @user or super
   def method_missing(name, *args)
     @task.send(name, *args)

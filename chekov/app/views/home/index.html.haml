@@ -46,4 +46,4 @@
             %td=task.bz_id
             %td=task.reporter.index_name
 
-  /= render :partial => "partials/edittask", :locals => { :edit_view => edit_task(1) }
+  = render :partial => "partials/edittask", :locals => { :edit_view => edit_task(1) }
