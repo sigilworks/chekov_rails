@@ -19,9 +19,11 @@ module HomeHelper
   def comments_for_task(taskid)
     task = Task.find(taskid)
 
-    comments = task.comments.each do |comment|
+    comments = task.comments.map do |comment|
       CommentViewPresenter.new(comment, task)
     end
+
+    { :comments => comments, :task => TaskRowPresenter.new(task) }
   end
 
   def stats

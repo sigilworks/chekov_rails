@@ -45,7 +45,7 @@
             %td=task.browser.shortname
             %td=task.bz_id
             %td=task.reporter.index_name
+            - if task.id == 4
+              = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(4) }
 
-  = render :partial => "partials/edittask", :locals => { :edit_view => edit_task(1) }
-
-  = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(4), :task => TaskRowPresenter.new(Task.find(4)) }
+  /= render :partial => "partials/edittask", :locals => { :edit_view => edit_task(1) }
