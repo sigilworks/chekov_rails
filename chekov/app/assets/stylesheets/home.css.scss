@@ -150,13 +150,18 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
                             vertical-align: text-top;}
 
 /*  COMMENTS  */
-div.comments-display      { border-width: 0 3px 3px 3px; border-radius: 0 0 5px 5px; padding: 5px 10px; margin: 0 auto;
-                            width: 96%; position: relative; top: -2px; }
-.comments-display h3      { margin: 0; }
-.comment-byline           { display:block; margin-top: -7px; font-size: 11px; color: #444; font-style: italic; }
+.comments-display         { width: 95%; margin: 0 auto;
+    ul                    { list-style-type: none; padding-left: 0; }
+    h3                    { margin: 0; display: inline-block; }
+    hr                    { border-width: 1px 0 0 0; border-style: dotted; border-color: #CCC; }
+    .sc                   { font-variant: small-caps; }
+}
+.comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px; }
 .comments-display.closed  { text-decoration: none; }
 .comment-description      { text-align: left; }
 .comment-assignee         { text-align: left; }
+.comment-tag              { display: inline-block;  background: #DC0000; color: #FFF; font-weight: bold; width: 20px;
+                            height: 20px; text-align: center; border-radius: 5px 0 5px 5px; float: left; }
 
 #status-block             { display: inline-block; margin-left: 50%; }
 

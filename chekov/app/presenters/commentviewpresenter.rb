@@ -1,30 +1,4 @@
-# /*
-#  * This entity is a View DTO that takes a
-#  * Comment model and formats its data,
-#  * formatted for direct inclusion in the page.
-#  */
-# class CommentView {
 
-# 	public $statusClass;
-# 	public $task;
-# 	public $commenter;
-# 	public $datetime;
-# 	public $description;
-# 	public $assignee;
-
-#     public function __construct($comment) {
-
-# 		  $commenter = User::find($comment->commenter);
-#   		$task = TaskItem::find($comment->taskid);
-#   		$assignee = User::find($task->assignee);
-
-#   		$this->statusClass = strtolower(Status::find($task->status)->classname);
-#   		$this->task = $task->attributes;
-#   		$this->commenter = $commenter->attributes;
-#   		$this->datetime = $comment->datetime;
-#   		$this->description = $comment->description;
-#   		$this->assignee = $assignee->attributes;
-#     }
 class CommentViewPresenter
 
   def initialize(comment, task)
@@ -45,8 +19,8 @@ class CommentViewPresenter
   end
 
   def comment_date
-  	# mmm dd, yyy hh:mi ap
-    'date'
+    # Jul 12, 2013 2:09 PM
+  	@comment.created_at.strftime('%b %d, %Y  %I:%M %p')
   end
 
   # method missing to delegate to @user or super

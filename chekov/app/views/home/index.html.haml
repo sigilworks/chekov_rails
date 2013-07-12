@@ -41,11 +41,12 @@
               = render :partial => "partials/tableidcell", :locals => { :task => task }
             %td=task.application.name
             %td=task.build_observed
-            %td.description=task.description
+            %td.description
+              =task.description
+              - if task.id == 4
+                = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(4) }
             %td=task.browser.shortname
             %td=task.bz_id
             %td=task.reporter.index_name
-            - if task.id == 4
-              = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(4) }
 
   /= render :partial => "partials/edittask", :locals => { :edit_view => edit_task(1) }
