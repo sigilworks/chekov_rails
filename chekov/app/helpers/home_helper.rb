@@ -1,6 +1,7 @@
 require 'userpresenter'
 require 'taskrowpresenter'
 require 'edittaskpresenter'
+require 'commentviewpresenter'
 
 module HomeHelper
   def me
@@ -13,6 +14,14 @@ module HomeHelper
 
   def edit_task(task_id)
     EditTaskPresenter.new(Task.find(task_id))
+  end
+
+  def comments_for_task(taskid)
+    task = Task.find(taskid)
+
+    comments = task.comments.each do |comment|
+      CommentViewPresenter.new(comment, task)
+    end
   end
 
   def stats

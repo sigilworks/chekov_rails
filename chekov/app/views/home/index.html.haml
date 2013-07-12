@@ -47,3 +47,5 @@
             %td=task.reporter.index_name
 
   = render :partial => "partials/edittask", :locals => { :edit_view => edit_task(1) }
+
+  = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(4), :task => TaskRowPresenter.new(Task.find(4)) }

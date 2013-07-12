@@ -1,0 +1,19 @@
+
+%td{ :colspan => 8 }
+  %div{ :class => [ 'comments-display', task.status_name ], :data => { :comment_taskid => task.id }}
+    %h3 Comments on Task ##{task.id}
+
+    -task_comments.each do |comment|
+      %hr
+      %span.comment-byline
+        by
+        %strong
+          =comment.commenter.last_name #index_name
+        at
+        =comment.comment_date #{{dateFormat datetime pattern='mmm dd, yyyy' time='hh:mi ap'}}
+      %p.comment-description
+        %strong Description:
+        =comment.description
+      %p.comment-assignee
+        %strong Assignee:
+        =comment.assignee.short_name

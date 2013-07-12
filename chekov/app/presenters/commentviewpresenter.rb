@@ -25,5 +25,33 @@
 #   		$this->description = $comment->description;
 #   		$this->assignee = $assignee->attributes;
 #     }
+class CommentViewPresenter
 
-# }
+  def initialize(comment, task)
+    @comment = comment
+    @task = task
+  end
+
+  def task
+    @task
+  end
+
+  def commenter
+    UserPresenter.new(@comment.commenter)
+  end
+
+  def assignee
+    UserPresenter.new(@task.assignee)
+  end
+
+  def comment_date
+  	# mmm dd, yyy hh:mi ap
+    'date'
+  end
+
+  # method missing to delegate to @user or super
+  def method_missing(name, *args)
+    @comment.send(name, *args)
+  end
+
+end
