@@ -154,11 +154,12 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
     ul                    { list-style-type: none; padding-left: 0; }
     h3                    { margin: 0; display: inline-block; }
     hr                    { border-width: 1px 0 0 0; border-style: dotted; border-color: #CCC; }
+    span.assignee         { float: right; }
     .sc                   { font-variant: small-caps; }
 }
 .comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px; }
 .comments-display.closed  { text-decoration: none; }
-.comment-description      { text-align: left; }
+.comment-description      { text-align: left; margin: 0 0 15px 50px; }
 .comment-assignee         { text-align: left; }
 .comment-tag              { display: inline-block;  background: #DC0000; color: #FFF; font-weight: bold; width: 20px;
                             height: 20px; text-align: center; border-radius: 5px 0 5px 5px; float: left; }

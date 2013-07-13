@@ -1,14 +1,13 @@
 
 %div{ :class => [ 'comments-display', task_comments[:task].status_name ], :data => { :comment_taskid => task_comments[:task].id }}
   %h3 Comments for Task ##{ task_comments[:task].id }
-  %span
-    (
+  %span.assignee
     %span.sc>< assignee:
-    &nbsp;#{ task_comments[:task].assignee.index_name })
+    &nbsp;#{ task_comments[:task].assignee.index_name }
   %ul
     -task_comments[:comments].each_with_index do |comment, index|
       %li
-        %span.comment-tag=index+1
+        %span.comment-tag=index + 1
         %hr
         %span.comment-byline
           by
@@ -16,8 +15,4 @@
             =comment.commenter.index_name
           at #{ comment.comment_date }
         %p.comment-description
-          %strong Description:
           =comment.description
-        %p.comment-assignee
-          %strong Assignee:
-          =comment.assignee.index_name
