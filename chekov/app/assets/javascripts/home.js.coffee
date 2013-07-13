@@ -5,8 +5,8 @@
 $ ->
     # control the styling behavior of certain buttons
     $(document).on
-        mousedown: (e) -> $(e.target).addClass "button-click-state"
-        mouseup: (e) -> $(e.target).removeClass "button-click-state", ".chekov-button"
+        mousedown: (e) -> $(e.target).addClass "button-click-state" if $(e.target).hasClass "chekov-button"
+        mouseup: (e) -> $(e.target).removeClass "button-click-state" if $(e.target).hasClass "chekov-button"
 
     # TODO: replace with location.href instead...
     # when user chooses to filter table, route accordingly when <option> selected...
