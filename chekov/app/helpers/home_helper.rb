@@ -23,7 +23,7 @@ module HomeHelper
       CommentViewPresenter.new(comment, task)
     end
 
-    { :comments => comments, :task => TaskRowPresenter.new(task) }
+    Struct.new(:task, :comments).new(TaskRowPresenter.new(task), comments)
   end
 
   def stats
