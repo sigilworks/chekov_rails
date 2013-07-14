@@ -53,7 +53,9 @@ menu                      { margin: 0; padding: 5px 25px; list-style: none; text
 hr                        { border-width: 2px 0 0 0; border-style: dotted; border-color: #AAA; }
 
 table                     { width: 99%; border-collapse: collapse; border-spacing: 0; margin: 7px auto 0; }
-th                        { white-space: nowrap; font-variant: small-caps; }
+th                        { white-space: nowrap; font-variant: small-caps; font-size: 13px; font-weight: normal; line-height: 22px; 
+                            border-bottom: 1px solid #999; letter-spacing: 1.5px; }
+
 td                        { text-align: center; white-space: nowrap; padding: 5px 10px; }
 td.description            { text-align: left; vertical-align: top; white-space: normal; }
 tr                        { vertical-align: top; }
@@ -183,7 +185,7 @@ a.edit-row                { opacity: 0.3; @include icon-only-link(url('iconsOthe
 .icon-hidden              { visibility: hidden;  }
 
 
-.talk-bubble              { width: 22px; height: 18px; background: #999; position: relative; -moz-border-radius: 2px;
+.talk-bubble              { width: 22px; height: 18px; background: #999; position: relative; -moz-border-radius: 2px; font-size: 10px;
                             -webkit-border-radius: 2px; border-radius: 2px; color: #FFF; text-align: center; display: inline-block; }
 .talk-bubble:after        { content:''; position: absolute; left: 100%; top: 6px; width: 0; height: 0;
                             border-top: 2px solid transparent; border-left: 8px solid #999; border-bottom: 4px solid transparent; }
