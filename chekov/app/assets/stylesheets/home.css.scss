@@ -161,7 +161,8 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 }
 .comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px; }
 .comments-display.closed  { text-decoration: none; }
-.comment-description      { text-align: left; margin: 0 0 15px 50px; }
+.comment-description      { text-align: left; margin: 0 0 15px 30px; border-left: 5px solid rgba(250, 195, 185, 0.4); padding-left: 10px; }
+
 .comment-assignee         { text-align: left; }
 .comment-tag              { display: inline-block;  background: #DC0000; color: #FFF; font-weight: bold; width: 20px;
                             height: 20px; text-align: center; border-radius: 5px 0 5px 5px; float: left; line-height: 20px; }
