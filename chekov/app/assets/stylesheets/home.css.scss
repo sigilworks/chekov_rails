@@ -164,7 +164,7 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 .comment-description      { text-align: left; margin: 0 0 15px 50px; }
 .comment-assignee         { text-align: left; }
 .comment-tag              { display: inline-block;  background: #DC0000; color: #FFF; font-weight: bold; width: 20px;
-                            height: 20px; text-align: center; border-radius: 5px 0 5px 5px; float: left; }
+                            height: 20px; text-align: center; border-radius: 5px 0 5px 5px; float: left; line-height: 20px; }
 
 #status-block             { display: inline-block; margin-left: 50%; }
 
@@ -186,7 +186,7 @@ a.edit-row                { opacity: 0.3; @include icon-only-link(url('iconsOthe
 
 
 .talk-bubble              { width: 22px; height: 18px; background: #999; position: relative; -moz-border-radius: 2px; font-size: 10px;
-                            -webkit-border-radius: 2px; border-radius: 2px; color: #FFF; text-align: center; display: inline-block; }
+                            -webkit-border-radius: 2px; border-radius: 2px; color: #FFF; text-align: center; display: inline-block; line-height: 18px; }
 .talk-bubble:after        { content:''; position: absolute; left: 100%; top: 6px; width: 0; height: 0;
                             border-top: 2px solid transparent; border-left: 8px solid #999; border-bottom: 4px solid transparent; }
 
