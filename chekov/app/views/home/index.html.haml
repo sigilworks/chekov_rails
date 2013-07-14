@@ -22,31 +22,30 @@
     %hr
 
   %div.main
-    %div.home
+  
+    %table#task-table{ :role => 'main' }
+      %thead
+        %tr.header-row
+          %th.id-header id
+          %th app
+          %th build
+          %th description
+          %th browser
+          %th bz id
+          %th reporter
 
-      %table#task-table{ :role => 'main' }
-        %thead
-          %tr.header-row
-            %th.id-header id
-            %th app
-            %th build
-            %th description
-            %th browser
-            %th bz id
-            %th reporter
-
-        - tasklist.each do |task|
-          %tr{ :class => [ "task-list", task.status_name ]}
-            %td.id-cell
-              = render :partial => "partials/tableidcell", :locals => { :task => task }
-            %td=task.application.name
-            %td=task.build_observed
-            %td.description
-              =task.description
-              - if task.id == 4
-                = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(4) }
-            %td=task.browser.shortname
-            %td=task.bz_id
-            %td=task.reporter.index_name
+      - tasklist.each do |task|
+        %tr{ :class => [ "task-list", task.status_name ]}
+          %td.id-cell
+            = render :partial => "partials/tableidcell", :locals => { :task => task }
+          %td=task.application.name
+          %td=task.build_observed
+          %td.description
+            =task.description
+            - if task.id == 4
+              = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(4) }
+          %td=task.browser.shortname
+          %td=task.bz_id
+          %td=task.reporter.index_name
 
   /= render :partial => "partials/edittask", :locals => { :edit_view => edit_task(1) }
