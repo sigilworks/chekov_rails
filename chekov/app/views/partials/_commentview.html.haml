@@ -8,6 +8,7 @@
   %ul
     -task_comments.comments.each_with_index do |comment, index|
       %li
+        = render :partial => "partials/commentmetacell", :locals => { :comment => comment }
         %span.comment-tag=index + 1
         %hr
         %span.comment-byline

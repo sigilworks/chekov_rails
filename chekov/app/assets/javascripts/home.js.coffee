@@ -18,5 +18,5 @@ $ ->
         $(this).toggleClass("arrow-right arrow-down")
                .parents("tr").find(".comments-display").toggle()
 
-    $(".id-cell").on "mouseenter mouseleave", (e) ->
+    $(".id-cell, .comments-display .meta").on "mouseenter mouseleave", (e) ->
         $(this).find(".icon-hidden, .icon-visible").toggleClass("icon-hidden icon-visible")

@@ -175,12 +175,13 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
                             vertical-align: text-top;}
 
 /*  COMMENTS  */
-.comments-display         { width: 95%; margin: 0 auto;
+.comments-display         { width: 95%; margin: 0 auto; position: relative;
     ul                    { list-style-type: none; padding-left: 0; }
     h3                    { margin: 0; display: inline-block; }
     hr                    { border-width: 1px 0 0 0; border-style: dotted; border-color: #CCC; }
     span.assignee         { float: right; }
     .sc                   { font-variant: small-caps; }
+    .meta                 { position: absolute; top: 35px; left: -40px; }
 }
 .comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px; }
 .comments-display.closed  { text-decoration: none; }

@@ -1,0 +1,6 @@
+%span.meta
+  %span
+    =link_to "X", "#", :class => [ 'delete-row', 'icon-hidden' ], :data => { :rowid => comment.id }
+
+  %span
+    =link_to "E", edit_comment_path(comment.id), :class => [ 'edit-row', 'icon-hidden' ]
