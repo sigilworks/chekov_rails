@@ -177,11 +177,12 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 /*  COMMENTS  */
 .comments-display         { width: 95%; margin: 0 auto; position: relative;
     ul                    { list-style-type: none; padding-left: 0; }
+    li                    { position: relative; }
     h3                    { margin: 0; display: inline-block; }
     hr                    { border-width: 1px 0 0 0; border-style: dotted; border-color: #CCC; }
     span.assignee         { float: right; }
     .sc                   { font-variant: small-caps; }
-    .meta                 { position: absolute; top: 35px; left: -40px; }
+    .meta                 { position: absolute; top: 0px; left: -40px; }
 }
 .comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px; }
 .comments-display.closed  { text-decoration: none; }
@@ -201,7 +202,8 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 th.id-header              { text-align: right; padding-right: 55px; }
 td.id-cell                { text-align: right; }
 td.id-cell .meta          { display: inline-block; text-align: left; float: left; }
-a.delete-row              { opacity: 0.35; @include icon-only-link(url('headerIcons.png'), -213px, 0px); }
+a.delete-row,
+a.delete-comment          { opacity: 0.35; @include icon-only-link(url('headerIcons.png'), -213px, 0px); }
 a.add-comment             { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -85px); }
 a.edit-row                { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -132px); }
 

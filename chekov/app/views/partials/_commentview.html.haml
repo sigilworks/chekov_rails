@@ -7,8 +7,8 @@
     &nbsp;#{ task_comments.task.assignee.index_name }
   %ul
     -task_comments.comments.each_with_index do |comment, index|
-      %li
-        = render :partial => "partials/commentmetacell", :locals => { :comment => comment }
+      %li{ :data => { :comment_id => comment.id, :comment_index => index + 1 }}
+        = render :partial => "partials/commentmetacell", :locals => { :comment => comment, :task => task_comments.task }
         %span.comment-tag=index + 1
         %hr
         %span.comment-byline

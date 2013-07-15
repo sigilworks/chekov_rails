@@ -20,3 +20,16 @@ $ ->
 
     $(".id-cell, .comments-display .meta").on "mouseenter mouseleave", (e) ->
         $(this).find(".icon-hidden, .icon-visible").toggleClass("icon-hidden icon-visible")
+
+    # dealing with clicking on the X-icon to delete a particular comment...
+    $(".delete-comment").on "ajax:success", (event, status, xhr) ->
+        $target = $(event.target)
+        commentId = $target.data 'commentId'
+        taskId = $target.data 'taskId'
+        $li = $("li[data-comment-id=#{commentId}]")
+        # remove the <li>
+        $li.remove()
+        # re-number the remaining comments, so as not to have any "holes" in their index
+        $indices = $("#row_#{ taskId }").find(".comment-tag")
+        $.each($indices, (newIndex, tag) -> $(tag).html(++newIndex))
+
