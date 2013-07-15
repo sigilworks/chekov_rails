@@ -39,8 +39,8 @@
           %td=task.build_observed
           %td.description
             =task.description
-            - if task.id == 4
-              = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(4) }
+            - if task.has_comments?
+              = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(task.id) }
           %td=task.browser.shortname
           %td=task.bz_id
           %td=task.reporter.index_name

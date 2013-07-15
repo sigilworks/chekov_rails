@@ -1,6 +1,6 @@
 
 
-%div{ :class => [ 'comments-display', task_comments.task.status_name ], :data => { :comment_taskid => task_comments.task.id }}
+%div{ :class => [ 'comments-display', task_comments.task.status_name, 'hidden' ], :data => { :comment_taskid => task_comments.task.id }}
   %h3 #{ task_comments.comments.size } comments
   %span.assignee
     %span.sc>< assignee:
