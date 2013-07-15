@@ -23,7 +23,7 @@ body                      { font-family: $display-font; font-size: $base-font-si
     header h1             { font-size: 28pt; font-family: 'Droid Sans'; margin: 0 0 10px 0; letter-spacing: 0px;
                             -webkit-text-stroke: 1px #777; color: #FFF; text-shadow: 1px 2px 1px #CCC; }
     header h2             { margin: 0; color: #888; letter-spacing: 0px; font-weight: normal; }
-    header select         { margin: 0; padding: 5px 0; line-height: 16px; color: #888; border: 0 none; font-size: 20px;
+    #status-list          { margin: 0; padding: 5px 0; line-height: 16px; color: #888; border: 0 none; font-size: 20px;
                             font-weight: normal; display: block; width: 285px; -moz-appearance: none; -webkit-appearance: none;
                             line-height: 28px; font-family: $header-font; background: transparent; }
 }
@@ -41,7 +41,7 @@ menu                      { margin: 0; padding: 5px 25px; list-style: none; text
                             border-right: 0 none; border-top: 6px solid transparent; border-bottom: 6px solid transparent;
                             border-left: 6px solid #999; cursor: pointer; }
 
-#welcome                  { display: inline-block; text-align: left; text-transform: lowercase; font-variant:small-caps; }
+#welcome                  { display: inline-block; text-align: left; text-transform: lowercase; font-variant:small-caps; font-size: 15px; }
 #task-table-stats         { display: inline-block; width: 50%; text-align: right; }
 #stats-open               { font-weight: bold; }
 #stats-attention          { font-weight: bold; color: $stats-attention; }
@@ -53,7 +53,7 @@ menu                      { margin: 0; padding: 5px 25px; list-style: none; text
 hr                        { border-width: 2px 0 0 0; border-style: dotted; border-color: #AAA; }
 
 table                     { width: 99%; border-collapse: collapse; border-spacing: 0; margin: 7px auto 0; }
-th                        { white-space: nowrap; font-variant: small-caps; font-size: 13px; font-weight: normal; line-height: 22px; 
+th                        { white-space: nowrap; font-variant: small-caps; font-size: 13px; font-weight: normal; line-height: 22px;
                             border-bottom: 1px solid #999; letter-spacing: 1.5px; }
 
 td                        { text-align: center; white-space: nowrap; padding: 5px 10px; }
@@ -162,7 +162,6 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 .comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px; }
 .comments-display.closed  { text-decoration: none; }
 .comment-description      { text-align: left; margin: 0 0 15px 30px; border-left: 5px solid rgba(250, 195, 185, 0.4); padding-left: 10px; }
-
 .comment-assignee         { text-align: left; }
 .comment-tag              { display: inline-block;  background: #DC0000; color: #FFF; font-weight: bold; width: 20px;
                             height: 20px; text-align: center; border-radius: 5px 0 5px 5px; float: left; line-height: 20px; }
@@ -183,7 +182,7 @@ a.add-comment             { opacity: 0.3; @include icon-only-link(url('iconsOthe
 a.edit-row                { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -132px); }
 
 .icon-visible             { visibility: visible; }
-.icon-hidden              { visibility: hidden;  }
+.icon-hidden              { visibility: hidden; }
 
 
 .talk-bubble              { width: 22px; height: 18px; background: #999; position: relative; -moz-border-radius: 2px; font-size: 10px;

@@ -4,6 +4,4 @@
     %span#welcome{ :data => { :userid => me.id }}
       Welcome
       %strong=me.full_name
-      [
-      =me.team_abbrev
-      ]
+      [ #{ me.team_abbrev } ]

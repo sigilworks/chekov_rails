@@ -6,11 +6,8 @@
     %h1
       *
       %span.app-name> _
-    %select
-      %option{ :value => 'all' }@all tasks
-      - @status_list.each do |status|
-        %option{ :value => status.shortname }@#{status.shortname}
 
+    = render :partial => "partials/statuslistselect", :locals => { :status_list => @status_list }
 
     %span#new-task-button
       %button#new-task-init.chekov-button
@@ -22,7 +19,7 @@
     %hr
 
   %div.main
-  
+
     %table#task-table{ :role => 'main' }
       %thead
         %tr.header-row
