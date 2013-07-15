@@ -12,6 +12,10 @@ class TaskRowPresenter
     @task = task
   end
 
+  def get
+    @task
+  end
+
   def comments_count
     @task.comments.count || 0
   end

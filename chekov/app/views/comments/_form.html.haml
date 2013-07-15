@@ -10,10 +10,14 @@
     = f.label :description
     = f.text_area :description
   .field
-    = f.label :task
-    = f.text_field :task
+    /= f.label :task
+    /= f.text_field :task
+    /= f.hidden_field(:task)
+    = f.hidden_field(:task_id)
   .field
-    = f.label :commenter
-    = f.text_field :commenter
+    /= f.label :commenter
+    /= f.text_field :commenter
+    /= f.hidden_field(:commenter)
+    = f.hidden_field(:commenter_id)
   .actions
     = f.submit 'Save'

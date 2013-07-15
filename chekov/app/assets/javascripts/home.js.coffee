@@ -16,4 +16,7 @@ $ ->
     # expander arrows, showing/hiding comments associated with that task...
     $(".arrow-right, .arrow-down").on "click", (e) ->
         $(this).toggleClass("arrow-right arrow-down")
-               .parents("tr").find(".comments-display").toggle();
+               .parents("tr").find(".comments-display").toggle()
+
+    $(".id-cell").on "mouseenter mouseleave", (e) ->
+        $(this).find(".icon-hidden, .icon-visible").toggleClass("icon-hidden icon-visible")

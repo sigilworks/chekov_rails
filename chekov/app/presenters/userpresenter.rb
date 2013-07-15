@@ -41,8 +41,8 @@ class UserPresenter
   end
 
   # method missing to delegate to @user or super
-  def method_missing(name, *args)
-    @user.send(name, *args)
+  def method_missing(name, *args, &block)
+    @user.send(name, *args, &block)
   end
 
 end

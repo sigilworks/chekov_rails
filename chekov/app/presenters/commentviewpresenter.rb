@@ -1,13 +1,10 @@
 
 class CommentViewPresenter
+  attr_reader :task
 
   def initialize(comment, task)
     @comment = comment
     @task = task
-  end
-
-  def task
-    @task
   end
 
   def commenter

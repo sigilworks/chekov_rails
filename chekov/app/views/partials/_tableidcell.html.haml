@@ -1,12 +1,13 @@
 
-%span
-  %a{ :class => [ 'delete-row', 'icon-hidden' ], :data => { :rowid => task.id }, :href => "#" }X
+%span.meta
+  %span
+    =link_to "X", "#", :class => [ 'delete-row', 'icon-hidden' ], :data => { :rowid => task.get.id }
 
-%span
-  %a{ :class => [ 'edit-row', 'icon-hidden' ], :href => edit_task_path(:id => task.id) }E
+  %span
+    =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ]
 
-%span
-  %a{ :class => [ 'add-comment', 'icon-hidden' ], :href => new_comment_path(:id => task.id) }+
+  %span
+    =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id), :class => [ 'add-comment', 'icon-hidden' ]
 
 - if task.has_comments?
   %span.talk-bubble=task.comments_count
