@@ -16,6 +16,13 @@ module HomeHelper
     EditTaskPresenter.new(Task.find(task_id))
   end
 
+  # provides presenter for one particular comment of a task
+  def comment_for_task(taskid)
+    task = Task.find(taskid)
+    CommentViewPresenter.new(Comment.new, task)
+  end
+
+  # provides listing of all comments for a task
   def comments_for_task(taskid)
     task = Task.find(taskid)
 
