@@ -10,6 +10,7 @@
         /%input#comment-reporter{ :type => "hidden" }
         %span.text-entry Palmer, T
         %span#status-block
+          / TODO: REPLACE WITH A FORM OF _STATUSLISTSELECT partial
           /<label for="comment-status">Status:</label>
           / <select id="comment-status" name="comment-status">
           /   <option value="1">CLOSED</option>
@@ -29,15 +30,11 @@
         %label{ :for => "comment-description"}Description:
         %textarea#comment-description{ :name => "comment-description" }
 
-
-
   %hr
 
   %div.button-bar
     %input#add-comment-cancel{ :class => [ "chekov-button" ], :type => "button" }cancel
     %input#add-comment-submit{ :class => [ "chekov-button" ], :type => "button" }ok
-
-
 
 / = form_for @comment do |f|
 /   - if @comment.errors.any?
