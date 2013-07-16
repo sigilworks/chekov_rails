@@ -37,5 +37,5 @@ $ ->
         else
             # if no remaining comments remain, delete the comments container and the talk bubble
             $row.find(".comments-display").remove()
-            $row.find(".talk-bubble").remove()
+            $row.find(".comments-count").remove()
             $row.find(".arrow-down").remove()
