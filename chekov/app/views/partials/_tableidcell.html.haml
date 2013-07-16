@@ -1,13 +1,13 @@
 
 %span.meta
   %span
-    =link_to "X", "#", :class => [ 'delete-row', 'icon-hidden' ], :data => { :rowid => task.get.id }
+    =link_to "X", "#", :class => [ 'delete-row', 'icon-hidden' ], :data => { :rowid => task.get.id }, :title => "Delete task"
 
   %span
-    =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ]
+    =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ], :title => "Edit task"
 
   %span
-    =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id), :class => [ 'add-comment', 'icon-hidden' ]
+    =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id), :class => [ 'add-comment', 'icon-hidden' ], :title => "New comment"
 
 - if task.has_comments?
   %span.comments-count=task.comments_count

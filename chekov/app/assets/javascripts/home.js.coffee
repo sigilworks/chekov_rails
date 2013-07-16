@@ -39,3 +39,7 @@ $ ->
             $row.find(".comments-display").remove()
             $row.find(".comments-count").remove()
             $row.find(".arrow-down").remove()
+
+    # TODO: temporarily just hide until either add a #reset function, or decide to
+    # destroy/rebuild this view each time.
+    $("#add-comment-cancel").on "click", (e) -> $("#new-comment").hide()
