@@ -27,9 +27,15 @@ $ ->
         commentId = $target.data 'commentId'
         taskId = $target.data 'taskId'
         $li = $("li[data-comment-id=#{commentId}]")
+        $row = $("#row_#{ taskId }")
         # remove the <li>
         $li.remove()
-        # re-number the remaining comments, so as not to have any "holes" in their index
-        $indices = $("#row_#{ taskId }").find(".comment-tag")
-        $.each($indices, (newIndex, tag) -> $(tag).html(++newIndex))
-
+        $indices = $row.find(".comment-tag")
+        if $indices.length
+            # re-number the remaining comments, so as not to have any "holes" in their index
+            $.each($indices, (newIndex, tag) -> $(tag).html(++newIndex))
+        else
+            # if no remaining comments remain, delete the comments container and the talk bubble
+            $row.find(".comments-display").remove()
+            $row.find(".talk-bubble").remove()
+            $row.find(".arrow-down").remove()
