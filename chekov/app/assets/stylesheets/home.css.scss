@@ -146,7 +146,7 @@ td:not(:first-child)              { border-bottom: 1px dotted #BBB; }
                       height: 475px; display: none; border: 1px solid #777;
 
     h3              { padding: 8px 0 0 12px; margin: 12px 0 0 0; font-size: 24px; text-transform: lowercase; }
-    fieldset        { padding: 7px; margin: 0; height: 350px; overflow: auto; }
+    fieldset        { padding: 7px; margin: 0; height: 350px; overflow: auto; border: 0 none; }
     ul              { list-style: none; padding: 0; }
     li              { display: block; }
     label           { text-align: right; padding: 2px 5px; margin: 5px; width: 80px; display: inline-block; font-weight: bold; }
