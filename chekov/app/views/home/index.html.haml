@@ -2,13 +2,23 @@
 = render :partial => "partials/headermenu"
 
 %div#gradient
+
+- if flash[:notice]
+  %div#notice.flash=flash[:notice]
+- if flash[:alert]
+  %div#alert.flash=flash[:alert]
+- if flash[:info]
+  %div#info.flash=flash[:info]
+- if flash[:success]
+  %div#success.flash=flash[:success]
+
 %div#app-wrapper
   %header
     %h1
       *
       %span.app-name>=app_version
 
-    = render :partial => "partials/statuslistselect", :locals => { :status_list => @status_list }
+    = render :partial => "partials/statusfilterselect", :locals => { :status_list => @status_list }
 
     %span#new-task-button
       %button#new-task-init.chekov-button

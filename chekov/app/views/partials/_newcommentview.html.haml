@@ -7,10 +7,11 @@
     %ul
       %li
         %label{ :for => "comment-reporter" }Reporter:
-        %span.text-entry Palmer, T
+        %span.text-entry=comment.task.reporter.index_name
         %span#status-block
-          / TODO: REPLACE WITH A FORM OF _STATUSLISTSELECT partial
-          /<label for="comment-status">Status:</label>
+          %label{ :for => "comment-status" }Status:
+          = render :partial => "partials/statuslistselect",
+                    :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment-status" }
           / <select id="comment-status" name="comment-status">
           /   <option value="1">CLOSED</option>
           /   <option value="2">OPEN</option>
@@ -21,10 +22,10 @@
           / </select>
       %li
         %label{ :for => "comment-assignee" }Assignee:
-        %span.text-entry --
+        %span.text-entry=comment.task.assignee.index_name
       %li
         %label{ :for => "comment-abstract" }Abstract:
-        %em.text-entry Some text in PDF downloads in the scaling and claimant tables are bold where they shouldn't...
+        %em.text-entry=comment.task.abstract
       %li.description
         %label{ :for => "comment-description"}Description:
         %textarea#comment-description{ :name => "comment-description" }

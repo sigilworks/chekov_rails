@@ -1,6 +1,6 @@
 
-%select#status-list
-  %option{ :value => 'all' }@all tasks
+
+%select{ :id => (id or ''), :name => (name or ''), :class => [ 'status-list' ]}
   - status_list.each do |status|
-    %option{ :value => status.shortname , :selected => params[:filter] === status.shortname }
-      @#{status.shortname}
+    %option{ :value => status.shortname.upcase , :selected => item.status.shortname.upcase }
+      #{ status.description }

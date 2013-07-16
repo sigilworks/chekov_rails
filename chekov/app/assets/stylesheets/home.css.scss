@@ -12,7 +12,7 @@
 // @mixin arrow-right($color, $size) {}
 // @mixin bkgd-pos-transition($time, $style) {}
 
-h1 .app-name 		      { margin-left: 7px; font-weight: normal; color: #777; }
+h1 .app-name 		      { margin-left: 7px; font-weight: normal; color: rgba(0,0,0,0.025); }
 
 body                      { font-family: $display-font; font-size: $base-font-size; color: $black; line-height: 25px;
                             margin: 0; padding: 0; }
@@ -152,7 +152,7 @@ span.comments-count       { background: #DDD; color: #333; display: inline-block
 
 #new-task,
 #new-comment        { background: #F8F8F8; box-shadow: 3px 4px 10px #555; position: absolute; top: 180px; left: 17%; width: 55%;
-                      height: 475px; display: none; border: 1px solid #777;
+                      height: 475px; border: 1px solid #777;
 
     h3              { padding: 8px 0 0 12px; margin: 12px 0 0 0; font-size: 24px; text-transform: lowercase; }
     fieldset        { padding: 7px; margin: 0; height: 350px; overflow: auto; border: 0 none; }
@@ -231,3 +231,10 @@ a.edit-row                { opacity: 0.3; @include icon-only-link(url('iconsOthe
 
 #gradient                 { height: 75px; position: absolute; width: 100%; z-index: -1000;
                             background: -webkit-gradient(linear, left top, left bottom, color-stop(0.10, rgba(216,216,216,0.4)), color-stop(0.80, rgba(255,255,255,1))) repeat scroll 0 0; }
+
+// STYLES FOR FLASH NOTIFICATIONS
+.flash                    { display: block; width: 90%; margin: 10px auto; padding: 4px 12px; font-size: 14px; text-align: center; }
+#notice                   { border: 1px dashed rgba(221, 115, 28, 0.75); background: #FFFFEC; color: #D86D0A; }
+#alert                    { border: 1px dashed rgba(205, 49, 42, 0.75); background: #FFF3F3; color: #DC0000; }
+#info                     { border: 1px dashed rgba(0, 128, 184, 0.75); background: #F0FAFF; color: #333; }
+#success                  { border: 1px dashed rgba(46, 151, 0, 0.75); background: #EDF8EB; color: #333; }

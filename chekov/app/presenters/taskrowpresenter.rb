@@ -36,6 +36,11 @@ class TaskRowPresenter
     @task.status.shortname
   end
 
+  # provides a truncated summary of the task description
+  def abstract
+    @task.description.truncate(75, :separator => /\s/)
+  end
+
   # method missing to delegate to @user or super
   def method_missing(name, *args)
     @task.send(name, *args)
