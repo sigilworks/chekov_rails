@@ -183,6 +183,9 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
     span.assignee         { float: right; }
     .sc                   { font-variant: small-caps; }
     .meta                 { position: absolute; top: 0px; left: -40px; }
+    .edit-flag            { position: relative; top: -6px; left: 0px; display: inline-block; padding: 0px 5px; background: #CCC; color: #FFF;
+                            text-transform: lowercase; font-variant: small-caps; font-size: 14px; letter-spacing: 2px; line-height: 18px;
+                            vertical-align: text-bottom; float: right; }
 }
 .comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px; }
 .comments-display.closed  { text-decoration: none; }

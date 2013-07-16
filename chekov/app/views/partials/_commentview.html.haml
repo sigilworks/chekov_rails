@@ -16,5 +16,7 @@
           %strong
             =comment.commenter.index_name
           at #{ comment.comment_date }
+        - if comment.is_edited
+          %span.edit-flag EDITED
         %p.comment-description
           =comment.description
