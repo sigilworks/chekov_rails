@@ -72,3 +72,5 @@
         { id: 6, task_id: 4, commenter_id: 3, description: 'Apparently not!' },
         { id: 7, task_id: 1, commenter_id: 6, description: 'Guess not!' }
     ])
+
+    Version.create(name: '5.2.0')

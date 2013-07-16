@@ -10,7 +10,7 @@
     =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id), :class => [ 'add-comment', 'icon-hidden' ]
 
 - if task.has_comments?
-  %span.talk-bubble=task.comments_count
+  %span.comments-count=task.comments_count
 
 %span{ :class => [ 'comment-expander', if task.has_comments? then 'arrow-right' end ], :data => { :comment_count => task.comments_count }}
 

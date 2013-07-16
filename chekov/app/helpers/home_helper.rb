@@ -4,6 +4,11 @@ require 'edittaskpresenter'
 require 'commentviewpresenter'
 
 module HomeHelper
+
+  def app_version
+    Version.first.name
+  end
+
   def me
     UserPresenter.new(@user)
   end
