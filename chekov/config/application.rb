@@ -19,12 +19,16 @@ module Chekov
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    
+
     config.generators do |g|
         g.template_engine :haml
-        g.test_framework  :rspec
-    end  
-    
+
+        g.view_specs false
+        g.helper_specs false
+        g.test_framework  :rspec, :fixture => true
+        g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+    end
+
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/app/entities)
