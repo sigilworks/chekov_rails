@@ -10,12 +10,10 @@ class HomeController < ApplicationController
   	@tasks = filtered_tasks(filter)
 
     respond_to do |format|
-      flash[:notice] = "Notice! Notice!! Notice!!!"
       format.html
     end
 
   end
-
 
   private
 

@@ -15,6 +15,8 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new(task_for_comment)
+
+    render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(params[:task_id]) }
   end
 
   # GET /comments/1/edit
@@ -81,4 +83,17 @@ class CommentsController < ApplicationController
     def task_for_comment
       params.permit(:task_id, :task, :commenter, :commenter_id)
     end
+
+
+
+    def comments_for_task(taskid)
+      task = Task.find(taskid)
+
+      comments = task.comments.map do |comment|
+        CommentViewPresenter.new(comment, task)
+      end
+
+      Struct.new(:task, :comments).new(TaskRowPresenter.new(task), comments)
+    end
+
 end

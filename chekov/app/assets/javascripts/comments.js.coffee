@@ -1,3 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+    $("a.add-comment").on "click", ->
+        $('body').append "<div id='box'></div>"
+        $.get "/comments/new", task_id: "10", (data) -> $("#box").replaceWith(data)
