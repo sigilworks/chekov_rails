@@ -18,4 +18,5 @@
 # Hide all metafiles from SublimeText
 *.sublime-*
 
+# Hide the Gemfile.lock file
 /Gemfile.lock
