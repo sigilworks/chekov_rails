@@ -43,3 +43,6 @@ $ ->
     # TODO: temporarily just hide until either add a #reset function, or decide to
     # destroy/rebuild this view each time.
     $("#add-comment-cancel").on "click", (e) -> $("#new-comment").hide()
+
+    # hide flash messages when the "X" is clicked...
+    $(".flash .X").on "click", -> $(this).parent().slideUp 500, -> $(this).remove()

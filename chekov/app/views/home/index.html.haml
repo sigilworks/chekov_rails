@@ -3,14 +3,7 @@
 
 %div#gradient
 
-- if flash[:notice]
-  %div#notice.flash=flash[:notice]
-- if flash[:alert]
-  %div#alert.flash=flash[:alert]
-- if flash[:info]
-  %div#info.flash=flash[:info]
-- if flash[:success]
-  %div#success.flash=flash[:success]
+= render :partial => "partials/flashmessages", :locals => { :flash => flash }
 
 %div#app-wrapper
   %header

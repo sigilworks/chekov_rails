@@ -1,0 +1,20 @@
+
+- if flash[:notice]
+  %div#notice.flash
+    =flash[:notice]
+    %span.X X
+
+- if flash[:alert]
+  %div#alert.flash
+    =flash[:alert]
+    %span.X X
+
+- if flash[:info]
+  %div#info.flash
+    =flash[:info]
+    %span.X X
+
+- if flash[:success]
+  %div#success.flash
+    =flash[:success]
+    %span.X X
