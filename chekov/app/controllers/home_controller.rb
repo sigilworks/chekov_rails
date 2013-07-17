@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
 
-  	@user = User.find(2)
+  	@user = User.find(2) # TODO: temporarily, obviously
   	@status_list = Status.all
 
   	filter = is_valid_status(params[:filter]) ? params[:filter] : 'all'

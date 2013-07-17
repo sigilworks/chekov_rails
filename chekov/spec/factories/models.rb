@@ -1,15 +1,36 @@
-FactoryGirl.define do
-  factory :user do
-    first_name "John"
-    last_name  "Doe"
-    username "jdoe"
-    role_id 1
-    team_id 1
-    permission_id 0
-  end
+# FactoryGirl.define do
 
+#   factory :user, aliases: [ :commenter, :reporter, :assignee ] do
+#     id 2
+#     first_name "John"
+#     last_name  "Doe"
+#     username "jdoe"
+#     association :team, factory: :team, :id => 4
+#     association :role, factory: :role, :id => 2
+#     association :permission, factory: :permission, :id => 1
+#   end
 
-end
+#   factory :team do
+#     id 4
+#     name 'MGMT'
+#   end
+
+#   factory :role do
+#     id 2
+#     name 'REPORTER'
+#   end
+
+#   factory :permission do
+#     id 1
+#     name 'ADMIN'
+#   end
+
+#   factory :version do
+#     id 1
+#     name '6.1.4.1'
+#   end
+
+# end
 
   # create_table "applications", force: true do |t|
   #   t.string "name"

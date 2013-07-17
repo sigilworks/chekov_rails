@@ -5,10 +5,10 @@ Feature: Base UI Test
 	I want to ensure the basic UI elements are present
 
 Scenario: Loading the Chekov task list page
-	Given there is a known user with username "tpalmer"
+	Given there is a known user with username "user"
 	And I am on the main task page
-	Then the header menu should have my full name "Timothy Palmer"
-	Then the header menu should have my team name "Dev"
+	Then the header menu should have my full name "Firstname Lastname"
+	Then the header menu should have my team name
 	Then there should be a version number posted
 	Then the filter menu should default to "@all tasks"
 	Then the task stats should display three numbers
