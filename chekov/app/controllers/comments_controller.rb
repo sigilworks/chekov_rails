@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
     @task = Task.find(params[:task_id])
     @status_list = Status.all
     @comment.commenter = User.find(params[:commenter_id])
-    @comment.save
 
     render :partial => "partials/newcommentview", :locals => { :comment => CommentViewPresenter.new(@comment, @task) }
   end
@@ -30,18 +29,22 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    #@comment = Comment.new(comment_params)
+    @comment = Comment.new
+    @comment.task = Task.find(comment_params[:task_id])
+    @comment.commenter = User.find(comment_params[:commenter_id])
+    @comment.task.status = Status.find(comment_params[:status_id])
+    @comment.description = comment_params[:description]
 
-    @task = Task.find(comment_params[:task_id])
-    @commenter = User.find(comment_params[:commenter_id])
-
-    @comment.task = @task
-    @comment.commenter = @commenter
+    @comment.task.save
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @comment }
+        flash[:success] = "Comment added successfully!"
+        # format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        # format.json { render action: 'show', status: :created, location: @comment }
+        format.html { redirect_to root_path }
+        format.json { render :json => { :ok => 200 } }
       else
         format.html { render action: 'new' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -81,14 +84,13 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:description, :task_id, :commenter_id, :task, :commenter)
+      #params.require(:comment).permit(:description, :task_id, :commenter_id, :task, :commenter, :status_id, :status)
+      params.permit(:description, :task_id, :commenter_id, :task, :commenter, :status_id, :status)
     end
 
     def task_for_comment
       params.permit(:task_id, :task, :commenter, :commenter_id)
     end
-
-
 
     def comments_for_task(taskid)
       task = Task.find(taskid)

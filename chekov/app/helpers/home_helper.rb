@@ -24,7 +24,9 @@ module HomeHelper
   # provides presenter for one particular comment of a task
   def comment_for_task(taskid)
     task = Task.find(taskid)
-    CommentViewPresenter.new(Comment.new, task)
+    comment = Comment.new
+    comment.commenter = @user
+    CommentViewPresenter.new(comment, task)
   end
 
   # provides listing of all comments for a task
