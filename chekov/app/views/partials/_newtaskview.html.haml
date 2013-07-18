@@ -1,0 +1,68 @@
+
+%div#new-task
+  %h3 #{ task.mode.capitalize } Task
+  %fieldset
+    %ul
+      %li
+        #label{ :for => "new-application" }App:
+
+        <select id="new-application" name="new-application">
+          {{#each apps}}
+            <option value="{{ id }}">{{ name }}</option>
+          {{/each}}
+        </select>
+
+        %label{ :for => "new-build" }Build:
+        %input#new-build{ :name => "new-build", :type => "text", :value => build }
+
+        %label{ :for => "new-status" }Status:
+
+        {{#if isEditMode}}
+          <select id="new-status" name="new-status">
+            {{#each statuses}}
+              <option value="{{ id }}">{{ name }}</option>
+            {{/each}}
+          </select>
+        {{else}}
+          %span.text-entry NEW
+        {{/if}}
+
+
+      %li
+        %label{ :for => "new-browser" }Browser:
+
+        <select id="new-browser" name="new-browser">
+          {{#each browsers}}
+            <option value='{{ id }}'>{{ name }}</option>
+          {{/each}}
+        </select>
+
+
+      %li
+        %label{ :for => "new-bz-id" }BZ id:
+        %input#new-bzId{ :name => "new-bz-id", :type => "text", :value => task.bz_id }
+
+
+      %li
+        %label{ :for => "new-reporter" }Reporter:
+        %span.text-entry=task.reporter.index_name
+        %input#new-reporter{ :name => "new-reporter", :type => "hidden", :value => task.reporter.id }
+
+        {{#if isEditMode}}
+          %label{ :for => "new-assignee" }Assignee:
+          <select id="new-assignee" name="new-assignee">
+            {{#each assignees}}
+              <option value="{{ id }}">{{shortname id type='assignees' }}</option>
+            {{/each}}
+          </select>
+        {{/if}}
+
+
+      %li
+        %label{ :for => "new-description" }Description:
+        %textarea#new-description{ :name => "new-description" }=task.description
+
+  %hr
+  %div.button-bar
+    %input##{ task.mode }-task-cancel.chekov-button{ :type => "button", :value => "cancel" }
+    %input##{ task.mode }-task-submit.chekov-button{ :type => "button", :value => "ok" }
