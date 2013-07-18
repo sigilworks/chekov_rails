@@ -15,8 +15,12 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new(task_for_comment)
+    @task = Task.find(params[:task_id])
+    @status_list = Status.all
+    @comment.commenter = User.find(params[:commenter_id])
+    @comment.save
 
-    render :partial => "partials/newcommentview", :locals => { :task_comments => comments_for_task(params[:task_id]) }
+    render :partial => "partials/newcommentview", :locals => { :comment => CommentViewPresenter.new(@comment, @task) }
   end
 
   # GET /comments/1/edit

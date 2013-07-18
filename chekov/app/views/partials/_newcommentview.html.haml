@@ -2,8 +2,8 @@
   %h3 Add Comment
 
   %fieldset
-    %input#comment-taskid{ :name => "comment-taskid", :type => "hidden", :value => comment.task.id }
-    %input#comment-commenter{ :name => "comment-commenter", :type => "hidden", :value => me.id }
+    /%input#comment-taskid{ :name => "comment-taskid", :type => "hidden", :value => comment.task.id }
+    /%input#comment-commenter{ :name => "comment-commenter", :type => "hidden", :value => comment.commenter.id }
     %ul
       %li
         %label{ :for => "comment-reporter" }Reporter:
