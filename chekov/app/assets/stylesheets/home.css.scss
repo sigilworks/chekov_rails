@@ -207,7 +207,7 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 .comment-tag              { display: inline-block; font-weight: bold; width: 20px;
                             height: 20px; text-align: center; border-radius: 5px 0 5px 5px; float: left; line-height: 20px; }
 
-#status-block             { display: inline-block; margin-left: 50%; }
+#status-block             { display: inline-block; float: right; margin-right: 20px; }
 
 .slogan                   { font-size: 0.8em; }
 
