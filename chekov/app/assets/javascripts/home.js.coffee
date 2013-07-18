@@ -34,6 +34,7 @@ $ ->
         if $indices.length
             # re-number the remaining comments, so as not to have any "holes" in their index
             $.each($indices, (newIndex, tag) -> $(tag).html(++newIndex))
+            $row.find(".comments-count").html (i, oldval) -> +oldval - 1
         else
             # if no remaining comments remain, delete the comments container and the talk bubble
             $row.find(".comments-display").remove()

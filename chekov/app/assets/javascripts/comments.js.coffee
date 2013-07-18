@@ -13,7 +13,7 @@ $ ->
                 $("#new-comment").show()
 
     # logic for cancel button:
-    $(document).on "click", "#add-comment-cancel", (e) -> $("#new-comment").hide()
+    $(document).on "click", "#add-comment-cancel", (e) -> $("#new-comment").remove()
 
     # logic for ok/submit button:
     $(document).on "click", "#add-comment-submit", (e) ->

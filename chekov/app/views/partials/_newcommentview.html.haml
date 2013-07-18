@@ -12,14 +12,6 @@
           %label{ :for => "comment-status" }Status:
           = render :partial => "partials/statuslistselect",
                     :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment-status" }
-          / <select id="comment-status" name="comment-status">
-          /   <option value="1">CLOSED</option>
-          /   <option value="2">OPEN</option>
-          /   <option value="3">NEW</option>
-          /   <option value="4">URGENT</option>
-          /   <option value="5">REOPENED</option>
-          /   <option value="6">AWAITING_FEEDBACK</option>
-          / </select>
       %li
         %label{ :for => "comment-assignee" }Assignee:
         %span.text-entry=comment.task.assignee.index_name
@@ -36,20 +28,20 @@
     %input#add-comment-cancel{ :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
     %input#add-comment-submit{ :class => [ "chekov-button" ], :type => "button", :value => "ok" }
 
-/ = form_for @comment do |f|
-/   - if @comment.errors.any?
-/     #error_explanation
-/       %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
-/       %ul
-/         - @comment.errors.full_messages.each do |msg|
-/           %li= msg
+-# = form_for @comment do |f|
+-#   - if @comment.errors.any?
+-#     error_explanation
+-#       %h2= "{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
+-#       %ul
+-#         - @comment.errors.full_messages.each do |msg|
+-#           %li= msg
 
-/   .field
-/     = f.label :description
-/     = f.text_area :description
-/   .field
-/     = f.hidden_field(:task_id)
-/   .field
-/     = f.hidden_field(:commenter_id)
-/   .actions
-/     = f.submit 'Save'
+-#   .field
+-#     = f.label :description
+-#     = f.text_area :description
+-#   .field
+-#     = f.hidden_field(:task_id)
+-#   .field
+-#     = f.hidden_field(:commenter_id)
+-#   .actions
+-#     = f.submit 'Save'
