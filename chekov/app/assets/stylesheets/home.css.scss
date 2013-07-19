@@ -162,7 +162,7 @@ span.comments-count       { background: #DDD; color: #333; display: inline-block
     fieldset        { padding: 7px; margin: 0; height: 350px; overflow: auto; border: 0 none; }
     ul              { list-style: none; padding: 0; }
     li              { display: block; }
-    label           { text-align: right; padding: 2px 5px; margin: 5px; width: 80px; display: inline-block; font-weight: bold; }
+    label           { text-align: right; padding: 2px 5px; margin: 5px 0px; width: 80px; display: inline-block; font-weight: bold; }
 
     input[type=text],
     select,
@@ -183,6 +183,8 @@ span.comments-count       { background: #DDD; color: #333; display: inline-block
     li              { display: block; line-height: 8px; }
 }
 
+/* TEMP.: FOR DEV ONLY */
+#new-task           { display: block; }
 
 textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; height: 140px; border: 1px solid #CCC;
                             vertical-align: text-top;}

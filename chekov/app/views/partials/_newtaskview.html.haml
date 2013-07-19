@@ -4,7 +4,7 @@
   %fieldset
     %ul
       %li
-        #label{ :for => "new-application" }App:
+        %label{ :for => "new-application" }App:
 
         / make this into a partial for _applist
         %select#new-application{ :name => "new-application" }
@@ -19,20 +19,13 @@
 
 
         - if task.is_edit_mode?
-          / make this into a partial for _statuslist (or recycle the old one)
-          %select#new-status{ :name => "new-status" }
-            - @status_list.each do |status| 
-              %option{ :value => status.id }=status.name
+          = render :partial => "partials/statuslistselect", :locals => { :status_list => @status_list, :item => task, :id => "task-status", :name => "task-status" }
         - else
           %span.text-entry NEW
 
       %li
         %label{ :for => "new-browser" }Browser:
-        / make this into a partial for _browserlist (or recycle the old one)
-        %select#new-browser{ :name => "new-browser" }
-          - @browser_list.each do |browser|
-            %option{ :value => browser.id }=browser.name
-
+        = render :partial => "partials/browserlistselect", :locals => { :browsers => task.browsers }
 
       %li
         %label{ :for => "new-bz-id" }BZ id:
@@ -44,13 +37,13 @@
         %span.text-entry=task.reporter.index_name
         %input#new-reporter{ :name => "new-reporter", :type => "hidden", :value => task.reporter.id }
 
-        - if task.is_edit_mode?
-          %label{ :for => "new-assignee" }Assignee:
-          / make this into a partial for _assigneelist
-          %select#new-assignee{ :name => "new-assignee" }
-            - @assignee_list.each do |assignee|
-              %option{ :value => assignee.id }=assignee.index_name
-
+      /- if task.is_edit_mode?
+      %label{ :for => "new-assignee" }Assignee:
+      / make this into a partial for _assigneelist
+      /%select#new-assignee{ :name => "new-assignee" }
+      /  - @assignee_list.each do |assignee|
+      /    %option{ :value => assignee.id }=assignee.index_name
+      = render :partial => "partials/assigneelistselect", :locals => { :assignee_list => assignee_list, :item => task.assignee, :id => "task-assignee", :name => "task-assignee" }
 
       %li
         %label{ :for => "new-description" }Description:
@@ -58,6 +51,6 @@
 
   %hr
   %div.button-bar
-    %input{ :id => "#{ task.mode }-task-cancel", :class => [ ".chekov-button" ], :type => "button", :value => "cancel" }
-    %input{ :id => "#{ task.mode }-task-submit", :class => [ ".chekov-button" ], :type => "button", :value => "ok" }
+    %input{ :id => "#{ task.mode }-task-cancel", :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
+    %input{ :id => "#{ task.mode }-task-submit", :class => [ "chekov-button" ], :type => "button", :value => "ok" }
 

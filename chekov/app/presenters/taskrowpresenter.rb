@@ -1,4 +1,3 @@
-require 'taskrowpresenter'
 require 'userpresenter'
 require 'commentviewpresenter'
 
@@ -7,8 +6,6 @@ require 'commentviewpresenter'
 # formatted for inclusion in the page.
 
 class TaskRowPresenter
-
-  attr_reader :mode
 
   def initialize(task)
     @task = task
@@ -36,17 +33,6 @@ class TaskRowPresenter
 
   def status_name
     @task.status.shortname
-  end
-
-  def mode=(mode)
-    if %i{ add edit }.include? mode
-      @mode = mode.to_sym
-    end
-    @mode
-  end
-  
-  def is_edit_mode?
-    @mode == :edit
   end
 
   # provides a truncated summary of the task description

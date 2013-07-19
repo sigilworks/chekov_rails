@@ -1,0 +1,6 @@
+
+
+%select{ :id => (id or ''), :name => (name or ''), :class => [ 'assignee-list' ]}
+  - assignee_list.each do |assignee|
+    %option{ :value => assignee.id , :selected => assignee.id == item.id }
+      #{ assignee.index_name }

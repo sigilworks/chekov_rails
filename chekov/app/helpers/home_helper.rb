@@ -13,14 +13,20 @@ module HomeHelper
     UserPresenter.new(@user)
   end
 
-  def tasklist
+  def task_list
     @tasks.map { |task| TaskRowPresenter.new(task) }
+  end
+
+  def assignee_list
+    @assignee_list.map { |assignee| UserPresenter.new(assignee) }
   end
 
   def new_task
     task = Task.new
     task.reporter = @user
-    TaskRowPresenter.new(task)
+    task.status = Status.find(3) # NEW
+    task.assignee = User.find(3)
+    EditTaskPresenter.new(:add, task)
   end
 
   def edit_task(task_id)

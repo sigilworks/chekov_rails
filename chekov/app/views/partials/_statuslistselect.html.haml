@@ -2,5 +2,5 @@
 
 %select{ :id => (id or ''), :name => (name or ''), :class => [ 'status-list' ]}
   - status_list.each do |status|
-    %option{ :value => status.id , :selected => item.status.shortname.upcase }
+    %option{ :value => status.id , :selected => status.shortname.upcase == item.status.shortname.upcase }
       #{ status.description }
