@@ -1,41 +1,37 @@
 
 %div#new-task
-  %h3 #{ task.mode.capitalize } Task
+  %h3 #{ task.mode.to_s.capitalize } Task
   %fieldset
     %ul
       %li
         #label{ :for => "new-application" }App:
 
-        <select id="new-application" name="new-application">
-          {{#each apps}}
-            <option value="{{ id }}">{{ name }}</option>
-          {{/each}}
-        </select>
+        / make this into a partial for _applist
+        %select#new-application{ :name => "new-application" }
+          - @app_list.each do |app|
+            %option{ :value => app.id }=app.name
+
 
         %label{ :for => "new-build" }Build:
-        %input#new-build{ :name => "new-build", :type => "text", :value => build }
+        %input#new-build{ :name => "new-build", :type => "text", :value => task.build_observed }
 
         %label{ :for => "new-status" }Status:
 
-        {{#if isEditMode}}
-          <select id="new-status" name="new-status">
-            {{#each statuses}}
-              <option value="{{ id }}">{{ name }}</option>
-            {{/each}}
-          </select>
-        {{else}}
-          %span.text-entry NEW
-        {{/if}}
 
+        - if task.is_edit_mode?
+          / make this into a partial for _statuslist (or recycle the old one)
+          %select#new-status{ :name => "new-status" }
+            - @status_list.each do |status| 
+              %option{ :value => status.id }=status.name
+        - else
+          %span.text-entry NEW
 
       %li
         %label{ :for => "new-browser" }Browser:
-
-        <select id="new-browser" name="new-browser">
-          {{#each browsers}}
-            <option value='{{ id }}'>{{ name }}</option>
-          {{/each}}
-        </select>
+        / make this into a partial for _browserlist (or recycle the old one)
+        %select#new-browser{ :name => "new-browser" }
+          - @browser_list.each do |browser|
+            %option{ :value => browser.id }=browser.name
 
 
       %li
@@ -48,14 +44,12 @@
         %span.text-entry=task.reporter.index_name
         %input#new-reporter{ :name => "new-reporter", :type => "hidden", :value => task.reporter.id }
 
-        {{#if isEditMode}}
+        - if task.is_edit_mode?
           %label{ :for => "new-assignee" }Assignee:
-          <select id="new-assignee" name="new-assignee">
-            {{#each assignees}}
-              <option value="{{ id }}">{{shortname id type='assignees' }}</option>
-            {{/each}}
-          </select>
-        {{/if}}
+          / make this into a partial for _assigneelist
+          %select#new-assignee{ :name => "new-assignee" }
+            - @assignee_list.each do |assignee|
+              %option{ :value => assignee.id }=assignee.index_name
 
 
       %li
@@ -64,5 +58,6 @@
 
   %hr
   %div.button-bar
-    %input##{ task.mode }-task-cancel.chekov-button{ :type => "button", :value => "cancel" }
-    %input##{ task.mode }-task-submit.chekov-button{ :type => "button", :value => "ok" }
+    %input{ :id => "#{ task.mode }-task-cancel", :class => [ ".chekov-button" ], :type => "button", :value => "cancel" }
+    %input{ :id => "#{ task.mode }-task-submit", :class => [ ".chekov-button" ], :type => "button", :value => "ok" }
+

@@ -17,6 +17,12 @@ module HomeHelper
     @tasks.map { |task| TaskRowPresenter.new(task) }
   end
 
+  def new_task
+    task = Task.new
+    task.reporter = @user
+    TaskRowPresenter.new(task)
+  end
+
   def edit_task(task_id)
     EditTaskPresenter.new(Task.find(task_id))
   end
