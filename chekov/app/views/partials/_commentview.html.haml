@@ -14,7 +14,7 @@
           by
           %strong
             =comment.commenter.index_name
-          at #{ comment.comment_date }
+          %span.timestamp #{ comment.comment_date } ago
         - if comment.is_edited
           %span.edit-flag EDITED
         %p.comment-description
