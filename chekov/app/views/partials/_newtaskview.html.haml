@@ -21,7 +21,7 @@
         - if task.is_edit_mode?
           = render :partial => "partials/statuslistselect", :locals => { :status_list => @status_list, :item => task, :id => "task-status", :name => "task-status" }
         - else
-          %span.text-entry NEW
+          %span.text-entry New
 
       %li
         %label{ :for => "new-browser" }Browser:

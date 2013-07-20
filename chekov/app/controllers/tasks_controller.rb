@@ -14,7 +14,9 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.new(task_params)
+    @app_list = Application.all
+    render :partial => "partials/newtaskview", :locals => { :task => EditTaskPresenter.new(:add, @task) }
   end
 
   # GET /tasks/1/edit
@@ -26,10 +28,21 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
+    # @comment = Comment.new
+    # @comment.task = Task.find(comment_params[:task_id])
+    # @comment.commenter = User.find(comment_params[:commenter_id])
+    # @comment.task.status = Status.find(comment_params[:status_id])
+    # @comment.description = comment_params[:description]
+
+    # @comment.task.save
+
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @task }
+        # format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        # format.json { render action: 'show', status: :created, location: @task }
+        flash[:success] = "Task added successfully!"
+        format.html { redirect_to root_path }
+        format.json { render :json }
       else
         format.html { render action: 'new' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -69,6 +82,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:application_id, :build_observed, :description, :bz_id, :reporter_id, :assignee_id, :status_id, :browser_id)
+      params.permit(:application_id, :build_observed, :description, :bz_id, :reporter_id, :assignee_id, :status_id, :browser_id)
     end
 end

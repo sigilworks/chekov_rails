@@ -15,7 +15,8 @@ class CommentViewPresenter
   end
 
   def assignee
-    UserPresenter.new(@task.assignee)
+    return UserPresenter.new(@task.assignee) if !@task.assignee.is_nobody?
+    UserPresenter.new(User.nobody) # i.e., it's assigned to user Nobody
   end
 
   def comment_date
