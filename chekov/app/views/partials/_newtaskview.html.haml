@@ -37,13 +37,9 @@
         %span.text-entry=task.reporter.index_name
         %input#new-reporter{ :name => "new-reporter", :type => "hidden", :value => task.reporter.id }
 
-      /- if task.is_edit_mode?
-      %label{ :for => "new-assignee" }Assignee:
-      / make this into a partial for _assigneelist
-      /%select#new-assignee{ :name => "new-assignee" }
-      /  - @assignee_list.each do |assignee|
-      /    %option{ :value => assignee.id }=assignee.index_name
-      = render :partial => "partials/assigneelistselect", :locals => { :assignee_list => assignee_list, :item => task.assignee, :id => "task-assignee", :name => "task-assignee" }
+      - if task.is_edit_mode?
+        %label{ :for => "new-assignee" }Assignee:
+        = render :partial => "partials/assigneelistselect", :locals => { :assignee_list => assignee_list, :item => task.assignee, :id => "task-assignee", :name => "task-assignee" }
 
       %li
         %label{ :for => "new-description" }Description:
