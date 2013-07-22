@@ -29,3 +29,13 @@ $ ->
             , (data) ->
                 console.log "data: %o", data
                 $("#new-task").remove()
+
+    $("a.delete-row").on "click", (e) ->
+        e.preventDefault()
+        id = $(this).data "rowid"
+        $.ajax "/tasks/#{ id }",
+            type: "DELETE"
+            , (data) ->
+                console.log "#row_#{ id }"
+                $("#row_#{ id }").remove()
+                true

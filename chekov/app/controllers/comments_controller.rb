@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @task = Task.find(params[:task_id])
     @status_list = Status.all
     @comment.commenter = User.find(params[:commenter_id])
-
+    @task.assignee = User.nobody
     render :partial => "partials/newcommentview", :locals => { :comment => CommentViewPresenter.new(@comment, @task) }
   end
 
@@ -44,6 +44,7 @@ class CommentsController < ApplicationController
         # format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @comment }
         format.html { redirect_to root_path }
+        format.js   {}
         format.json { render :json => { :ok => 200 } }
       else
         format.html { render action: 'new' }
