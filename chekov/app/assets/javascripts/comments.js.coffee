@@ -16,7 +16,7 @@ $ ->
     $(document).on "click", "#add-comment-cancel", (e) -> $("#new-comment").remove()
 
     # logic for ok/submit button:
-    $(document).on "click", "#add-comment-submit", (e) ->
+###    $(document).on "click", "#add-comment-submit", (e) ->
         $.post "/comments",
             task_id: $("#comment-taskid").val(),
             commenter_id: $("#comment-commenter").val(),
@@ -24,4 +24,4 @@ $ ->
             description: $("#comment-description").val()
             , (data) ->
                 console.log "data: %o", data
-                $("#new-comment").remove()
+                $("#new-comment").remove()###

@@ -29,14 +29,14 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    #@comment = Comment.new(comment_params)
-    @comment = Comment.new
-    @comment.task = Task.find(comment_params[:task_id])
-    @comment.commenter = User.find(comment_params[:commenter_id])
-    @comment.task.status = Status.find(comment_params[:status_id])
+    @comment = Comment.new(comment_params)
+    #@comment = Comment.new
+    #@comment.task = Task.find(comment_params[:task_id])
+    #@comment.commenter = User.find(comment_params[:commenter_id])
+    #@comment.task.status = Status.find(comment_params[:status_id])
     @comment.description = comment_params[:description]
 
-    @comment.task.save
+    #@comment.task.save
 
     respond_to do |format|
       if @comment.save

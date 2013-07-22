@@ -1,48 +1,39 @@
 %div#new-comment
   %h3 Add Comment
 
-  %fieldset
-    %input#comment-taskid{ :name => "comment-taskid", :type => "hidden", :value => comment.task.id }
-    %input#comment-commenter{ :name => "comment-commenter", :type => "hidden", :value => comment.commenter.id }
-    %ul
-      %li
-        %label{ :for => "comment-reporter" }Reporter:
-        %span.text-entry=comment.task.reporter.index_name
-        %span#status-block
-          %label{ :for => "comment-status" }Status:
-          = render :partial => "partials/statuslistselect",
-                    :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment-status" }
-      %li
-        %label{ :for => "comment-assignee" }Assignee:
-        %span.text-entry=comment.task.assignee.index_name
-      %li
-        %label{ :for => "comment-abstract" }Abstract:
-        %em.text-entry=comment.task.abstract
-      %li.description
-        %label{ :for => "comment-description"}Description:
-        %textarea#comment-description{ :name => "comment-description" }
+  = form_for @comment do |f|
+    - if @comment.errors.any?
+      #error_explanation
+        %h3= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
+        %ul
+          - @comment.errors.full_messages.each do |msg|
+            %li= msg
 
-  %hr
+    %fieldset
+      /%input#comment-taskid{ :name => "comment-taskid", :type => "hidden", :value => comment.task.id }
+      = f.hidden_field(:task_id)
+      /%input#comment-commenter{ :name => "comment-commenter", :type => "hidden", :value => comment.commenter.id }
+      = f.hidden_field(:commenter_id)
+      %ul
+        %li.field
+          %label{ :for => "comment-reporter" }Reporter:
+          %span.text-entry=comment.task.reporter.index_name
+          %span#status-block
+            %label{ :for => "comment-status" }Status:
+            = render :partial => "partials/statuslistselect",
+                      :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment-status" }
+        %li.field
+          %label{ :for => "comment-assignee" }Assignee:
+          %span.text-entry=comment.task.assignee.index_name
+        %li.field
+          %label{ :for => "comment-abstract" }Abstract:
+          %em.text-entry=comment.task.abstract
+        %li.field.description
+          %label{ :for => "comment-description"}Description:
+          = f.text_area :description, :id => "comment-description"
 
-  %div.button-bar
-    %input#add-comment-cancel{ :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
-    %input#add-comment-submit{ :class => [ "chekov-button" ], :type => "button", :value => "ok" }
+    %hr
 
-= form_for @comment do |f|
-  - if @comment.errors.any?
-    error_explanation
-  -#%h2="#{pluralize(@comment.errors.count, 'error')} prohibited this comment from being saved:"
-  %h2 Errors prohibited this comment from being saved.
-  %ul
-    - @comment.errors.full_messages.each do |msg|
-      %li= msg
-
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.hidden_field(:task_id)
-  .field
-    = f.hidden_field(:commenter_id)
-  .actions
-    = f.submit 'Save'
+    %div.button-bar.actions
+      %input#add-comment-cancel{ :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
+      = f.submit 'ok', :class => 'chekov-button', :id => "add-comment-submit"
