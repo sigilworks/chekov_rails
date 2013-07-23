@@ -12,7 +12,7 @@ class UserPresenter
 
   # Smith, J.
   def index_name
-    return "<unassigned>" if !@user || @user.last_name.strip.empty?
+    return "<unassigned>" if User.is_nobody? #!@user || @user.last_name.strip.empty?
     "#{@user.last_name}, #{@user.first_name[0]}."
   end
 

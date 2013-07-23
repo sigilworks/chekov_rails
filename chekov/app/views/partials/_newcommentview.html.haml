@@ -1,3 +1,4 @@
+
 %div#new-comment
   %h3 Add Comment
 
@@ -10,26 +11,24 @@
             %li= msg
 
     %fieldset
-      /%input#comment-taskid{ :name => "comment-taskid", :type => "hidden", :value => comment.task.id }
-      = f.hidden_field(:task_id)
-      /%input#comment-commenter{ :name => "comment-commenter", :type => "hidden", :value => comment.commenter.id }
-      = f.hidden_field(:commenter_id)
+      = f.hidden_field :task_id, :id => "comment-taskid"
+      = f.hidden_field :commenter_id, :id => "comment-commenter"
       %ul
         %li.field
-          %label{ :for => "comment-reporter" }Reporter:
+          %label{ :for => "comment-reporter" } Reporter:
           %span.text-entry=comment.task.reporter.index_name
           %span#status-block
-            %label{ :for => "comment-status" }Status:
+            %label{ :for => "comment-status" } Status:
             = render :partial => "partials/statuslistselect",
-                      :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment-status" }
+                      :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment[status_id]" }
         %li.field
-          %label{ :for => "comment-assignee" }Assignee:
+          %label{ :for => "comment-assignee" } Assignee:
           %span.text-entry=comment.task.assignee.index_name
         %li.field
-          %label{ :for => "comment-abstract" }Abstract:
+          %label{ :for => "comment-abstract" } Abstract:
           %em.text-entry=comment.task.abstract
         %li.field.description
-          %label{ :for => "comment-description"}Description:
+          %label{ :for => "comment-description"} Description:
           = f.text_area :description, :id => "comment-description"
 
     %hr

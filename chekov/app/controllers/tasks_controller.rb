@@ -41,7 +41,7 @@ class TasksController < ApplicationController
         # format.html { redirect_to @task, notice: 'Task was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @task }
         flash[:success] = "Task added successfully!"
-        format.html { redirect_to root_path }
+        format.html { redirect_to :back }
         format.json { render :json }
       else
         format.html { render action: 'new' }

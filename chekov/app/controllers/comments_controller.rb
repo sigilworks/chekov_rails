@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @task = Task.find(params[:task_id])
     @status_list = Status.all
     @comment.commenter = User.find(params[:commenter_id])
-    @task.assignee = User.nobody
+    @task.assignee ||= User.nobody
     render :partial => "partials/newcommentview", :locals => { :comment => CommentViewPresenter.new(@comment, @task) }
   end
 
@@ -30,21 +30,16 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-    #@comment = Comment.new
-    #@comment.task = Task.find(comment_params[:task_id])
-    #@comment.commenter = User.find(comment_params[:commenter_id])
-    #@comment.task.status = Status.find(comment_params[:status_id])
-    @comment.description = comment_params[:description]
 
-    #@comment.task.save
+    @comment.task.save
 
     respond_to do |format|
       if @comment.save
-        flash[:success] = "Comment added successfully!"
+        flash[:success] = "Comment added successfully to task ##{ @comment.task.id }"
         # format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @comment }
-        format.html { redirect_to root_path }
-        format.js   {}
+        format.html { redirect_to :back }
+        format.js   {} #:layout => false }
         format.json { render :json => { :ok => 200 } }
       else
         format.html { render action: 'new' }
@@ -85,8 +80,7 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      #params.require(:comment).permit(:description, :task_id, :commenter_id, :task, :commenter, :status_id, :status)
-      params.permit(:description, :task_id, :commenter_id, :task, :commenter, :status_id, :status)
+      params.require(:comment).permit(:description, :task_id, :commenter_id, :task, :commenter)
     end
 
     def task_for_comment
