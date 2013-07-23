@@ -1,10 +1,11 @@
 
 
 %div{ :class => [ 'comments-display', task_comments.task.status_name, 'hidden' ], :data => { :comment_taskid => task_comments.task.id }}
-  %h3 #{ task_comments.comments.size } comments
-  %span.assignee
-    %span.sc>< assignee:
-    &nbsp;#{ task_comments.task.assignee.index_name }
+  %header
+    %h3 #{ task_comments.comments.size } comments
+    %span.assignee
+      %span.sc>< assignee:
+      &nbsp;#{ task_comments.task.assignee.index_name }
   %ul
     -task_comments.comments.each_with_index do |comment, index|
       %li{ :data => { :comment_id => comment.id, :comment_index => index + 1 }}

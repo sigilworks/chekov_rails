@@ -189,6 +189,7 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 
 /*  COMMENTS  */
 .comments-display         { width: 95%; margin: 0 auto; position: relative;
+    header                { background: #F3F3F3; padding: 0 6px; border: 1px solid #ECEAEE; margin-top: 15px; }
     ul                    { list-style-type: none; padding-left: 0; }
     li                    { position: relative; }
     h3                    { margin: 0; display: inline-block; }
