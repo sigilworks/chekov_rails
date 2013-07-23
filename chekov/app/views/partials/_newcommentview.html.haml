@@ -20,7 +20,7 @@
           %span#status-block
             %label{ :for => "comment-status" } Status:
             = render :partial => "partials/statuslistselect",
-                      :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment[status_id]" }
+                      :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment[task[status_id]]" }
         %li.field
           %label{ :for => "comment-assignee" } Assignee:
           %span.text-entry=comment.task.assignee.index_name

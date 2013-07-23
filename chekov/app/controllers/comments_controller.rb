@@ -29,9 +29,10 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    
     @comment = Comment.new(comment_params)
-
-    @comment.task.save
+    #@comment.task.status = Status.find comment_params[:status_id]
+    #@comment.task.save
 
     respond_to do |format|
       if @comment.save
@@ -80,7 +81,7 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:description, :task_id, :commenter_id, :task, :commenter)
+      params.require(:comment).permit(:description, :task_id, :task, :commenter_id, :commenter, :task_attributes => [ :status, :status_id ] )
     end
 
     def task_for_comment
