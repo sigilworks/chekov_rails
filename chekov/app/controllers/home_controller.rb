@@ -1,10 +1,11 @@
 
 class HomeController < ApplicationController
+  skip_before_action :require_login
 
   def index
 
     @user = User.find(2) # TODO: temporarily, obviously
-    
+
     @assignee_list = User.assignees
     @app_list = Application.all
     @browser_list = Browser.all

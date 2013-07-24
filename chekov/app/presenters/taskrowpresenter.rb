@@ -40,6 +40,11 @@ class TaskRowPresenter
     @task.description.truncate(75, :separator => /\s/)
   end
 
+  def fixed_width_id
+    # TODO: format to left justify id within five decimal places
+    @task.id
+  end
+
   # method missing to delegate to @user or super
   def method_missing(name, *args)
     @task.send(name, *args)

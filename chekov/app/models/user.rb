@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :team
   belongs_to :permission
 
-  validates :username, 
+  validates :username,
             :presence => { :message => "Every user must have a username!" },
             :uniqueness => { :message => "Every user's username must be unique!" },
             :on => :create
@@ -18,12 +18,16 @@ class User < ActiveRecord::Base
   scope :reporters, -> { where(:role_id => [ 2, 4 ])}
   scope :commenters, -> { where(:role_id => [ 3, 4 ])}
 
+  def is_nobody?
+  	id == 1
+  end
+
   def self.nobody
     User.find(1)
   end
 
-  def is_nobody?
-  	id == 1
+  def self.authenticate(username)
+    !!User.find_by(:username => username)
   end
 
 end

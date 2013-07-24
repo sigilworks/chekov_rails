@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
   belongs_to :browser
   has_many   :comments, :dependent => :destroy
 
-  validates :application, 
+  validates :application,
             :presence => { :message => "Every task must be associated with an application!" },
             :on => :create
   validates :reporter,
