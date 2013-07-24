@@ -2,15 +2,15 @@
 %menu
   %li
     %span#welcome{ :data => { :userid => me.id }}
-      - if @is_logged_in
-        You are
-        %strong #{ me.full_name }  [ #{ me.team_abbrev } ]
-      - else
-        %strong Please log in:
+    - if @is_logged_in
+      You are
+      %strong #{ me.full_name}  [ #{ me.team_abbrev} ]
+    - else
+      %strong Please log in:
 
-        %select{ :id => 'user-login-list', :class => [ 'login-list' ] }
-          -# leave a blank option at top of <select> list
-          %option
-          - login_user_list.each do |user|
-            %option{ :value => user.username }
-              #{ user.index_name }
+      %select{ :id => 'user-login-list', :class => [ 'login-list' ]}
+        -# leave a blank option at top of <select> list
+        %option
+        - login_user_list.each do |user|
+          %option{ :value => user.username}
+            #{ user.index_name}
