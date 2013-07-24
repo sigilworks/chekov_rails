@@ -1,4 +1,6 @@
 Chekov::Application.routes.draw do
+  get "logins/create"
+  get "logins/destroy"
   resources :tasks
   resources :users
   resources :comments

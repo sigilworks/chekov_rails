@@ -18,5 +18,5 @@
           %span.timestamp{ :title => comment.comment_date } #{ comment.comment_date_in_words } ago
         - if comment.is_edited
           %span.edit-flag EDITED
-        %p.comment-description
+        %blockquote.comment-description
           =comment.description

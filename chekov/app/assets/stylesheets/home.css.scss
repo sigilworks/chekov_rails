@@ -35,7 +35,7 @@ body                      { font-family: $display-font; font-size: $base-font-si
                             line-height: 28px; font-family: $header-font; background: transparent; }
 }
 
-menu                      { margin: 0; padding: 5px 25px; list-style: none; text-align: right; border-top: 5px solid orange; color: $black;
+menu                      { margin: 0; padding: 5px 25px; list-style: none; text-align: right; border-top: 5px solid #555; color: $black;
     li                    { display: inline-block; }
 }
 .comment-expander         { width: 22px; height: 14px; display: inline-block; vertical-align: text-bottom; }
@@ -201,7 +201,7 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
                             text-transform: lowercase; font-variant: small-caps; font-size: 14px; letter-spacing: 2px; line-height: 18px;
                             vertical-align: text-bottom; float: right; }
 }
-.comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px; 
+.comment-byline           { display: inline-block; font-size: 11px; color: #444; position: relative; top: -6px; left: 7px;
     span.timestamp        { color: #999; margin-left: 7px; }
 }
 .comments-display.closed  { text-decoration: none; }
