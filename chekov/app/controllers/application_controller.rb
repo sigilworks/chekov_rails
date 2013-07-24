@@ -6,4 +6,7 @@ class ApplicationController < ActionController::Base
   # ensuring all controllers use the main template
   # to render by default
   layout 'layouts/application'
+
+  # adding custom flash message types
+  add_flash_types :info, :success, :error
 end
