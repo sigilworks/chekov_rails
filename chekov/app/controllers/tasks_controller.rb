@@ -28,20 +28,13 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    # @comment = Comment.new
-    # @comment.task = Task.find(comment_params[:task_id])
-    # @comment.commenter = User.find(comment_params[:commenter_id])
-    # @comment.task.status = Status.find(comment_params[:status_id])
-    # @comment.description = comment_params[:description]
-
-    # @comment.task.save
-
     respond_to do |format|
       if @task.save
         # format.html { redirect_to @task, notice: 'Task was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @task }
         flash[:success] = "Task added successfully!"
         format.html { redirect_to :back }
+        format.js   {}
         format.json { render :json }
       else
         format.html { render action: 'new' }
@@ -69,7 +62,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      #format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

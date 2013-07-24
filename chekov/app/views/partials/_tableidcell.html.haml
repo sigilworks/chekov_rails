@@ -1,7 +1,7 @@
 
 %span.meta
   %span
-    =link_to "X", "#", :class => [ 'delete-row', 'icon-hidden' ], :data => { :rowid => task.get.id }, :title => "Delete task"
+    =link_to "X", task_path(task.id), :method => :delete, :remote => true, :class => [ 'delete-row', 'icon-hidden' ], :data => { :confirm => "Delete task?", :rowid => task.get.id }, :title => "Delete task"
 
   %span
     =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ], :title => "Edit task"

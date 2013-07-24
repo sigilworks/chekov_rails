@@ -17,10 +17,12 @@
         %li.field
           %label{ :for => "comment-reporter" } Reporter:
           %span.text-entry=comment.task.reporter.index_name
+
           %span#status-block
             %label{ :for => "comment-status" } Status:
             = render :partial => "partials/statuslistselect",
-                      :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", :name => "comment[task[status_id]]" }
+                     :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", 
+                                  :name => "comment[task_attributes][status_id]" }
         %li.field
           %label{ :for => "comment-assignee" } Assignee:
           %span.text-entry=comment.task.assignee.index_name
@@ -36,3 +38,5 @@
     %div.button-bar.actions
       %input#add-comment-cancel{ :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
       = f.submit 'ok', :class => 'chekov-button', :id => "add-comment-submit"
+
+      

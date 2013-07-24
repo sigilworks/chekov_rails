@@ -1,0 +1,5 @@
+
+%select{ :id => (id or ''), :name => (name or ''), :class => [ 'app-list' ]}
+  - app_list.each do |app|
+    %option{ :value => app.id , :selected => item.is_edit_mode? && app.name == item.app.name }
+      #{ app.name }

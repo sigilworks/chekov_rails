@@ -1,6 +1,6 @@
 %span.meta
   %span
-    =link_to "X", comment_path(comment.id), :method => :delete, :remote => true, :class => [ 'delete-comment', 'icon-hidden' ], :data => { :confirm => "Delete comment?", :comment_id => comment.id, :task_id => task.id }, :title => "New comment"
+    =link_to "X", comment_path(comment.id), :method => :delete, :remote => true, :class => [ 'delete-comment', 'icon-hidden' ], :data => { :confirm => "Delete comment?", :comment_id => comment.id, :task_id => task.id }, :title => "Delete comment"
 
   %span
     =link_to "E", edit_comment_path(comment.id), :class => [ 'edit-row', 'icon-hidden' ], :title => "Edit comment"

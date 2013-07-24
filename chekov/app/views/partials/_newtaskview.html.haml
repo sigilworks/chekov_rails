@@ -1,52 +1,57 @@
 
 %div#new-task
-  %h3 #{ task.mode.to_s.capitalize } Task
-  %fieldset
-    %ul
-      %li
-        %label{ :for => "new-application" }App:
 
-        / make this into a partial for _applist
-        %select#new-application{ :name => "new-application" }
-          - @app_list.each do |app|
-            %option{ :value => app.id }=app.name
+  = form_for @task do |t|
+    - if @task.errors.any?
+      #error_explanation
+        %h3= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+        %ul
+          - @task.errors.full_messages.each do |msg|
+            %li= msg
+
+    %h3 #{ task.mode.to_s.capitalize } Task
+    %fieldset
+      %ul
+        %li.field
+          %label{ :for => "new-application" } App:
+          = render :partial => "partials/applistselect",
+                   :locals => { :app_list => @app_list, :item => task, :id => "#{ task.mode }-application", :name => "#{ task.mode }-application" }
 
 
-        %label{ :for => "new-build" }Build:
-        %input#new-build{ :name => "new-build", :type => "text", :value => task.build_observed }
+          %label{ :for => "new-build" } Build:
+          %input#new-build{ :name => "new-build", :type => "text", :value => task.build_observed }
 
-        %label{ :for => "new-status" }Status:
+          %label{ :for => "new-status" } Status:
+          - if task.is_edit_mode?
+            = render :partial => "partials/statuslistselect",
+                     :locals => { :status_list => @status_list, :item => task, :id => "task-status", :name => "task-status" }
+          - else
+            %span.text-entry New
 
+        %li.field
+          %label{ :for => "new-browser" } Browser:
+          = render :partial => "partials/browserlistselect", :locals => { :browsers => task.browsers }
+
+        %li.field
+          %label{ :for => "new-bz-id" } BZ id:
+          %input#new-bzId{ :name => "new-bz-id", :type => "text", :value => task.bz_id }
+
+        %li.field
+          %label{ :for => "new-reporter" } Reporter:
+          %span.text-entry=task.reporter.index_name
+          %input#new-reporter{ :name => "new-reporter", :type => "hidden", :value => task.reporter.id }
 
         - if task.is_edit_mode?
-          = render :partial => "partials/statuslistselect", :locals => { :status_list => @status_list, :item => task, :id => "task-status", :name => "task-status" }
-        - else
-          %span.text-entry New
+          %label{ :for => "new-assignee" } Assignee:
+          = render :partial => "partials/assigneelistselect", 
+                   :locals => { :assignee_list => assignee_list, :item => task.assignee, :id => "task-assignee", :name => "task-assignee" }
 
-      %li
-        %label{ :for => "new-browser" }Browser:
-        = render :partial => "partials/browserlistselect", :locals => { :browsers => task.browsers }
+        %li.field
+          %label{ :for => "new-description" } Description:
+          %textarea#new-description{ :name => "new-description" }=task.description
 
-      %li
-        %label{ :for => "new-bz-id" }BZ id:
-        %input#new-bzId{ :name => "new-bz-id", :type => "text", :value => task.bz_id }
+    %hr
 
-
-      %li
-        %label{ :for => "new-reporter" }Reporter:
-        %span.text-entry=task.reporter.index_name
-        %input#new-reporter{ :name => "new-reporter", :type => "hidden", :value => task.reporter.id }
-
-      - if task.is_edit_mode?
-        %label{ :for => "new-assignee" }Assignee:
-        = render :partial => "partials/assigneelistselect", :locals => { :assignee_list => assignee_list, :item => task.assignee, :id => "task-assignee", :name => "task-assignee" }
-
-      %li
-        %label{ :for => "new-description" }Description:
-        %textarea#new-description{ :name => "new-description" }=task.description
-
-  %hr
-  %div.button-bar
-    %input{ :id => "#{ task.mode }-task-cancel", :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
-    %input{ :id => "#{ task.mode }-task-submit", :class => [ "chekov-button" ], :type => "button", :value => "ok" }
-
+    %div.button-bar.actions
+      %input{ :id => "#{ task.mode }-task-cancel", :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
+      = t.submit "ok", :class => "chekov-button", :id => "#{ task.mode }-task-submit"

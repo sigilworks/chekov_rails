@@ -14,28 +14,3 @@ $ ->
 
     # logic for cancel button:
     $(document).on "click", "#add-task-cancel", (e) -> $("#new-task").remove()
-
-    # logic for ok/submit button:
-    $(document).on "click", "#add-task-submit", (e) ->
-        $.post "/tasks",
-            application_id: $("#new-application").val(),
-            assignee_id: $("#new-assignee").val(),
-            build_observed: $("#new-build").val(),
-            reporter_id: $("#new-reporter").val(),
-            bz_id: $("#new-bzId").val(),
-            browser_id: $("#new-browser").val(),
-            status_id: 3, # NEW 
-            description: $("#new-description").val()
-            , (data) ->
-                console.log "data: %o", data
-                $("#new-task").remove()
-
-    $("a.delete-row").on "click", (e) ->
-        e.preventDefault()
-        id = $(this).data "rowid"
-        $.ajax "/tasks/#{ id }",
-            type: "DELETE"
-            , (data) ->
-                console.log "#row_#{ id }"
-                $("#row_#{ id }").remove()
-                true
