@@ -21,6 +21,10 @@ module HomeHelper
     @assignee_list.map { |assignee| UserPresenter.new(assignee) }
   end
 
+  def login_user_list
+    @user_list.map { |user| UserPresenter.new(user) }
+  end
+
   def new_task
     task = Task.new
     task.reporter = @user

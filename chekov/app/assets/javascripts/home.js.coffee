@@ -1,6 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
     # control the styling behavior of certain buttons
@@ -35,7 +32,7 @@ $ ->
             # re-number the remaining comments, so as not to have any "holes" in their index
             $.each($indices, (newIndex, tag) -> $(tag).html(++newIndex))
             $row.find(".comments-count").html (i, oldval) -> +oldval - 1
-            $row.find("h3").html (i, oldval) -> 
+            $row.find("h3").html (i, oldval) ->
                 cnt = +oldval.split(' ')[0]
                 "#{ --cnt } comments"
         else

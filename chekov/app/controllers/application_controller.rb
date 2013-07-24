@@ -13,16 +13,16 @@ class ApplicationController < ActionController::Base
   # adding custom flash message types
   add_flash_types :info, :success
 
+  # returns whether or not the current user is properly logged in in the current session
+  def logged_in?
+    !!current_user
+  end
+
   private
 
   # Finds the User object with the id stored in the session at key `:current_user_id`
   def current_user
-    @_current_user ||= session[:current_user_id] && User.find(session[:current_user_id])
-  end
-
-  # returns whether or not the current user is properly logged in in the current session
-  def logged_in?
-    !!current_user
+    @_current_user ||= cookies.permanent.signed[:current_user_id] && User.find_by(:username => cookies.permanent.signed[:current_user_id])
   end
 
   def require_login

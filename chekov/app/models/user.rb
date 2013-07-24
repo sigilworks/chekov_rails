@@ -14,9 +14,10 @@ class User < ActiveRecord::Base
   validates :team, :presence => { :message => "Every user must be associated with a team!" }, :on => :save
   validates :permission, :presence => { :message => "Every user must be associated with permissions!" }, :on => :save
 
-  scope :assignees, -> { where(:role_id => [ 1, 4 ])}
-  scope :reporters, -> { where(:role_id => [ 2, 4 ])}
-  scope :commenters, -> { where(:role_id => [ 3, 4 ])}
+  scope :assignees, -> { where(:role_id => [ 1, 4 ]) }
+  scope :reporters, -> { where(:role_id => [ 2, 4 ]) }
+  scope :commenters, -> { where(:role_id => [ 3, 4 ]) }
+  scope :reals, -> { where('id > 1') } # all users except for the "nobody"/"unassigned" user at id: 1
 
   def is_nobody?
   	id == 1
@@ -26,8 +27,10 @@ class User < ActiveRecord::Base
     User.find(1)
   end
 
+  # only authentication needed for this app is that
+  # a proper username is chosen as current user
   def self.authenticate(username)
-    !!User.find_by(:username => username)
+    User.find_by(:username => username)
   end
 
 end

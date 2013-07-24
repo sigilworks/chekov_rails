@@ -1,3 +1,11 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+    # control the styling behavior of certain buttons
+    # TODO: fix whatever this was supposed to be doing...
+    $("#user-login-list").on "change", (e) ->
+      selected = $(e.target).val()
+      $.get "logins/create",
+        username: selected
+        , () ->
+          # TODO: temporary refresh, replace this!
+          window.location.reload()
