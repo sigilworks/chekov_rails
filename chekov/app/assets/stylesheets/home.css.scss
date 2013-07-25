@@ -84,7 +84,7 @@ span.comments-count       { background: #DDD; color: #333; display: inline-block
 }
 .open                     {
     td:first-child        { background: $open-bkgd; border: 1px solid $open-border; }
-    .talk-bubble          { background: #CCC; color: #FFF; }
+    .talk-bubble          { background: $open-border; color: #FFF; }
     .talk-bubble:after    { border-left-color: $open-border; }
     .comment-description  { border-left: 5px solid #DDD; }
 }

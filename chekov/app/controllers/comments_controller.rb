@@ -1,3 +1,5 @@
+require 'taskpromotionstrategy'
+
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
@@ -33,9 +35,7 @@ class CommentsController < ApplicationController
 
     # when a task with `new` status gets its first comment,
     # its status gets promoted to `open`...
-    if @comment.task.is_promotable?
-      @comment.task.promote!
-    end
+    TaskPromotionStrategy.assess(@comment.task)
 
     respond_to do |format|
       if @comment.save
