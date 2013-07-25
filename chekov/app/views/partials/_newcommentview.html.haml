@@ -1,6 +1,6 @@
 
 %div#new-comment
-  %h3 Add Comment
+  %h3 #{ mode } comment
 
   = form_for @comment do |f|
     - if @comment.errors.any?
@@ -21,7 +21,7 @@
           %span#status-block
             %label{ :for => "comment-status" } Status:
             = render :partial => "partials/statuslistselect",
-                     :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status", 
+                     :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status",
                                   :name => "comment[task_attributes][status_id]" }
         %li.field
           %label{ :for => "comment-assignee" } Assignee:
@@ -39,4 +39,3 @@
       %input#add-comment-cancel{ :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
       = f.submit 'ok', :class => 'chekov-button', :id => "add-comment-submit"
 
-      

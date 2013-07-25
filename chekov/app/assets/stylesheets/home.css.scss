@@ -227,7 +227,8 @@ td.id-cell                { text-align: left; width: 130px;
 a.delete-row,
 a.delete-comment          { opacity: 0.35; @include icon-only-link(url('headerIcons.png'), -213px, 0px); }
 a.add-comment             { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -85px); }
-a.edit-row                { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -132px); }
+a.edit-row,
+a.edit-comment            { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -132px); }
 
 .icon-visible             { visibility: visible; }
 .icon-hidden              { visibility: hidden; }

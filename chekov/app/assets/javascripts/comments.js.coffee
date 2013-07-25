@@ -13,6 +13,17 @@ $ ->
                 $("body").append(data).removeClass('hidden')
                 $("#new-comment").show().focus()
 
+    # TODO: DRY this and ^^ out!!
+    # ajax handling of clicking Edit Comment icon
+    $("a.edit-comment").on "click", ->
+        if $("#new-comment").length
+            $("#new-comment").remove()
+        commentId = $(this).closest('li').data "commentId"
+        $.get "/comments/#{ commentId }/edit",
+            (data) ->
+                $("body").append(data).removeClass('hidden')
+                $("#new-comment").show().focus()
+
     # dealing with clicking on the X-icon to delete a particular comment...
     $(".delete-comment").on "ajax:success", (event, status, xhr) ->
         $target = $(event.target)
