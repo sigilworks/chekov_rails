@@ -7,8 +7,10 @@
     =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ], :title => "Edit task"
 
   %span
-    %a{ :class => [ 'add-comment', 'icon-hidden' ], :title => "New comment", :data => { :task_id => task.id }}+
-    / =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id), :class => [ 'add-comment', 'icon-hidden' ], :title => "New comment", :data => { :task_id => task.id }
+    =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id),
+    	:class => [ 'add-comment', 'icon-hidden' ], :title => "New comment",
+    	:data => { :task_id => task.id },
+    	:remote => true
 
 - if task.has_comments?
   %span.comments-count=task.comments_count

@@ -4,7 +4,7 @@
   = form_for @task do |t|
     - if @task.errors.any?
       #error_explanation
-        %h3= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+        %h3= "#{ pluralize(@task.errors.count, "error") } prohibited this task from being saved:"
         %ul
           - @task.errors.full_messages.each do |msg|
             %li= msg
@@ -15,40 +15,44 @@
         %li.field
           %label{ :for => "new-application" } App:
           = render :partial => "partials/applistselect",
-                   :locals => { :app_list => @app_list, :item => task, :id => "#{ task.mode }-application", :name => "#{ task.mode }-application" }
+                   :locals => { :app_list => @app_list, :item => task, :id => "#{ task.mode }-application",
+                                :name => "application_id" }
 
 
           %label{ :for => "new-build" } Build:
-          %input#new-build{ :name => "new-build", :type => "text", :value => task.build_observed }
+          %input#new-build{ :name => "build_observed", :type => "text", :value => task.build_observed }
 
           %label{ :for => "new-status" } Status:
           - if task.is_edit_mode?
             = render :partial => "partials/statuslistselect",
-                     :locals => { :status_list => @status_list, :item => task, :id => "task-status", :name => "task-status" }
+                     :locals => { :status_list => @status_list, :item => task, :id => "task-status", :name => "status_id" }
           - else
             %span.text-entry New
+            = t.hidden_field :status_id, :value => 3, :name => "status_id"
 
         %li.field
           %label{ :for => "new-browser" } Browser:
-          = render :partial => "partials/browserlistselect", :locals => { :browsers => task.browsers }
+          = render :partial => "partials/browserlistselect",
+                   :locals => { :browsers => task.browsers, :name => "browser_id" }
 
         %li.field
           %label{ :for => "new-bz-id" } BZ id:
-          %input#new-bzId{ :name => "new-bz-id", :type => "text", :value => task.bz_id }
+          %input#new-bzId{ :name => "bz_id", :type => "text", :value => task.bz_id }
 
         %li.field
           %label{ :for => "new-reporter" } Reporter:
           %span.text-entry=task.reporter.index_name
-          %input#new-reporter{ :name => "new-reporter", :type => "hidden", :value => task.reporter.id }
+          %input#new-reporter{ :name => "reporter_id", :type => "hidden", :value => task.reporter.id }
 
         - if task.is_edit_mode?
           %label{ :for => "new-assignee" } Assignee:
-          = render :partial => "partials/assigneelistselect", 
-                   :locals => { :assignee_list => assignee_list, :item => task.assignee, :id => "task-assignee", :name => "task-assignee" }
+          = render :partial => "partials/assigneelistselect",
+                   :locals => { :assignee_list => assignee_list, :item => task.assignee, :id => "task-assignee",
+                                :name => "assignee_id" }
 
         %li.field
           %label{ :for => "new-description" } Description:
-          %textarea#new-description{ :name => "new-description" }=task.description
+          %textarea#new-description{ :name => "description" }=task.description
 
     %hr
 

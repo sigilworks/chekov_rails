@@ -1,4 +1,4 @@
-%select#new-browser{ :name => "new-browser" }
+%select#new-browser{ :name => (name or '') }
 
   - browsers.by_groups.each do |group, browsers|
 

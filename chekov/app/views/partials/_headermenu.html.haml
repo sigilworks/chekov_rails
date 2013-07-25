@@ -4,9 +4,10 @@
     %span#welcome{ :data => { :userid => me.id }}
     - if @is_logged_in
       You are
-      %strong #{ me.full_name}  [ #{ me.team_abbrev} ]
+      %strong #{ me.full_name}
+      %span.team [#{ me.team_abbrev}]
     - else
-      %strong Please log in:
+      %strong Please log in &#9658;
 
       %select{ :id => 'user-login-list', :class => [ 'login-list' ]}
         -# leave a blank option at top of <select> list
