@@ -31,5 +31,8 @@
           %th bz id
           %th reporter
 
-      - task_list.each do |task|
-        = render :partial => "partials/taskrowview", :locals => { :task => task }
+      - if !task_list.empty?
+        - task_list.each do |task|
+          = render :partial => "partials/taskrowview", :locals => { :task => task }
+      - else
+        = render :partial => "partials/emptytableview", :locals => { :filter => params[:filter] } #"<null>" }

@@ -2,5 +2,6 @@
 %select#status-list
   %option{ :value => 'all' }@all tasks
   - status_list.each do |status|
-    %option{ :value => status.shortname , :selected => params[:filter] === status.shortname }
-      @#{status.shortname}
+    - name = (status.respond_to? :shortname) ? status.shortname : status
+    %option{ :value => name , :selected => params[:filter] === name }
+      @#{ name }

@@ -220,7 +220,7 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 .main                     { overflow: hidden; }
 
 th.id-header              { text-align: right; padding-right: 55px; }
-td.id-cell                { text-align: left;
+td.id-cell                { text-align: left; width: 130px;
     .meta                 { display: inline-block; text-align: left; float: left; margin-right: 4px; }
     .id                   { width: 20px; display: inline-block; text-align: right; float: right; }
 }
