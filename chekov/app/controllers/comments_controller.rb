@@ -29,17 +29,13 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    
     @comment = Comment.new(comment_params)
-    #@comment.task.status = Status.find comment_params[:status_id]
-    #@comment.task.save
 
     respond_to do |format|
       if @comment.save
-        flash[:success] = "Comment added successfully to task ##{ @comment.task.id }"
         # format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @comment }
-        format.html { redirect_to :back }
+        format.html { redirect_to :back, :success => "Comment added successfully to task ##{ @comment.task.id }" }
         format.js   {}
         format.json { render :json => { :ok => 200 } }
       else
@@ -69,7 +65,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     respond_to do |format|
       # format.html { redirect_to root_path }
-      format.json { head :no_content }
+      format.json { head :no_content, :success => "Comment successfully deleted." }
     end
   end
 
@@ -82,22 +78,12 @@ class CommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment)
-            .permit(:description, :task_id, :commenter_id, :commenter, 
+            .permit(:description, :task_id, :commenter_id, :commenter,
                     :task_attributes => [ :status, :status_id, :application_id, :reporter_id ])
     end
-    
+
     def task_for_comment
       params.permit(:task_id, :task, :commenter, :commenter_id)
-    end
-
-    def comments_for_task(taskid)
-      task = Task.find(taskid)
-
-      comments = task.comments.map do |comment|
-        CommentViewPresenter.new(comment, task)
-      end
-
-      Struct.new(:task, :comments).new(TaskRowPresenter.new(task), comments)
     end
 
 end

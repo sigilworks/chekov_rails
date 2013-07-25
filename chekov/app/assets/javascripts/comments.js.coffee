@@ -4,10 +4,10 @@ $ ->
         if $("#new-comment").length
             $("#new-comment").remove()
         taskid = $(this).data "taskId"
+        commenterId = $(this).data "commenterId"
         $.get "/comments/new",
             task_id: taskid,
-            # TODO: fix this hardcoded value!!!
-            commenter_id: 2
+            commenter_id: commenterId
             , (data) ->
                 $("body").append(data).removeClass('hidden')
                 $("#new-comment").show().focus()

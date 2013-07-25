@@ -4,8 +4,8 @@ class HomeController < ApplicationController
 
   def index
 
-    @user = User.find(2) # TODO: temporarily, obviously
     @is_logged_in = logged_in?
+    @user = logged_in? ? current_user : User.nobody
 
     @assignee_list = User.assignees
     @app_list = Application.all

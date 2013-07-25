@@ -29,7 +29,7 @@ module HomeHelper
     task = Task.new
     task.reporter = @user
     task.status = Status.find(3) # NEW
-    task.assignee = User.find(3)
+    task.assignee = User.nobody
     EditTaskPresenter.new(:add, task)
   end
 

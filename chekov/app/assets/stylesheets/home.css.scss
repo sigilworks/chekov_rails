@@ -69,8 +69,6 @@ th                        { white-space: nowrap; font-variant: small-caps; font-
 td                        { text-align: center; white-space: nowrap; padding: 5px 10px; }
 td.description            { text-align: left; vertical-align: top; white-space: normal; }
 tr                        { vertical-align: top; }
-tr.closed td              { text-decoration: line-through; }
-tr.closed td.id-cell      { text-decoration: none; }
 td:not(:first-child)      { border-bottom: 1px dotted #BBB; }
 
 span.comments-count       { background: #DDD; color: #333; display: inline-block; padding: 1px; margin: 0; height: 16px;
@@ -78,7 +76,7 @@ span.comments-count       { background: #DDD; color: #333; display: inline-block
                             border-top: 1px solid #999; font-size: 11px; border-bottom: 1px solid #BBB; }
 
 /*  STATUS COLORS */
-.closed                   {
+.closed                   { opacity: 0.65;
     td:first-child        { background: $green-bkgd; border: 1px solid $green-border; }
     .talk-bubble          { background: $green-border; color: #FFF; }
     .talk-bubble:after    { border-left-color: $green-border; }
@@ -222,9 +220,10 @@ textarea:valid            { border: 0 none; background: #F3F3F3; width: 80%; hei
 .main                     { overflow: hidden; }
 
 th.id-header              { text-align: right; padding-right: 55px; }
-td.id-cell                { text-align: right; }
-td.id-cell .meta          { display: inline-block; text-align: left; float: left; }
-td.id-cell .meta .id      { width: 20px; display: inline-block; }
+td.id-cell                { text-align: left;
+    .meta                 { display: inline-block; text-align: left; float: left; margin-right: 4px; }
+    .id                   { width: 20px; display: inline-block; text-align: right; float: right; }
+}
 a.delete-row,
 a.delete-comment          { opacity: 0.35; @include icon-only-link(url('headerIcons.png'), -213px, 0px); }
 a.add-comment             { opacity: 0.3; @include icon-only-link(url('iconsOther16-8bit.png'), 0px, -85px); }

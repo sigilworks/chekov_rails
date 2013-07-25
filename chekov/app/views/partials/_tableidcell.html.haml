@@ -9,7 +9,7 @@
   %span
     =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id),
     	:class => [ 'add-comment', 'icon-hidden' ], :title => "New comment",
-    	:data => { :task_id => task.id },
+    	:data => { :task_id => task.id, :commenter_id => me.id },
     	:remote => true
 
 - if task.has_comments?
