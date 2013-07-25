@@ -31,6 +31,12 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
 
+    # when a task with `new` status gets its first comment,
+    # its status gets promoted to `open`...
+    if @comment.task.is_promotable?
+      @comment.task.promote!
+    end
+
     respond_to do |format|
       if @comment.save
         # format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
