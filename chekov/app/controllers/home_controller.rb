@@ -19,31 +19,14 @@ class HomeController < ApplicationController
     @status_list = Status.all + Status.custom
     @user_list = User.reals.order(:last_name => :asc)
 
-    # handles the various view filters of the task table
-    filter = TaskFilterService.evaluate(params[:filter])
-    @tasks = filtered_tasks(filter.name)
+    # obtains the Tasks to populate the table on the page,
+    # filtered by user's privileges and by his chosen view
+    @tasks = TaskFilterService.for_user(@user).with_filter(params[:filter]).filter_tasks
 
     # respond_to do |format|
     #   format.html
     # end
     render :stream => true
   end
-
-  private
-
-    # TODO: this should be extracted to another class (e.g., FilteredTaskStrategy object?)
-    # determines which tasks are shown to each filter
-    def filtered_tasks(filter)
-      case filter
-      when 'all'
-        Task.all.order(:updated_at => :desc)
-      when *Status.all.map(&:shortname)
-        Task.where(:status_id => Status.where(:shortname => filter)).order(:updated_at => :desc)
-      when 'mine'
-        Task.where(:assignee => current_user).order(:updated_at => :desc)
-      when 'unassigned'
-        Task.where(:assignee => User.nobody).order(:updated_at => :desc)
-      end
-    end
 
 end

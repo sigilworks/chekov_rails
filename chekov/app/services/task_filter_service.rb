@@ -3,21 +3,17 @@ require 'singleton'
 class TaskFilterService
   include Singleton
 
-  # - returns `filtered_tasks` in HomeHelper?
-  # - or `@filtered_tasks` in HomeController?
-  # filters as symbols: Status.pluck(:name).map(&:downcase.to_sym) <-- actually use Filters Filters
-
   class << self
 
-    ALL_FILTER_NAMES = (Status.all.map(&:name) + Filter.custom_filters).map(&:downcase) << 'all'
+    ALL_FILTER_NAMES = (Status.all.map(&:shortname) + Filter.custom_filters).map(&:downcase) << 'all'
 
     def with_tasks(tasks)
-      @tasks = tasks || Task.all.order(:updated_at => :desc)
+      @tasks = tasks
       self
     end
 
     def with_filter(filter)
-      @filter = filter || Filter.all_filters
+      @filter = ALL_FILTER_NAMES.include?(filter) ? Filter.new(filter) : Filter.new(:all)
       self
     end
 
@@ -26,27 +22,20 @@ class TaskFilterService
       self
     end
 
-    def evaluate(param)
-      if (ALL_FILTER_NAMES.include? param)
-        Filter.new param
-      else
-        Filter.new :all
+    def filter_tasks
+      @tasks ||= Task.all.order(:updated_at => :desc)
+
+      case @filter.name
+      when 'all'
+        @tasks
+      when *Status.all.map(&:shortname)
+        @tasks.where(:status_id => Status.find_by(:shortname => @filter.name))
+      when 'mine'
+        @tasks.where(:assignee => @user)
+      when 'unassigned'
+        @tasks.where(:assignee => User.nobody)
       end
     end
-
-
-
-    # def filtered_tasks(filter)
-    #   case filter
-    #   when 'all'
-    #     Task.all.order(:updated_at => :desc)
-    #   when *Status.all.map(&:shortname)
-    #     Task.where(:status_id => Status.where(:shortname => filter)).order(:updated_at => :desc)
-    #   when 'mine'
-    #     Task.where(:assignee => current_user).order(:updated_at => :desc)
-    #   end
-    # end
-
 
   end
 end

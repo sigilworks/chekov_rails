@@ -21,7 +21,7 @@ class Filter
     end
 
     def all_filters
-      (Status.all.map(&:name) + CUSTOM_FILTERS).map(&:downcase).map do |f|
+      (Status.all.map(&:name) + CUSTOM_FILTERS + 'all').map(&:downcase).map do |f|
         Filter.new f
       end
     end
