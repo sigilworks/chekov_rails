@@ -9,8 +9,15 @@ class TaskFilterService
 
   class << self
 
+    ALL_FILTER_NAMES = (Status.all.map(&:name) + Filter.custom_filters).map(&:downcase) << 'all'
+
     def with_tasks(tasks)
       @tasks = tasks || Task.all.order(:updated_at => :desc)
+      self
+    end
+
+    def with_filter(filter)
+      @filter = filter || Filter.all_filters
       self
     end
 
@@ -19,9 +26,15 @@ class TaskFilterService
       self
     end
 
-    def calculate_stats
-      StatisticsService.calculate @tasks, @user
+    def evaluate(param)
+      if (ALL_FILTER_NAMES.include? param)
+        Filter.new param
+      else
+        Filter.new :all
+      end
     end
+
+
 
     # def filtered_tasks(filter)
     #   case filter

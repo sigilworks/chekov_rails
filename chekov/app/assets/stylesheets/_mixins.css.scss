@@ -1,0 +1,20 @@
+
+// MIXINS:
+// replaces link with hidden icon that appears on rollover
+@mixin icon-only-link($url, $posH: 0, $posV: 0, $height: 20px, $width: 16px) {
+  height: $height; width: $width; background: $url no-repeat $posH $posV transparent;
+  display: inline-block; text-indent: -9999px;
+}
+
+@mixin boxshadow-simple($fromX, $fromY, $fromZ, $fromColor) {
+    @include boxshadow($fromX, $fromY, $fromZ, $fromColor, $fromX, $fromY, $fromZ, $fromColor)
+}
+
+@mixin boxshadow($fromX, $fromY, $fromZ, $fromColor, $toX, $toY, $toZ, $toColor) {
+    -webkit-box-shadow:  $fromX $fromY $fromZ $fromColor, $toX $toY $toZ $toColor;
+    -moz-box-shadow:  $fromX $fromY $fromZ $fromColor, $toX $toY $toZ $toColor;
+    box-shadow:  $fromX $fromY $fromZ $fromColor, $toX $toY $toZ $toColor;
+}
+// @mixin button-gradient($from, $to) {}
+// @mixin arrow-right($color, $size) {}
+// @mixin bkgd-pos-transition($time, $style) {}

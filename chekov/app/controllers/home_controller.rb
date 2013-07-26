@@ -20,20 +20,16 @@ class HomeController < ApplicationController
     @user_list = User.reals.order(:last_name => :asc)
 
     # handles the various view filters of the task table
-    filter = is_valid_status(params[:filter]) ? params[:filter] : 'all'
-    @tasks = filtered_tasks(filter)
+    filter = TaskFilterService.evaluate(params[:filter])
+    @tasks = filtered_tasks(filter.name)
 
-    respond_to do |format|
-      format.html
-    end
+    # respond_to do |format|
+    #   format.html
+    # end
+    render :stream => true
   end
 
   private
-
-    # determines list of valid statuses, with custom ones added
-    def is_valid_status(param)
-      param.in? Status.all.map(&:shortname) + Status.custom
-    end
 
     # TODO: this should be extracted to another class (e.g., FilteredTaskStrategy object?)
     # determines which tasks are shown to each filter
