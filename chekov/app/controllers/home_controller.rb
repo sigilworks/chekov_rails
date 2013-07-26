@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     @assignee_list = User.assignees
     @app_list = Application.all
     @browser_list = Browser.all
-    @status_list = Status.all + Status.custom
+    @status_list = Status.all + Filter.custom_filters
     @user_list = User.reals.order(:last_name => :asc)
 
     # obtains the Tasks to populate the table on the page,
