@@ -246,7 +246,7 @@ a.edit-comment            { opacity: 0.3; @include icon-only-link(url('iconsOthe
 // STYLES FOR FLASH NOTIFICATIONS
 .flash                    { display: block; width: 90%; margin: 10px auto; padding: 4px 12px; font-size: 14px; text-align: center; }
 .flash .X                 { content: "X"; display: inline-block; float: right; font-weight: bold; font-size: 10px;
-                            position: relative; top: -5px; left: 5px; }
+                            position: relative; top: -5px; left: 5px; cursor: pointer; }
 #notice                   { border: 1px dashed rgba(221, 115, 28, 0.75); }
 #alert                    { border: 1px dashed rgba(205, 49, 42, 0.75); background: #FFF3F3; color: #DC0000; }
 #info                     { border: 1px dashed rgba(0, 128, 184, 0.75); background: #F0FAFF; color: #333; }
