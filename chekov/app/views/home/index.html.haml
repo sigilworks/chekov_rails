@@ -10,13 +10,13 @@
     %h1
       *
       %span.app-name>=app_version
-    = render :partial => "partials/filter_select", :locals => { :status_list => @status_list }
+    = render :partial => "partials/filter_select", :locals => { :filter_list => Filter.all_filters }
 
     %span#new-task-button{ :data => { :reporter_id => me.id }}
       %button#new-task-init.chekov-button
         %span.plus +
         new task
-    = render :partial => "partials/task_stats", :locals => { :stats => stats }
+    = render :partial => "partials/task_stats", :locals => { :stats => StatisticsService.calculate(@tasks) }
 
   %div.main
 

@@ -7,7 +7,7 @@ $ ->
         mouseup: (e) -> $(e.target).removeClass "button-click-state"
 
     # when user chooses to filter table, route accordingly when <option> selected...
-    $("#status-list").on "change", (e) -> location.href = "/?filter=#{$(this).val()}"
+    $("#filter-list").on "change", (e) -> location.href = "/?filter=#{$(this).val()}"
 
     # toggle back and forth--on click--between right-facing and downward-facing
     # expander arrows, showing/hiding comments associated with that task...

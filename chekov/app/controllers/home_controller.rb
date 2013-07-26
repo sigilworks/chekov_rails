@@ -21,7 +21,8 @@ class HomeController < ApplicationController
 
     # obtains the Tasks to populate the table on the page,
     # filtered by user's privileges and by his chosen view
-    @tasks = TaskFilterService.for_user(@user).with_filter(params[:filter]).filter_tasks
+    @current_filter = params[:filter]
+    @tasks = TaskFilterService.for_user(@user).with_filter(@current_filter).filter_tasks
 
     # respond_to do |format|
     #   format.html

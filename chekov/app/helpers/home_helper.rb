@@ -56,7 +56,4 @@ module HomeHelper
     Struct.new(:task, :comments).new(TaskRowPresenter.new(task), comments)
   end
 
-  def stats
-    StatisticsService.calculate(@tasks)
-  end
 end

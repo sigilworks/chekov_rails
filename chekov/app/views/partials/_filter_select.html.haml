@@ -1,7 +1,7 @@
 
-%select#status-list
+%select#filter-list
   %option{ :value => 'all' }@all tasks
-  - status_list.each do |status|
-    - name = (status.respond_to? :shortname) ? status.shortname : status
-    %option{ :value => name , :selected => params[:filter] === name }
-      @#{ name }
+  - filter_list.each do |filter|
+    - unless filter == 'all'
+      %option{ :value => filter , :selected => @current_filter === filter }
+        @#{ filter }

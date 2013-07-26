@@ -21,9 +21,7 @@ class Filter
     end
 
     def all_filters
-      (Status.all.map(&:name) + CUSTOM_FILTERS + 'all').map(&:downcase).map do |f|
-        Filter.new f
-      end
+      (Status.all.map(&:shortname) + custom_filters).map(&:downcase) << 'all'
     end
   end # /eigenclass
 
