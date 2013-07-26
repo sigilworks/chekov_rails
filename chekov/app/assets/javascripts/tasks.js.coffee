@@ -10,6 +10,8 @@ $ ->
             , (data) ->
                 $("body").append(data).removeClass('hidden')
                 $("#new-task").show().focus()
+        # clear any flash messages remaining
+        clearMessages()
 
     # dealing with clicking on the X-icon to delete a particular task
     $(".delete-row").on "ajax:success", (event, status, xhr) ->
@@ -17,6 +19,8 @@ $ ->
         rowId = $target.data 'rowid'
         $row = $("#row_#{ rowId }")
         $row.remove()
+        # clear any flash messages remaining
+        clearMessages()
 
     # logic for cancel button:
     $(document).on "click", "#add-task-cancel", (e) -> $("#new-task").remove()

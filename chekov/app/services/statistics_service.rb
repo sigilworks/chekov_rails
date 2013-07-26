@@ -14,9 +14,11 @@ class StatisticsService
     # :open => Task.all.where(:status_id => 2).count
     # :need_attention => Task.all.where(:status_id => 4..6).count
     # :closed => Task.all.where(:status_id => 1).count
-    
-    def calculate(tasks, user)
 
+    def calculate(tasks)
+      { :open => tasks.where(:status_id => 2..3).count,
+        :need_attention => tasks.where(:status_id => 4..6).count,
+        :closed => tasks.where(:status_id => 1).count }
     end
 
   end

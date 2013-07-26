@@ -1,22 +1,22 @@
 
-= render :partial => "partials/headermenu"
+= render :partial => "partials/header_menu"
 
 %div#gradient
 
-= render :partial => "partials/flashmessages", :locals => { :flash => flash }
+= render :partial => "partials/flash_messages", :locals => { :flash => flash }
 
 %div#app-wrapper
   %header
     %h1
       *
       %span.app-name>=app_version
-    = render :partial => "partials/statusfilterselect", :locals => { :status_list => @status_list }
+    = render :partial => "partials/filter_select", :locals => { :status_list => @status_list }
 
     %span#new-task-button{ :data => { :reporter_id => me.id }}
       %button#new-task-init.chekov-button
         %span.plus +
         new task
-    = render :partial => "partials/taskstats", :locals => { :stats => stats }
+    = render :partial => "partials/task_stats", :locals => { :stats => stats }
 
   %div.main
 
@@ -33,6 +33,6 @@
 
       - if !task_list.empty?
         - task_list.each do |task|
-          = render :partial => "partials/taskrowview", :locals => { :task => task }
+          = render :partial => "partials/task_row_view", :locals => { :task => task }
       - else
-        = render :partial => "partials/emptytableview", :locals => { :filter => params[:filter] } #"<null>" }
+        = render :partial => "partials/empty_table_view", :locals => { :filter => params[:filter] } #"<null>" }

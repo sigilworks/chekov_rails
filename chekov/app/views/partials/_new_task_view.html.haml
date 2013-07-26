@@ -14,7 +14,7 @@
       %ul
         %li.field
           %label{ :for => "new-application" } App:
-          = render :partial => "partials/applistselect",
+          = render :partial => "partials/app_list_select",
                    :locals => { :app_list => @app_list, :item => task, :id => "#{ task.mode }-application",
                                 :name => "application_id" }
 
@@ -24,7 +24,7 @@
 
           %label{ :for => "new-status" } Status:
           - if task.is_edit_mode?
-            = render :partial => "partials/statuslistselect",
+            = render :partial => "partials/status_list_select",
                      :locals => { :status_list => @status_list, :item => task, :id => "task-status", :name => "status_id" }
           - else
             %span.text-entry New
@@ -32,7 +32,7 @@
 
         %li.field
           %label{ :for => "new-browser" } Browser:
-          = render :partial => "partials/browserlistselect",
+          = render :partial => "partials/browser_list_select",
                    :locals => { :browsers => task.browsers, :name => "browser_id" }
 
         %li.field
@@ -46,7 +46,7 @@
 
         - if task.is_edit_mode?
           %label{ :for => "new-assignee" } Assignee:
-          = render :partial => "partials/assigneelistselect",
+          = render :partial => "partials/assignee_list_select",
                    :locals => { :assignee_list => assignee_list, :item => task.assignee, :id => "task-assignee",
                                 :name => "assignee_id" }
 

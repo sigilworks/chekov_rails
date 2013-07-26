@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new(task_params)
     @app_list = Application.all
-    render :partial => "partials/newtaskview", :locals => { :task => EditTaskPresenter.new(:add, @task) }
+    render :partial => "partials/new_task_view", :locals => { :task => EditTaskPresenter.new(:add, @task) }
   end
 
   # GET /tasks/1/edit

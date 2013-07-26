@@ -45,6 +45,8 @@ class HomeController < ApplicationController
         Task.where(:status_id => Status.where(:shortname => filter)).order(:updated_at => :desc)
       when 'mine'
         Task.where(:assignee => current_user).order(:updated_at => :desc)
+      when 'unassigned'
+        Task.where(:assignee => User.nobody).order(:updated_at => :desc)
       end
     end
 

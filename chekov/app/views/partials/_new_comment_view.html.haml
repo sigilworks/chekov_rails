@@ -5,7 +5,7 @@
   = form_for @comment do |f|
     - if @comment.errors.any?
       #error_explanation
-        %h3= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
+        %h3= "#{ pluralize(@comment.errors.count, "error") } prohibited this comment from being saved:"
         %ul
           - @comment.errors.full_messages.each do |msg|
             %li= msg
@@ -20,7 +20,7 @@
 
           %span#status-block
             %label{ :for => "comment-status" } Status:
-            = render :partial => "partials/statuslistselect",
+            = render :partial => "partials/status_list_select",
                      :locals => { :status_list => @status_list, :item => comment.task, :id => "comment-status",
                                   :name => "comment[task_attributes][status_id]" }
         %li.field

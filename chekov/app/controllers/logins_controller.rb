@@ -12,7 +12,7 @@ class LoginsController < ApplicationController
       if user = User.authenticate(params[:username])
         cookies.permanent.signed[:current_user_id] = user.username
         flash.keep[:notice] = "Welcome, #{ current_user.first_name }!"
-
+        # TODO: FIXME !
         format.html { redirect_to :back, :notice => "Welcome, you!" }
         format.js   {}
         format.json { render :json }

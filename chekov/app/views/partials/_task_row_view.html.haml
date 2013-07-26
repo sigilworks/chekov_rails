@@ -1,13 +1,13 @@
 
 %tr{ :class => [ "task-list", task.status_name ], :id => "row_#{ task.id }" }
   %td.id-cell
-    = render :partial => "partials/tableidcell", :locals => { :task => task }
+    = render :partial => "partials/table_id_cell", :locals => { :task => task }
   %td=task.application.name
   %td=task.build_observed
   %td.description
     =task.description
     - if task.has_comments?
-      = render :partial => "partials/commentview", :locals => { :task_comments => comments_for_task(task.id) }
+      = render :partial => "partials/comment_view", :locals => { :task_comments => comments_for_task(task.id) }
   %td=task.browser.shortname
   %td=task.bz_id
   %td=task.reporter.index_name

@@ -1,2 +1,2 @@
 console.log "calling create.js.erb!"
-$("#row_<%= @comment.id %>").find(".comments-display").find("ul").html "<%= escape_javascript(render(:partial => 'partials/commentview', :locals => { :comment => CommentViewPresenter.new(@comment) } )) %>"
+$("#row_<%= @comment.id %>").find(".comments-display").find("ul").html "<%= escape_javascript(render(:partial => 'partials/comment_view', :locals => { :comment => CommentViewPresenter.new(@comment) } )) %>"

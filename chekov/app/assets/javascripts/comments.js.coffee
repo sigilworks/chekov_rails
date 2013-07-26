@@ -12,6 +12,8 @@ $ ->
             , (data) ->
                 $("body").append(data).removeClass('hidden')
                 $("#new-comment").show().focus()
+        # clear any flash messages remaining
+        clearMessages()
 
     # TODO: DRY this and ^^ out!!
     # ajax handling of clicking Edit Comment icon
@@ -23,6 +25,8 @@ $ ->
             (data) ->
                 $("body").append(data).removeClass('hidden')
                 $("#new-comment").show().focus()
+        # clear any flash messages remaining
+        clearMessages()
 
     # dealing with clicking on the X-icon to delete a particular comment...
     $(".delete-comment").on "ajax:success", (event, status, xhr) ->
@@ -46,6 +50,8 @@ $ ->
             $row.find(".comments-display").remove()
             $row.find(".comments-count").remove()
             $row.find(".arrow-down").remove()
+        # clear any flash messages remaining
+        clearMessages()
 
     # logic for cancel button:
     $(document).on "click", "#add-comment-cancel", (e) -> $("#new-comment").remove()

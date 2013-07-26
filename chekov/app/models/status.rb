@@ -3,6 +3,6 @@ class Status < ActiveRecord::Base
 
 	# custom status types not persisted in db
 	def self.custom
-		[ "mine" ]
+		[ "mine", "unassigned" ]
 	end
 end
