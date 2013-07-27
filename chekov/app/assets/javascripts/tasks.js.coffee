@@ -27,10 +27,9 @@ $ ->
             , (data) ->
                 $("#new-task").remove()
                 $("#task-table").find("tbody").prepend(data);
-                #$("body").append(data).removeClass('hidden')
-                #$("#new-task").show().focus()
-        # clear any flash messages remaining
-        clearMessages()
+                # clear any flash messages remaining
+                clearMessages()
+                successMessage("Task added successfully!");
 
 
     # dealing with clicking on the X-icon to delete a particular task

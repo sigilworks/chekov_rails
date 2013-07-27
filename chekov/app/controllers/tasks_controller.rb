@@ -27,7 +27,6 @@ class TasksController < ApplicationController
     @user = current_user
 
     if @task.save
-      flash[:success] = "Task added successfully!"
       render :partial => 'partials/task_row_view', :locals => { :task => TaskRowPresenter.new(@task), :me => UserPresenter.new(@user) } 
     else
       render json: @task.errors, status: :unprocessable_entity

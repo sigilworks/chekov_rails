@@ -22,6 +22,7 @@ class HomeController < ApplicationController
     # filtered by user's privileges and by his chosen view
     @current_filter = params[:filter]
     @tasks = TaskFilterService
+        .with_tasks(Task.all.order(:updated_at => :desc))
         .for_user(@user)
         .with_filter(@current_filter)
         .filtered_tasks

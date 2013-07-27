@@ -16,6 +16,19 @@
 //= require_tree .
 
 
+// CLIENT-SIDE NOTIFICATIONS AND MESSAGING
+function flash(type, message) {
+	$("<div />", { 'class': 'flash', id: type, html: message })
+		.append($("<span />", { 'class': 'X', html: 'X' }))
+		.insertBefore($("#app-wrapper"));
+}
+
+function noticeMessage(text) { flash('notice', text); }
+function alertMessage(text) { flash('alert', text); }
+function errorMessage(text) { flash('error', text); }
+function successMessage(text) { flash('success', text); }
+function infoMessage(text) { flash('info', text); }
+
 // clear all (or those in `sel`) flash messages
 function clearMessages(sel) {
 	var $sel = sel || $(".flash")
