@@ -22,7 +22,7 @@ class TaskFilterService
       self
     end
 
-    def filter_tasks
+    def filtered_tasks
       @tasks ||= Task.all.order(:updated_at => :desc)
 
       case @filter.name

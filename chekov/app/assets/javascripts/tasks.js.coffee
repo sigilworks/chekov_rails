@@ -13,6 +13,26 @@ $ ->
         # clear any flash messages remaining
         clearMessages()
 
+
+    $(document).on "click", "#add-task-submit", ->
+        reporterId = $(this).data "reporterId"
+        $.post "/tasks",
+            application_id: $("#add-application").val(),
+            build_observed: $("#new-build").val(),
+            status_id: $("#task_status_id").val(),
+            browser_id: $("#new-browser").val(),
+            bz_id: $("#new-bzId").val(),
+            reporter_id: $("#new-reporter").val(),
+            description: $("#new-description").val()
+            , (data) ->
+                $("#new-task").remove()
+                $("#task-table").find("tbody").prepend(data);
+                #$("body").append(data).removeClass('hidden')
+                #$("#new-task").show().focus()
+        # clear any flash messages remaining
+        clearMessages()
+
+
     # dealing with clicking on the X-icon to delete a particular task
     $(".delete-row").on "ajax:success", (event, status, xhr) ->
         $target = $(event.target)

@@ -1,14 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-  # GET /tasks
-  # GET /tasks.json
+  # GET /tasks(.json)
   def index
     @tasks = Task.all
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
+  # GET /tasks/1(.json)
   def show
   end
 
@@ -23,28 +21,35 @@ class TasksController < ApplicationController
   def edit
   end
 
-  # POST /tasks
-  # POST /tasks.json
+  # POST /tasks(.json)
   def create
     @task = Task.new(task_params)
+    @user = current_user
 
-    respond_to do |format|
-      if @task.save
-        # format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        # format.json { render action: 'show', status: :created, location: @task }
-        flash[:success] = "Task added successfully!"
-        format.html { redirect_to :back }
-        format.js   {}
-        format.json { render :json }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      flash[:success] = "Task added successfully!"
+      render :partial => 'partials/task_row_view', :locals => { :task => TaskRowPresenter.new(@task), :me => UserPresenter.new(@user) } 
+    else
+      render json: @task.errors, status: :unprocessable_entity
     end
+
+    # respond_to do |format|
+    #   if @task.save
+    #     # format.html { redirect_to @task, notice: 'Task was successfully created.' }
+    #     # format.json { render action: 'show', status: :created, location: @task }
+    #     flash[:success] = "Task added successfully!"
+    #     # format.html { redirect_to :back }
+    #     format.js   {}
+    #     format.json { render :json }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @task.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
+  # PATCH/PUT /tasks/1(.json)
   def update
     respond_to do |format|
       if @task.update(task_params)
@@ -57,8 +62,7 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
+  # DELETE /tasks/1(.json)
   def destroy
     @task.destroy
     respond_to do |format|

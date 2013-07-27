@@ -18,10 +18,5 @@ $ ->
     $(".id-cell, .comments-display .meta").on "mouseenter mouseleave", (e) ->
         $(this).find(".icon-hidden, .icon-visible").toggleClass("icon-hidden icon-visible")
 
-    # clear all (or those in `sel`) flash messages
-    clearMessages = (sel) ->
-        $sel = sel || $(".flash")
-        $sel.slideUp 500, -> $sel.remove()
-
     # hide flash messages when the "X" is clicked...
     $(".flash .X").on "click", -> clearMessages $(this).parent()

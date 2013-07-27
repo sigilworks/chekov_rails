@@ -21,12 +21,15 @@ class HomeController < ApplicationController
     # obtains the Tasks to populate the table on the page,
     # filtered by user's privileges and by his chosen view
     @current_filter = params[:filter]
-    @tasks = TaskFilterService.for_user(@user).with_filter(@current_filter).filter_tasks
+    @tasks = TaskFilterService
+        .for_user(@user)
+        .with_filter(@current_filter)
+        .filtered_tasks
 
-    # respond_to do |format|
-    #   format.html
-    # end
-    render :stream => true
+    respond_to do |format|
+      format.html
+    end
+    # render :stream => true
   end
 
 end

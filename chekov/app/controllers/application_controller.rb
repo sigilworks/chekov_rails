@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  private
+  # private
+  protected
 
   # Finds the User object with the id stored in the session at key `:current_user_id`
   def current_user

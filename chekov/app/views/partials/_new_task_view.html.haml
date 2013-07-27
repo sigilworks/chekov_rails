@@ -58,4 +58,5 @@
 
     %div.button-bar.actions
       %input{ :id => "#{ task.mode }-task-cancel", :class => [ "chekov-button" ], :type => "button", :value => "cancel" }
-      = t.submit "ok", :class => "chekov-button", :id => "#{ task.mode }-task-submit"
+      /= t.submit "ok", :class => "chekov-button", :id => "#{ task.mode }-task-submit", :remote => true
+      %input{ :id => "#{ task.mode }-task-submit", :class => [ "chekov-button" ], :type => "button", :value => "ok" }

@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+// clear all (or those in `sel`) flash messages
+function clearMessages(sel) {
+	var $sel = sel || $(".flash")
+	$sel.slideUp(500, function() { $sel.remove(); });
+}

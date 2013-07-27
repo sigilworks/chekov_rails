@@ -3,14 +3,12 @@ require 'task_promotion_strategy'
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  # GET /comments
-  # GET /comments.json
+  # GET /comments(.json)
   def index
     @comments = Comment.all
   end
 
-  # GET /comments/1
-  # GET /comments/1.json
+  # GET /comments/1(.json)
   def show
   end
 
@@ -30,8 +28,7 @@ class CommentsController < ApplicationController
     render :partial => "partials/new_comment_view", :locals => { :comment => CommentViewPresenter.new(@comment, @comment.task), :mode => :edit }
   end
 
-  # POST /comments
-  # POST /comments.json
+  # POST /comments(.json)
   def create
     @comment = Comment.new(comment_params)
 
@@ -53,8 +50,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
+  # PATCH/PUT /comments/1(.json)
   def update
     respond_to do |format|
       if @comment.update(comment_params)
@@ -67,8 +63,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
+  # DELETE /comments/1(.json)
   def destroy
     @comment.destroy
     respond_to do |format|
