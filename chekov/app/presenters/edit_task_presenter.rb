@@ -1,5 +1,3 @@
-require 'userpresenter'
-require 'browserlistpresenter'
 
 class EditTaskPresenter
 

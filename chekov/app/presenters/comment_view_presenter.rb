@@ -1,4 +1,3 @@
-require 'taskrowpresenter'
 
 class CommentViewPresenter
   include ActionView::Helpers::DateHelper

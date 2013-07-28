@@ -1,7 +1,3 @@
-require 'userpresenter'
-require 'taskrowpresenter'
-require 'edittaskpresenter'
-require 'commentviewpresenter'
 
 module HomeHelper
 

@@ -20,5 +20,5 @@ $ ->
     $("#task-table").on "mouseleave", ".id-cell, .comments-display .meta", (e) ->
         $(this).find(".icon-visible").removeClass("icon-visible").addClass("icon-hidden")
 
-    # hide flash messages when the "X" is clicked...
+    # hide flash messages when the "X" is clicked...#task-table
     $(document).on "click", ".flash .X", -> clearMessages $(this).parent()

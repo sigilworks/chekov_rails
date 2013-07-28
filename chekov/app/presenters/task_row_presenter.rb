@@ -1,5 +1,3 @@
-require 'userpresenter'
-require 'commentviewpresenter'
 
 # This entity is a View presenter that takes a
 # Task model and converts it to a table row,
