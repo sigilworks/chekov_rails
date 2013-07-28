@@ -1,7 +1,6 @@
-require 'singleton'
 
-class StatisticsService
-  include Singleton
+module StatisticsService
+  extend self
 
   # - maintains #task-stats
   # - updates on filter change
@@ -9,27 +8,24 @@ class StatisticsService
   # - responds to `ajax:success`?
   # - or responds to another fn's call to this class each time?
 
-  class << self
+  def calculate(tasks)
+    { :open => open(tasks),
+      :need_attention => need_attention(tasks),
+      :closed => closed(tasks) }
+  end
 
-    def calculate(tasks)
-      { :open => open(tasks),
-        :need_attention => need_attention(tasks),
-        :closed => closed(tasks) }
+  private
+
+    def need_attention(tasks)
+      tasks.where(:status_id => 4..6).count
     end
 
-    private
+    def open(tasks)
+      tasks.where(:status_id => 2..3).count
+    end
 
-      def need_attention(tasks)
-        tasks.where(:status_id => 4..6).count
-      end
+    def closed(tasks)
+      tasks.where(:status_id => 1).count
+    end
 
-      def open(tasks)
-        tasks.where(:status_id => 2..3).count
-      end
-
-      def closed(tasks)
-        tasks.where(:status_id => 1).count
-      end
-
-  end
 end

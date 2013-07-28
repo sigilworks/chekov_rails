@@ -1,7 +1,7 @@
 
 $ ->
     # ajax handling of clicking (+) to add new comments
-    $("a.add-comment").on "click", ->
+    $("#task-table").on "click", "a.add-comment", ->
         if $("#new-comment").length
             $("#new-comment").remove()
         taskid = $(this).data "taskId"
@@ -17,7 +17,7 @@ $ ->
 
     # TODO: DRY this and ^^ out!!
     # ajax handling of clicking Edit Comment icon
-    $("a.edit-comment").on "click", ->
+    $("#task-table").on "click", "a.edit-comment", ->
         if $("#new-comment").length
             $("#new-comment").remove()
         commentId = $(this).closest('li').data "commentId"
@@ -29,7 +29,7 @@ $ ->
         clearMessages()
 
     # dealing with clicking on the X-icon to delete a particular comment...
-    $(".delete-comment").on "ajax:success", (event, status, xhr) ->
+    $("#task-table").on "ajax:success", ".delete-comment", (event, status, xhr) ->
         $target = $(event.target)
         commentId = $target.data 'commentId'
         taskId = $target.data 'taskId'

@@ -15,9 +15,9 @@ $ ->
         $(this).toggleClass("arrow-right arrow-down")
                .parents("tr").find(".comments-display").toggle()
 
-    $(document).on "mouseenter", ".id-cell, .comments-display .meta", (e) ->
+    $("#task-table").on "mouseenter", ".id-cell, .comments-display .meta", (e) ->
         $(this).find(".icon-hidden").removeClass("icon-hidden").addClass("icon-visible")
-    $(document).on "mouseleave", ".id-cell, .comments-display .meta", (e) ->
+    $("#task-table").on "mouseleave", ".id-cell, .comments-display .meta", (e) ->
         $(this).find(".icon-visible").removeClass("icon-visible").addClass("icon-hidden")
 
     # hide flash messages when the "X" is clicked...
