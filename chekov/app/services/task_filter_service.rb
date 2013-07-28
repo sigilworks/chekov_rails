@@ -1,9 +1,6 @@
-require 'singleton'
 
-class TaskFilterService
-  include Singleton
-
-  class << self
+module TaskFilterService
+  extend self
 
     ALL_FILTER_NAMES = (Status.all.map(&:shortname) + Filter.custom_filters).map(&:downcase) << 'all'
 
@@ -34,6 +31,5 @@ class TaskFilterService
         @tasks.where(:assignee => User.nobody)
       end
     end
-
-  end
+    
 end
