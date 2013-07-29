@@ -47,6 +47,24 @@ $ ->
                 successMessage("Task added successfully!");
 
 
+    $(document).on "click", "#edit-task-submit", ->
+        taskId = $(this).data "taskId"
+        $.get "/tasks/#{ taskId }/edit",
+            application_id: $("#add-application").val(),
+            build_observed: $("#new-build").val(),
+            status_id: $("#task_status_id").val(),
+            browser_id: $("#new-browser").val(),
+            bz_id: $("#new-bzId").val(),
+            reporter_id: $("#new-reporter").val(),
+            description: $("#new-description").val()
+            , (data) ->
+                $("#new-task").remove()
+                $("#task-table").find("tbody").prepend(data);
+                # clear any flash messages remaining
+                clearMessages()
+                successMessage("Task added successfully!");
+
+
     # dealing with clicking on the X-icon to delete a particular task
     $(".delete-row").on "ajax:success", (event, status, xhr) ->
         $target = $(event.target)
@@ -57,7 +75,7 @@ $ ->
         clearMessages()
 
     # logic for cancel button:
-    $(document).on "click", "#add-task-cancel", (e) -> $("#new-task").remove()
+    $(document).on "click", "#add-task-cancel, #edit-task-cancel", (e) -> $("#new-task").remove()
     # cancel removes open comments window
     $(document).on "keyup", (e) ->
         if e.keyCode == 27 and $("#new-task").is ":visible"
