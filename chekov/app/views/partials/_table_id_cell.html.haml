@@ -4,7 +4,7 @@
     =link_to "X", task_path(task.id), :method => :delete, :remote => true, :class => [ 'delete-row', 'icon-hidden' ], :data => { :confirm => "Delete task?", :rowid => task.get.id }, :title => "Delete task"
 
   %span
-    =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ], :title => "Edit task"
+    =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ], :remote => true, :data => { :task_id => task.id }, :title => "Edit task"
 
   %span
     =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id),

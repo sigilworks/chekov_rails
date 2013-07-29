@@ -19,6 +19,10 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @app_list = Application.all
+    @status_list = Status.all
+    @assignee_list = User.assignees
+    render :partial => "partials/new_task_view", :locals => { :task => EditTaskPresenter.new(:edit, @task) }
   end
 
   # POST /tasks(.json)

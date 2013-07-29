@@ -14,6 +14,21 @@ $ ->
         clearMessages()
 
 
+
+    # TODO: DRY this and ^^ out!!
+    # ajax handling of clicking Edit Comment icon
+    $("#task-table").on "click", "a.edit-row", ->
+        if $("#new-task").length
+            $("#new-task").remove()
+        taskId = $(this).data "taskId"
+        $.get "/tasks/#{ taskId }/edit",
+            (data) ->
+                $("body").append(data).removeClass('hidden')
+                $("#new-task").show().focus()
+        # clear any flash messages remaining
+        clearMessages()
+
+
     $(document).on "click", "#add-task-submit", ->
         reporterId = $(this).data "reporterId"
         $.post "/tasks",
