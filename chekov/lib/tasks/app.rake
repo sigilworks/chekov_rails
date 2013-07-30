@@ -1,10 +1,12 @@
 
 namespace :app do
 
-  # usage: `rake app:firstrun`
-  desc "This task is for first-run ops: runs bundler, sets up and seeds database"
-  task :firstrun => :environment do
-    puts "Running operations to build app for first time..."
+  # usage: `rake app:clean`
+  desc "This task is to clean the database contents: dumps, creates, migrates, and then re-seeds it"
+  task :clean => :environment do
+    puts
+    puts "Dumping any previous database for this app"
+    Rake::Task['db:reset'].invoke
 
     puts "Creating database..."
     Rake::Task['db:create'].invoke
