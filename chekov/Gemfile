@@ -6,8 +6,11 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-gem 'pg'
-gem 'puma'
+# PostrgreSQL database gem
+# gem 'pg'
+
+# Puma multithreaded web server for streaming and performance reasons
+# gem 'puma'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
