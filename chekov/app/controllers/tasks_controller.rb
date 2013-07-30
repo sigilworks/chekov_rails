@@ -14,7 +14,8 @@ class TasksController < ApplicationController
   def new
     @task = Task.new(task_params)
     @app_list = Application.all
-    render :partial => "partials/new_task_view", :locals => { :task => EditTaskPresenter.new(:add, @task) }
+    render :partial => "partials/new_task_view",
+           :locals => { :task => EditTaskPresenter.new(:add, @task) }
   end
 
   # GET /tasks/1/edit
@@ -22,7 +23,8 @@ class TasksController < ApplicationController
     @app_list = Application.all
     @status_list = Status.all
     @assignee_list = User.assignees
-    render :partial => "partials/new_task_view", :locals => { :task => EditTaskPresenter.new(:edit, @task) }
+    render :partial => "partials/new_task_view",
+           :locals => { :task => EditTaskPresenter.new(:edit, @task) }
   end
 
   # POST /tasks(.json)
@@ -31,7 +33,8 @@ class TasksController < ApplicationController
     @user = current_user
 
     if @task.save
-      render :partial => 'partials/task_row_view', :locals => { :task => TaskRowPresenter.new(@task), :me => UserPresenter.new(@user) } 
+      render :partial => 'partials/task_row_view',
+             :locals => { :task => TaskRowPresenter.new(@task), :me => UserPresenter.new(@user) } 
     else
       render json: @task.errors, status: :unprocessable_entity
     end

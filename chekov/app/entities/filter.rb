@@ -11,7 +11,7 @@ class Filter
 
   # is/is not one of the real Status objects
   def is_custom?
-    self.in? CUSTOM_FILTERS # Status.all.map(&:name)
+    self.in? CUSTOM_FILTERS
   end
 
   class << self
@@ -23,6 +23,7 @@ class Filter
     def all_filters
       (Status.all.map(&:shortname) + custom_filters).map(&:downcase) << 'all'
     end
-  end # /eigenclass
+  
+  end
 
 end

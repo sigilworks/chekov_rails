@@ -19,22 +19,20 @@ class CommentsController < ApplicationController
     @status_list = Status.all
     @comment.commenter = User.find(params[:commenter_id])
     @task.assignee ||= User.nobody
-    render :partial => "partials/new_comment_view", :locals => { :comment => CommentViewPresenter.new(@comment, @task), :mode => :add }
+    render :partial => "partials/new_comment_view",
+           :locals => { :comment => CommentViewPresenter.new(@comment, @task), :mode => :add }
   end
 
   # GET /comments/1/edit
   def edit
     @status_list = Status.all
-    render :partial => "partials/new_comment_view", :locals => { :comment => CommentViewPresenter.new(@comment, @comment.task), :mode => :edit }
+    render :partial => "partials/new_comment_view",
+           :locals => { :comment => CommentViewPresenter.new(@comment, @comment.task), :mode => :edit }
   end
 
   # POST /comments(.json)
   def create
     @comment = Comment.new(comment_params)
-
-    # when a task with `new` status gets its first comment,
-    # its status gets promoted to `open`...
-    TaskPromotionStrategy.assess(@comment.task)
 
     respond_to do |format|
       if @comment.save

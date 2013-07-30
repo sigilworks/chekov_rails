@@ -27,10 +27,10 @@ class HomeController < ApplicationController
         .with_filter(@current_filter)
         .filtered_tasks
 
-    respond_to do |format|
-      format.html
-    end
-    # render :stream => true
+    # respond_to do |format|
+    #  format.html
+    # end
+    render :stream => true
   end
 
 end
