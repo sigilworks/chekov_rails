@@ -10,9 +10,8 @@ class Task < ActiveRecord::Base
 
   validates :application,
             :presence => { :message => "Every task must be associated with an application!" },
-            :on => :create
+            :on => :save
   validates :reporter,
             :presence => { :message => "Every task must be associated with a reporter!" },
-            :on => :create
-
+            :on => :save
 end
