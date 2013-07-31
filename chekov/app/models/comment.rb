@@ -21,7 +21,6 @@ class Comment < ActiveRecord::Base
   # when a task with `new` status gets its first comment,
   # its status gets promoted to `open`...
   def assess_task_status
-    # binding.pry
     TaskPromotionStrategy.assess(self.task)
   end
 
