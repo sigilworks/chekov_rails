@@ -36,3 +36,8 @@
           = render :partial => "partials/task_row_view", :locals => { :task => task }
       - else
         = render :partial => "partials/empty_table_view", :locals => { :filter => params[:filter] }
+
+  %div#recent-activity
+    %ul
+    - @recents.each do |recent|
+      %li #{ recent[1] }

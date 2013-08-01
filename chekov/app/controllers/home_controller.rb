@@ -12,6 +12,7 @@ class HomeController < ApplicationController
     # current user variable, used almost everywhere, often as `me`
     @user = logged_in? ? current_user : User.nobody
 
+
     # these lists are largely used to populate various <select>
     # menus and page components, rendered in their own partials
     @assignee_list = User.assignees
@@ -27,6 +28,11 @@ class HomeController < ApplicationController
         .for_user(@user)
         .with_filter(@current_filter)
         .filtered_tasks
+
+    @recents = RecentActivityService.for_user(@user)
+    # update internal flag in user record of last time they accessed the application
+    # is used to determine update 'deltas' since data on client was last retrieved
+    @user.update_attribute(:last_visited_at, Time.now)
 
     # respond_to do |format|
     #  format.html
