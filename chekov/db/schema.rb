@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130716151551) do
+ActiveRecord::Schema.define(version: 20130801194936) do
 
   create_table "applications", force: true do |t|
     t.string "name"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20130716151551) do
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "last_visited_at"
   end
 
   add_index "users", ["permission_id"], name: "index_users_on_permission_id"

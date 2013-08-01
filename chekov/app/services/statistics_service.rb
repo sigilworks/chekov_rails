@@ -2,12 +2,6 @@
 module StatisticsService
   extend self
 
-  # - maintains #task-stats
-  # - updates on filter change
-  # - stats totals should reflect number of filtered tasks shown
-  # - responds to `ajax:success`?
-  # - or responds to another fn's call to this class each time?
-
   def calculate(tasks)
     { :open => open(tasks),
       :need_attention => need_attention(tasks),
@@ -17,15 +11,15 @@ module StatisticsService
   private
 
     def need_attention(tasks)
-      tasks.where(:status_id => 4..6).count
+      tasks.where(:status_id => Status.need_attention).count
     end
 
     def open(tasks)
-      tasks.where(:status_id => 2..3).count
+      tasks.where(:status_id => Status.open).count
     end
 
     def closed(tasks)
-      tasks.where(:status_id => 1).count
+      tasks.where(:status_id => Status.closed).count
     end
 
 end

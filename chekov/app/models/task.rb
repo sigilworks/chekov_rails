@@ -6,6 +6,10 @@ class Task < ActiveRecord::Base
   belongs_to :status
   belongs_to :browser
 
+  scope :by_reporter, ->(user) { where(:reporter => user).order(:id => :desc)  }
+  scope :by_assignee, ->(user) { where(:assignee => user).order(:id => :desc) }
+  scope :by_commenter, ->(user) { includes(:comments).where('commenter_id = ?', user.id).order(:id => :desc).references(:comments) }
+
   has_many   :comments, :dependent => :destroy
 
   validates :application,

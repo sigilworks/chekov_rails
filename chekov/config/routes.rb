@@ -11,7 +11,7 @@ Chekov::Application.routes.draw do
 
   get "logins/create"
   get "logins/destroy"
-  get "messages" => "home#notify_updates"
+  # get "messages" => "home#notify_updates"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -6,12 +6,12 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-# PostrgreSQL database gem
-# gem 'pg'
-
-# Puma multithreaded web server for streaming and performance reasons
-# gem 'puma'
+# Thin: multithreaded web server for streaming and performance reasons
 gem 'thin'
+
+# Redis and Reseque for handling event notifications for queue
+gem 'redis'
+gem 'resque'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
