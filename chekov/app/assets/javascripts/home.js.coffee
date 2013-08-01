@@ -22,3 +22,7 @@ $ ->
 
     # hide flash messages when the "X" is clicked...#task-table
     $(document).on "click", ".flash .X", -> clearMessages $(this).parent()
+
+    $.get "/messages",
+            (data) ->
+                console.info "data:\n\t%o", data

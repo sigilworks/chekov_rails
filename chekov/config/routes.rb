@@ -1,6 +1,4 @@
 Chekov::Application.routes.draw do
-  get "logins/create"
-  get "logins/destroy"
   resources :tasks
   resources :users
   resources :comments
@@ -10,6 +8,10 @@ Chekov::Application.routes.draw do
   resources :permissions
   resources :roles
   resources :applications
+
+  get "logins/create"
+  get "logins/destroy"
+  get "messages" => "home#notify_updates"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -51,7 +53,7 @@ Chekov::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

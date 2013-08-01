@@ -1,5 +1,6 @@
 
 class HomeController < ApplicationController
+    include ActionController::Live
 
   # prevent redirect loop. Need index page to be able to login, anyways!
   skip_before_action :require_login
@@ -31,6 +32,20 @@ class HomeController < ApplicationController
     #  format.html
     # end
     render :stream => true
+  end
+
+  def notify_updates(event_name, data)
+    evt = EventStreamingService.with_stream(response.stream)
+    response.headers['Content-Type'] = 'text/event-stream'
+    sleep 5
+    event_name = :task_update
+    data = { :task_id => n, :change => "Task #{ n } has changed!" }
+    evt.write(event_name, data)
+    render :nothing => true
+  rescue IOError
+    # client disconnected
+  ensure
+    evt.close
   end
 
 end
