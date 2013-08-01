@@ -34,18 +34,18 @@ class HomeController < ApplicationController
     render :stream => true
   end
 
-  def notify_updates(event_name, data)
-    evt = EventStreamingService.with_stream(response.stream)
-    response.headers['Content-Type'] = 'text/event-stream'
-    sleep 5
-    event_name = :task_update
-    data = { :task_id => n, :change => "Task #{ n } has changed!" }
-    evt.write(event_name, data)
-    render :nothing => true
-  rescue IOError
-    # client disconnected
-  ensure
-    evt.close
-  end
+  # def notify_updates(event_name, data)
+  #   evt = EventStreamingService.with_stream(response.stream)
+  #   response.headers['Content-Type'] = 'text/event-stream'
+  #   sleep 5
+  #   event_name = :task_update
+  #   data = { :task_id => n, :change => "Task #{ n } has changed!" }
+  #   evt.write(event_name, data)
+  #   render :nothing => true
+  # rescue IOError
+  #   # client disconnected
+  # ensure
+  #   evt.close
+  # end
 
 end
