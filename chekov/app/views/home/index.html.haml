@@ -37,14 +37,5 @@
       - else
         = render :partial => "partials/empty_table_view", :locals => { :filter => params[:filter] }
 
-  %div#recent-activity
-    - if !@recents.empty?
-      %h3 &#9660; Recent Activity
-      %ul
-        - @recents.each do |recent|
-          %li
-            %strong #{ recent[1].agent.index_name }
-            #{ recent[1].action }
-            %small (#{ recent[1].formatted_time })
-    - else
-      %p No new recent activity since your last login.
+  = render :partial => "partials/recent_activity_feed", 
+           :locals => { :recents => @recents, :top_commenters => RecentActivityService.top_commenters, :top_reporters => RecentActivityService.top_reporters }

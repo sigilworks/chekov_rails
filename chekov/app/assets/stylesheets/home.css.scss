@@ -199,10 +199,15 @@ a.edit-comment            { opacity: 0.3; @include icon-only-link(url('iconsOthe
 #gradient                 { height: 75px; position: absolute; width: 100%; z-index: -1000; top: 0px;
                             background: -webkit-gradient(linear, left top, left bottom, color-stop(0.10, rgba(216,216,216,0.4)), color-stop(0.80, rgba(255,255,255,1))) repeat scroll 0 0; }
 
-#recent-activity          { margin-left: 8px;
-    h3                    { line-height: normal; }
+.activity-feed            { margin-left: 8px; width: 365px; display: inline-block; border-bottom: 1px solid #999; vertical-align: top; height: 130px;
+    h3                    { line-height: normal; font-weight: normal; border-top: 2px solid #555; text-transform: lowercase;
+                            font-variant: small-caps; font-size: 14px;
+        span              { float: left; font-size: 8px; color: #999; margin-right: 5px; padding-top: 4px; font-weight: normal; }
+    }
     ul                    { padding-left: 10px; list-style-type: square; list-style-position: inside; }
-    li                    { line-height: normal; }
+    li                    { line-height: normal; 
+        small             { text-align: right; color: #777; float: right; }
+    }
 }
 
 // STYLES FOR FLASH NOTIFICATIONS

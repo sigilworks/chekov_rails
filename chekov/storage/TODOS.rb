@@ -24,12 +24,6 @@ Tasks.includes(:comments).each do |task|...
 
 Tasks.includes([:comments, :reporter]).where('comments.count > 0')
 
-Recent updates:
-  - last_active timestamp set in User from HomeController?
-  - each time HomeController#index
-  	queries for new Tasks (order by updated at desc) and new Comments (group by Tasks, updated at desc)
-  	since last_active for Recent Activity feed?
-
 ^^ Try with:
 User
   has_many :most_recent_comments, -> { order('id desc').limit(10)** }, :class_name => 'Comment'

@@ -1,0 +1,42 @@
+
+%div#recent-activity.activity-feed
+  - if !@recents.empty?
+    %h3 
+      Recent Activity
+      %span &#9660;
+    %ul
+      - @recents.each do |recent|
+        %li
+          %strong #{ recent[1].agent.index_name }
+          #{ recent[1].action }
+          %small #{ recent[1].formatted_time }
+  - else
+    %p No new recent activity since your last login.
+
+
+%div#top-commenters.activity-feed
+  - if !top_commenters.empty?
+    %h3 
+      Top Commenters
+      %span &#9660;
+    %ul
+      - top_commenters.each do |recent|
+        %li
+          %strong #{ recent[:name] }
+          %small #{ pluralize recent[:count], 'comment' }
+  - else
+    %p No new recent activity since your last login.
+
+
+%div#top-reporters.activity-feed
+  - if !top_reporters.empty?
+    %h3 
+      Top Reporters
+      %span &#9660;
+    %ul
+      - top_reporters.each do |recent|
+        %li
+          %strong #{ recent[:name] }
+          %small #{ pluralize recent[:count], 'task' }
+  - else
+    %p No new recent activity since your last login.
