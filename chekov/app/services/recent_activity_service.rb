@@ -25,13 +25,13 @@ module RecentActivityService
   def top_commenters
     Comment.limit(5).count(:group => :commenter).map do |user, count|
       { :name => UserPresenter.new(user).index_name, :count  => count }
-    end
+    end.sort_by { |entry| entry[:count] }.reverse
   end
 
   def top_reporters
     Task.limit(5).count(:group => :reporter).map do |user, count|
       { :name => UserPresenter.new(user).index_name, :count  => count }
-    end
+    end.sort_by { |entry| entry[:count] }.reverse
   end
 
 
