@@ -17,8 +17,7 @@ module RecentActivityService
       entry = CommentActivityEntry.new(comment)
       @recents[entry.timestamp] = entry
     end
-
-    Hash[ @recents.sort ]
+    Hash[ @recents.sort.reverse ]
   end
 
 
