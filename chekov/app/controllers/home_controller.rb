@@ -34,10 +34,10 @@ class HomeController < ApplicationController
     # is used to determine update 'deltas' since data on client was last retrieved
     @user.update_attribute(:last_visited_at, Time.now)
 
-    # respond_to do |format|
-    #  format.html
-    # end
-    render :stream => true
+    respond_to do |format|
+     format.html
+    end
+    # render :stream => true
   end
 
   # def notify_updates(event_name, data)

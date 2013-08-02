@@ -34,3 +34,9 @@ Recent updates:
 User
   has_many :most_recent_comments, -> { order('id desc').limit(10)** }, :class_name => 'Comment'
 
+To have launchd start redis at login:
+    ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+Then to load redis now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+Or, if you don't want/need launchctl, you can just run:
+    redis-server /usr/local/etc/redis.conf

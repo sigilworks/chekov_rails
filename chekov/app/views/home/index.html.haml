@@ -38,6 +38,9 @@
         = render :partial => "partials/empty_table_view", :locals => { :filter => params[:filter] }
 
   %div#recent-activity
+  - if !@recents.empty?
     %ul
     - @recents.each do |recent|
       %li #{ recent[1] }
+  - else
+    %p No new recent activity since your last login.
