@@ -22,7 +22,8 @@
     %ul
       - top_commenters.each do |recent|
         %li
-          %strong #{ recent[:name] }
+          %strong #{ recent[:name].index_name } 
+          [#{ recent[:name].team_abbrev }]
           %small #{ pluralize recent[:count], 'comment' }
   - else
     %p No new recent activity since your last login.
@@ -36,7 +37,8 @@
     %ul
       - top_reporters.each do |recent|
         %li
-          %strong #{ recent[:name] }
+          %strong #{ recent[:name].index_name } 
+          [#{ recent[:name].team_abbrev }]
           %small #{ pluralize recent[:count], 'task' }
   - else
     %p No new recent activity since your last login.
