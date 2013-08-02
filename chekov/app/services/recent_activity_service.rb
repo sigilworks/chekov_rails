@@ -3,21 +3,19 @@ module RecentActivityService
   extend self
 
   def for_user(user)
-    last_visit = user.last_visited_at
-    if last_visit.nil?
-      return []
-    end
+    last_visit = 3.days.ago # user.last_visited_at
+    return [] if last_visit.nil?
 
     @recents = {}
 
     Task.where('updated_at >= ?', last_visit).each do |task|
       entry = TaskActivityEntry.new(task)
-      @recents[entry.timestamp] = entry.to_s
+      @recents[entry.timestamp] = entry
     end
 
     Comment.where('updated_at >= ?', last_visit).each do |comment|
       entry = CommentActivityEntry.new(comment)
-      @recents[entry.timestamp] = entry.to_s
+      @recents[entry.timestamp] = entry
     end
 
     Hash[ @recents.sort ]
@@ -36,10 +34,6 @@ module RecentActivityService
 
     def formatted_time
       @entry.updated_at.strftime('%b %d, %Y  %l:%M %p')
-    end
-
-    def to_s
-      "#{ agent.index_name } #{ action } on #{ formatted_time }"
     end
   end
 
