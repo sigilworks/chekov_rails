@@ -2,7 +2,7 @@
 class Filter
   attr_reader :name, :symbol
 
-  CUSTOM_FILTERS = [ 'mine', 'unassigned' ]
+  CUSTOM_FILTERS = [ 'mine', 'unassigned', 'active' ]
 
   def initialize(filter_name)
     @name = filter_name.to_s

@@ -24,11 +24,13 @@ module TaskFilterService
     when 'all'
       @tasks
     when *Status.all.map(&:shortname)
-      @tasks.where(:status_id => Status.find_by(:shortname => @filter.name))
+      @tasks.where :status_id => Status.find_by(:shortname => @filter.name)
     when 'mine'
-      @tasks.where(:assignee => @user)
+      @tasks.where :assignee => @user
     when 'unassigned'
-      @tasks.where(:assignee => User.nobody)
+      @tasks.where :assignee => User.nobody
+    when 'active'
+      @tasks.where :status_id => Status.active
     end
   end
     

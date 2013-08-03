@@ -17,20 +17,28 @@ module RecentActivityService
       entry = CommentActivityEntry.new(comment)
       @recents[entry.timestamp] = entry
     end
+
     Hash[ @recents.sort.reverse ]
   end
 
 
   def top_commenters
-    Comment.limit(5).count(:group => :commenter).map do |user, count|
-      { :name => UserPresenter.new(user), :count  => count }
-    end.sort_by { |entry| entry[:count] }.reverse
+    Comment
+      .limit(5)
+      .count(:group => :commenter)
+      .map { |user, count| { :name => UserPresenter.new(user), :count  => count } }
+      .sort_by { |entry| entry[:count] }
+      .reverse
   end
 
+
   def top_reporters
-    Task.limit(5).count(:group => :reporter).map do |user, count|
-      { :name => UserPresenter.new(user), :count  => count }
-    end.sort_by { |entry| entry[:count] }.reverse
+    Task
+      .limit(5)
+      .count(:group => :reporter)
+      .map { |user, count| { :name => UserPresenter.new(user), :count  => count } }
+      .sort_by { |entry| entry[:count] }
+      .reverse
   end
 
 

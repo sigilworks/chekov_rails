@@ -19,7 +19,7 @@
     %h3 
       Top Commenters
       %span &#9660;
-    %ul
+    %ol
       - top_commenters.each do |recent|
         %li
           %strong #{ recent[:name].index_name } 
@@ -34,7 +34,7 @@
     %h3 
       Top Reporters
       %span &#9660;
-    %ul
+    %ol
       - top_reporters.each do |recent|
         %li
           %strong #{ recent[:name].index_name } 
