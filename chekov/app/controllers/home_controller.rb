@@ -1,6 +1,6 @@
 
 class HomeController < ApplicationController
-    include ActionController::Live
+  # include ActionController::Live
 
   # prevent redirect loop. Need index page to be able to login, anyways!
   skip_before_action :require_login
@@ -34,10 +34,10 @@ class HomeController < ApplicationController
     # is used to determine update 'deltas' since data on client was last retrieved
     @user.update_attribute(:last_visited_at, Time.now)
 
-    respond_to do |format|
-     format.html
-    end
-    # render :stream => true
+    # respond_to do |format|
+    #  format.html
+    # end
+    render :stream => true
   end
 
   # def notify_updates(event_name, data)
