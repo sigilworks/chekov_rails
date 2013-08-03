@@ -29,6 +29,9 @@ module Chekov
         g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
 
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.default_timezone = :local
+
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/app/entities)
