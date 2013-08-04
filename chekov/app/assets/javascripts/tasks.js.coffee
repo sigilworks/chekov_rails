@@ -1,7 +1,7 @@
 
 $ ->
     # ajax handling for clicking "(+) New Task" button
-    $("#new-task-button").on "click", ->
+    $("#new-task-button").find("button").on "click", ->
         if $("#new-task").length
             $("#new-task").remove()
         reporterId = $(this).data "reporterId"
