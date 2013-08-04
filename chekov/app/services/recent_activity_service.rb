@@ -18,7 +18,7 @@ module RecentActivityService
       @recents[entry.timestamp] = entry
     end
 
-    Hash[ @recents.sort.reverse ]
+    @recents.sort.reverse
   end
 
 

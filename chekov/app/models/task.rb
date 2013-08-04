@@ -18,4 +18,20 @@ class Task < ActiveRecord::Base
   validates :reporter,
             :presence => { :message => "Every task must be associated with a reporter!" },
             :on => :save
+
+  after_save :queue_change_activity
+  after_destroy :queue_destroy_activity
+
+  def queue_change_activity
+    if self.created_at_was.nil?
+      QueueService.created_task(self.id, self.attributes)
+    elsif self.updated_at > self.updated_at_was
+      QueueService.updated_task(self.id, self.attributes)
+    end
+  end
+
+  def queue_destroy_activity
+    QueueService.deleted_task(self.id, self.attributes)
+  end
+
 end
