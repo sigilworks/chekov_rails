@@ -2,7 +2,7 @@ module Auditable
   extend ActiveSupport::Concern
 
   included do
-    after_save :queue_change_activity
+    after_save    :queue_change_activity
     after_destroy :queue_destroy_activity
   end
 
