@@ -1,9 +1,9 @@
 
 %div#recent-activity.activity-feed
+  %h3
+    Recent Activity
+    %span &#9660;
   - if !@recents.empty?
-    %h3 
-      Recent Activity
-      %span &#9660;
     %ul
       - @recents.each do |recent|
         %li
@@ -11,34 +11,34 @@
           #{ recent[1].action }
           %small #{ recent[1].formatted_time }
   - else
-    %p No new recent activity since your last login.
+    %li.no-activity No new recent activity since your last visit.
 
 
 %div#top-commenters.activity-feed
+  %h3
+    Top Commenters
+    %span &#9660;
   - if !top_commenters.empty?
-    %h3 
-      Top Commenters
-      %span &#9660;
     %ol
       - top_commenters.each do |recent|
         %li
-          %strong #{ recent[:name].index_name } 
+          %strong #{ recent[:name].index_name }
           [#{ recent[:name].team_abbrev }]
           %small #{ pluralize recent[:count], 'comment' }
   - else
-    %p No new recent activity since your last login.
+    %li.no-activity No new recent comments since your last visit.
 
 
 %div#top-reporters.activity-feed
+  %h3
+    Top Reporters
+    %span &#9660;
   - if !top_reporters.empty?
-    %h3 
-      Top Reporters
-      %span &#9660;
     %ol
       - top_reporters.each do |recent|
         %li
-          %strong #{ recent[:name].index_name } 
+          %strong #{ recent[:name].index_name }
           [#{ recent[:name].team_abbrev }]
           %small #{ pluralize recent[:count], 'task' }
   - else
-    %p No new recent activity since your last login.
+    %li.no-activity No new recent tasks reported since your last visit.

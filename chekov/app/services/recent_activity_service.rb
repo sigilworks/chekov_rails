@@ -3,7 +3,7 @@ module RecentActivityService
   extend self
 
   def for_user(user)
-    last_visit = 3.days.ago # user.last_visited_at
+    last_visit = user.last_visited_at - 1.week # - 1.day
     return [] if last_visit.nil?
 
     @recents = {}
@@ -60,14 +60,14 @@ module RecentActivityService
 
   class TaskActivityEntry < AbstractActivityEntry
     @type = "task"
-    
+
     def agent
       UserPresenter.new(@entry.reporter)
     end
 
     def action
-      @is_created ? 
-        "created task ##{ @entry.id }" : 
+      @is_created ?
+        "created task ##{ @entry.id }" :
         "updated task ##{ @entry.id }"
     end
   end
@@ -80,8 +80,8 @@ module RecentActivityService
     end
 
     def action
-      @is_created ? 
-        "commented on task ##{ @entry.task.id }" : 
+      @is_created ?
+        "commented on task ##{ @entry.task.id }" :
         "updated a comment on task ##{ @entry.task.id }"
     end
   end

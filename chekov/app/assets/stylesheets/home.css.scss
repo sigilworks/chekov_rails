@@ -204,13 +204,14 @@ a.edit-comment            { opacity: 0.3; @include icon-only-link(url('iconsOthe
                             font-variant: small-caps; font-size: 14px;
         span              { float: left; font-size: 8px; color: #999; margin-right: 5px; padding-top: 4px; font-weight: normal; }
     }
-    ul                    { padding-left: 10px; list-style-type: square; list-style-position: inside; 
+    ul                    { padding-left: 10px; list-style-type: square; list-style-position: inside;
         small             { font-family: "Droid Sans Mono", monospace; white-space: pre; }
     }
     ol                    { padding-left: 25px; }
-    li                    { line-height: normal; 
+    li                    { line-height: normal;
         small             { text-align: right; color: #777; float: right; }
     }
+    li.no-activity        { list-style-type: none; text-align: center; }
 }
 
 // STYLES FOR FLASH NOTIFICATIONS
