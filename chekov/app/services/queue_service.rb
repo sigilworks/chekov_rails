@@ -3,32 +3,19 @@ module QueueService
   extend self
 
   # TODO: replace these methods using `method_missing`
-  def created_task(id, attrs = {})
-    emit('task:created', "Task #{ id } created")
+  def creation_event(id, class_name, attrs = {})
+    emit('#{ class_name.downcase }:creation', "#{ class_name } ##{ id } created")
   end
 
-  def updated_task(id, attrs = {})
-    emit('task:updated', "Task #{ id } updated")
+  def updation_event(id, class_name, attrs = {})
+    emit('#{ class_name.downcase }:updation', "#{ class_name } #{ id } updated")
   end
 
-  def deleted_task(id, attrs = {})
-    emit('task:deleted', "Task #{ id } deleted")
+  def deletion_event(id, class_name, attrs = {})
+    emit('#{ class_name.downcase }:deletion', "#{ class_name } #{ id } deleted")
   end
 
-  def created_comment(id, attrs = {})
-    emit('comment:created', "Comment #{ id } created")
-  end
-
-  def updated_comment(id, attrs = {})
-    emit('comment:updated', "Comment #{ id } updated")
-  end
-
-  def deleted_comment(id, attrs = {})
-    emit('comment:deleted', "Comment #{ id } deleted")
-  end
-
-
-  private 
+  private
 
   # eventually, optional use of new object's attributes in `data`
   def emit(msg, data = {})

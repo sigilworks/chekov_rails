@@ -12,7 +12,6 @@ class HomeController < ApplicationController
     # current user variable, used almost everywhere, often as `me`
     @user = logged_in? ? current_user : User.nobody
 
-
     # these lists are largely used to populate various <select>
     # menus and page components, rendered in their own partials
     @assignee_list = User.assignees
