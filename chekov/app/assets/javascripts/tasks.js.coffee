@@ -4,7 +4,7 @@ $ ->
     $("#new-task-button").find("button").on "click", ->
         if $("#new-task").length
             $("#new-task").remove()
-        reporterId = $(this).data "reporterId"
+        reporterId = $("#new-task-button").data "reporterId"
         $.get "/tasks/new",
             reporter_id: reporterId
             , (data) ->
