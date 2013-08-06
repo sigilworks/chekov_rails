@@ -13,7 +13,7 @@ module QueueService
       parts = name.to_s.downcase.split '_'
       # split off the '_event'
       parts.pop
-      # TODO: clean this up and 'rubify' it!
+      # TODO: clean this up and 'ruby-ify' it!
       # iterate over parts for action and object of action
       parts.each do |token|
         if token.in? [ 'task', 'comment', 'user' ]

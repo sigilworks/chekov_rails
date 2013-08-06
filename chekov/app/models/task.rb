@@ -11,7 +11,8 @@ class Task < ActiveRecord::Base
   scope :by_assignee, ->(user) { where(:assignee => user).order(:id => :desc) }
   scope :by_commenter, ->(user) { includes(:comments).where('commenter_id = ?', user.id).order(:id => :desc).references(:comments) }
 
-  has_many   :comments, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
+  has_many :commenters, :through => :comments, :source => :commenter, :class_name => "User"
 
   validates :application,
             :presence => { :message => "Every task must be associated with an application!" },
