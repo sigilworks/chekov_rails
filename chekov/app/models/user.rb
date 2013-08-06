@@ -14,11 +14,7 @@ class User < ActiveRecord::Base
   has_many :comments, :class_name => "Comment", :foreign_key => :commenter_id
   has_many :commented, :class_name => "Task", :through => :comments, :source => :task
 
-  validates :username,
-            :presence => { :message => "Every user must have a username!" },
-            :uniqueness => { :message => "Every user's username must be unique!" },
-            :on => :create
-
+  validates :username, :presence => true, :uniqueness => true, :on => :create
   validates :first_name, :presence => true, :on => :save
   validates :last_name, :presence => true, :on => :save
   validates :role, :presence => true, :on => :save
