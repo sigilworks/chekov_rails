@@ -14,11 +14,7 @@ class Task < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :commenters, :through => :comments, :source => :commenter, :class_name => "User"
 
-  validates :application,
-            :presence => { :message => "Every task must be associated with an application!" },
-            :on => :save
-  validates :reporter,
-            :presence => { :message => "Every task must be associated with a reporter!" },
-            :on => :save
+  validates :application, :presence => true, :on => :save
+  validates :reporter, :presence => true, :on => :save
 
 end

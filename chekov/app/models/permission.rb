@@ -1,6 +1,3 @@
 class Permission < ActiveRecord::Base
-  validates :name, 
-            :presence => { :message => "Every permission must have a name!" },
-            :uniqueness => { :message => "Every permission's name must be unique!" },
-            :on => :create
+  validates :name, :presence => true, :uniqueness => true, :on => :create
 end

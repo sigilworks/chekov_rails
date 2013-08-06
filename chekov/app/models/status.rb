@@ -4,6 +4,9 @@ class Status < ActiveRecord::Base
   scope :need_attention, -> { where id: 4..6 }
   scope :active, -> { where.not id: 1 }
 
+  validates :name, :presence => true, :uniqueness => true, :on => :create
+  validates :shortname, :presence => true, :uniqueness => true, :on => :create
+
   class << self
     # method missing dynamically create constants
     def method_missing(name, *args, &block)

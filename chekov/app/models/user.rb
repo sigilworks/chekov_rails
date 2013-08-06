@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
             :uniqueness => { :message => "Every user's username must be unique!" },
             :on => :create
 
-  validates :first_name, :presence => { :message => "Every user must have a first name!" }, :on => :save
-  validates :last_name, :presence => { :message => "Every user must have a last name!" }, :on => :save
-  validates :role, :presence => { :message => "Every user must be associated with a role!" }, :on => :save
-  validates :team, :presence => { :message => "Every user must be associated with a team!" }, :on => :save
-  validates :permission, :presence => { :message => "Every user must be associated with permissions!" }, :on => :save
+  validates :first_name, :presence => true, :on => :save
+  validates :last_name, :presence => true, :on => :save
+  validates :role, :presence => true, :on => :save
+  validates :team, :presence => true, :on => :save
+  validates :permission, :presence => true, :on => :save
 
   def is_nobody?
   	id == 1
