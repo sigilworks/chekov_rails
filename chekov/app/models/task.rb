@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  # include Auditable
+  include Auditable
 
   belongs_to :application
   belongs_to :reporter, :class_name => "User"

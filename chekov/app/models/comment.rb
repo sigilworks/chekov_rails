@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  # include Auditable
+  include Auditable
 
   belongs_to :task, :touch => true, :autosave => true
   belongs_to :commenter, :class_name => "User"

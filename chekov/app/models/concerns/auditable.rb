@@ -8,14 +8,14 @@ module Auditable
 
   def queue_change_activity
     if self.created_at_was.nil?
-      QueueService.creation_event(self.id, class_name(self), self.attributes)
+      QueueService.send("#{ class_name(self) }_creation_event", self.id, class_name(self), self.attributes)
     elsif self.updated_at > self.updated_at_was
-      QueueService.updation_event(self.id, class_name(self), self.attributes)
+      QueueService.send("#{ class_name(self) }_updation_event", self.id, class_name(self), self.attributes)
     end
   end
 
   def queue_destroy_activity
-    QueueService.deletion_event(self.id, class_name(self), self.attributes)
+    QueueService.send("#{ class_name(self) }_deletion_event", self.id, class_name(self), self.attributes)
   end
 
   private
