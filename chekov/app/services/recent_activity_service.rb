@@ -2,6 +2,10 @@
 module RecentActivityService
   extend self
 
+  MAX_TOP_COMMENTERS = 5
+  MAX_TOP_REPORTERS = 5
+  MAX_TOP_ACTIVITIES = 7
+
   def for_user(user)
     last_visit = user.last_visited_at - 1.week # - 1.day
     return [] if last_visit.nil?
@@ -18,13 +22,13 @@ module RecentActivityService
       @recents[entry.timestamp] = entry
     end
 
-    @recents.sort.reverse
+    @recents.sort.reverse[0...MAX_TOP_ACTIVITIES]
   end
 
 
   def top_commenters
     Comment
-      .limit(5)
+      .limit(MAX_TOP_COMMENTERS)
       .count(:group => :commenter)
       .map { |user, count| { :name => UserPresenter.new(user), :count  => count } }
       .sort_by { |entry| entry[:count] }
@@ -34,7 +38,7 @@ module RecentActivityService
 
   def top_reporters
     Task
-      .limit(5)
+      .limit(MAX_TOP_REPORTERS)
       .count(:group => :reporter)
       .map { |user, count| { :name => UserPresenter.new(user), :count  => count } }
       .sort_by { |entry| entry[:count] }
