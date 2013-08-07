@@ -1,15 +1,17 @@
 
- 1. Edit Task
- 		- anyone can edit tasks (and shouldnt we track this somewhere?)
+ - TaskPromotionStrategy still needs to have second part implemented:
+ 	- when Task has Status == NEW,
+ 	- Assignee changing from Nobody -> one of the User.reals ==> promote!
 
- 2.	Edit Comment
- 		- only admins && commenter can edit comments
- 		- only admins && commenter can delete comments
- 		(^^ probably need a Permissions/RoleService or -Strategy for these too)
+ - RolePermissionsStrategy implmentation around the .meta options that appear
 
- 3. task-stats: express as MetroUI-style, flat/matte-colored heatmap square?
+ - DateTimeFormattingService/-Provider? to hold date/time formatting constants, &c., for uniformity
 
- 4.	make .meta icons darker (maybe opacity: 0.5?)
+ - Make User<->Role relationship 1:n, instead of 1:1
+
+ - task-stats: express as MetroUI-style, flat/matte-colored heatmap square?
+
+ - make .meta icons darker (maybe opacity: 0.5?)
 
 
 To have launchd start redis at login:
