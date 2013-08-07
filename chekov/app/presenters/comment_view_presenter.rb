@@ -24,12 +24,12 @@ class CommentViewPresenter
   end
 
   def comment_date_in_words
-    time_ago_in_words(@comment.created_at, :include_seconds => true) 
+    time_ago_in_words(@comment.created_at, :include_seconds => true)
   end
 
   # method missing to delegate to @user or super
-  def method_missing(name, *args)
-    @comment.send(name, *args)
+  def method_missing(name, *args, &block)
+    @comment.send(name, *args, &block)
   end
 
 end

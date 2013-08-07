@@ -2,6 +2,6 @@
 %select#filter-list
   %option{ :value => 'all' }@all tasks
   - filter_list.each do |filter|
-    - unless filter == 'all'
+    - unless filter == Filter.ALL
       %option{ :value => filter , :selected => @current_filter === filter }
         @#{ filter }

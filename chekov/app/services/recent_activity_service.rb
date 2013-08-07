@@ -25,7 +25,6 @@ module RecentActivityService
     @recents.sort.reverse[0...MAX_TOP_ACTIVITIES]
   end
 
-
   def top_commenters
     Comment
       .limit(MAX_TOP_COMMENTERS)
@@ -35,7 +34,6 @@ module RecentActivityService
       .reverse
   end
 
-
   def top_reporters
     Task
       .limit(MAX_TOP_REPORTERS)
@@ -44,7 +42,6 @@ module RecentActivityService
       .sort_by { |entry| entry[:count] }
       .reverse
   end
-
 
   private
 

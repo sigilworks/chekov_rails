@@ -12,7 +12,7 @@ class UserPresenter
 
   # Smith, J.
   def index_name
-    return "<unassigned>" if !@user || @user.is_nobody? #!@user || @user.last_name.strip.empty?
+    return "<unassigned>" if !@user || @user.is_nobody?
     "#{@user.last_name}, #{@user.first_name[0]}."
   end
 
@@ -27,8 +27,8 @@ class UserPresenter
 
   def team_abbrev
     team = @user.team.name
-    return team[0,3] if team == 'DEVELOPMENT'
-    return team[0,4] if team == 'PRODUCT'
+    return team[0, 3] if @user.team == Team.DEVELOPMENT
+    return team[0, 4] if @user.team == Team.PRODUCT
     team
   end
 

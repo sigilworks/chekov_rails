@@ -16,8 +16,8 @@ class BrowserListPresenter
   end
 
   # method missing to delegate to @user or super
-  def method_missing(name, *args)
-    @browsers.send(name, *args)
+  def method_missing(name, *args, &block)
+    @browsers.send(name, *args, &block)
   end
 
 end
