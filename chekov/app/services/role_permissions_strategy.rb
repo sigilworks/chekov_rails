@@ -3,13 +3,14 @@ module RolePermissionsStrategy
   extend self
 
   def for_user(user)
-    RolePermissionsMatrix.new(user.permission, user.role, user.team)
+    RolePermissionsMatrix.new(user)
   end
 
   class RolePermissionsMatrix
 
-    def initialize(permission, role, team)
-      @permission, @role, @team = permission, role, team
+    def initialize(user)
+      @user = user
+      @permission, @role, @team = user.permission, user.role, user.team
     end
 
     def new_task?
@@ -31,9 +32,28 @@ module RolePermissionsStrategy
     end
 
     def edit_comment?(commentid)
+      is_admin_or_commenter?(commentid)
     end
 
     def delete_comment?(commentid)
+    end
+
+  private
+
+    def is_all_except_readonly?
+      Permission.where.not(:id => Permission.READ_ONLY).include? @permission
+    end
+
+    def is_all_except_readonly_addonly?
+      Permission.where.not(:id => [ Permission.READ_ONLY, Permission.ADD_ONLY ]).include? @permission
+    end
+
+    def is_admin?
+      Permission.where(:id => Permission.ADMIN).include? @permission
+    end
+
+    def is_admin_or_commenter?(commentid)
+      is_admin? || Comment.find(commentid).commenter == @user
     end
 
   end
