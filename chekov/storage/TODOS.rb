@@ -11,22 +11,6 @@
 
  4.	make .meta icons darker (maybe opacity: 0.5?)
 
- User
-- 1:
-  has_many :tasks
-  has_many :comments, through :tasks
-- 2:
-  :scope :comments, -> {}
-  :scope :comments_by_tasks, ->(*tasks) {}
-  :scope :tasks, -> {}
-
-Tasks.includes(:comments).each do |task|...
-
-Tasks.includes([:comments, :reporter]).where('comments.count > 0')
-
-^^ Try with:
-User
-  has_many :most_recent_comments, -> { order('id desc').limit(10)** }, :class_name => 'Comment'
 
 To have launchd start redis at login:
     ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
