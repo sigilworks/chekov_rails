@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   	id == 1
   end
 
+  def able
+    RolePermissionsStrategy.for_user(self)
+  end
+
   def self.nobody
     User.find(1)
   end
