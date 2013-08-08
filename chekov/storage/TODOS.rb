@@ -1,4 +1,38 @@
 
+ - new Permissions and Roles:
+	Permission:: 'READ_ONLY', 'ADD_ONLY', 'BASIC', 'ADMIN' 
+	Role:: 'ASSIGNEE', 'REPORTER', 'COMMENTER', 'ALL'
+
+	class Permission < ActiveRecord::Base
+	  has_and_belongs_to_many :users
+	end
+	 
+	class User < ActiveRecord::Base
+	  has_and_belongs_to_many :roles
+	end
+
+
+	class CreateAssembliesAndParts < ActiveRecord::Migration
+	  def change
+	    create_table :permissions do |t|
+	      t.string :name
+	      t.timestamps
+	    end
+	 
+	    create_table :users do |t|
+	      t.string :part_number
+	      t.timestamps
+	    end
+	 
+	    create_table :permissions_users do |t|
+	      t.belongs_to :permission
+	      t.belongs_to :user
+	    end
+	  end
+	end
+
+
+
  - TaskPromotionStrategy still needs to have second part implemented:
  	- when Task has Status == NEW,
  	- Assignee changing from Nobody -> one of the User.reals ==> promote!
