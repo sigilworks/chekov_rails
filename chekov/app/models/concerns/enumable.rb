@@ -8,5 +8,14 @@ module Enumable
     klass.all.map(&:name).each do |name|
       define_singleton_method(name.to_sym) { klass.where(:name => name.to_s.upcase).first.id }
     end
+  
+    def <=>(other)
+      klass = self.class.name.constantize
+      if other.is_a? klass
+        id <=> other.id
+      end
+    end
+
   end
+
 end
