@@ -1,37 +1,35 @@
 
- - new Permissions and Roles:
-	Permission:: 'READ_ONLY', 'ADD_ONLY', 'BASIC', 'ADMIN' 
-	Role:: 'ASSIGNEE', 'REPORTER', 'COMMENTER', 'ALL'
+ - Make User<->Role relationship 1:n, instead of 1:1
+   new Permissions and Roles:
+	Permission:: 'READ_ONLY', 'ADD_ONLY', 'BASIC', 'ADMIN'
+	Role:: 'ASSIGNEE', 'COMMENTER', 'REPORTER'
 
 	class Permission < ActiveRecord::Base
 	  has_and_belongs_to_many :users
 	end
-	 
+
 	class User < ActiveRecord::Base
 	  has_and_belongs_to_many :roles
 	end
 
+	rails g migration create_roles_users_table
 
-	class CreateAssembliesAndParts < ActiveRecord::Migration
+	class CreateRolesUsers < ActiveRecord::Migration
 	  def change
-	    create_table :permissions do |t|
-	      t.string :name
-	      t.timestamps
+	    create_table :roles_users, :id => false do |t|
+	        t.references :role
+	        t.references :user
 	    end
-	 
-	    create_table :users do |t|
-	      t.string :part_number
-	      t.timestamps
-	    end
-	 
-	    create_table :permissions_users do |t|
-	      t.belongs_to :permission
-	      t.belongs_to :user
-	    end
+	    add_index :roles_users, [:role_id, :user_id]
+	    add_index :roles_users, :user_id
 	  end
+
 	end
 
 
+@user.roles >= Role.ADMIN
+
+ - Add creation/updation dates in Task/Comment add/edit popups?
 
  - TaskPromotionStrategy still needs to have second part implemented:
  	- when Task has Status == NEW,
@@ -41,7 +39,6 @@
 
  - DateTimeFormattingService/-Provider? to hold date/time formatting constants, &c., for uniformity
 
- - Make User<->Role relationship 1:n, instead of 1:1
 
  - task-stats: express as MetroUI-style, flat/matte-colored heatmap square?
 

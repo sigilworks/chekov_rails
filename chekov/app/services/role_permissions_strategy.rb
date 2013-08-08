@@ -7,14 +7,16 @@ module RolePermissionsStrategy
   end
 
   # Permission:: 'ADMIN', 'READ_ONLY', 'ADD_ONLY'
+  # *Permission:: 'READ_ONLY', 'ADD_ONLY', 'BASIC', 'ADMIN'
   # Role:: 'ASSIGNEE', 'REPORTER', 'COMMENTER', 'ANY'
+  # *Role:: 'ASSIGNEE', 'COMMENTER', 'REPORTER'
   # Team:: 'PRODUCT', 'DEVELOPMENT', 'OPS', 'MGMT', 'OTHER'
 
   class RolePermissionsMatrix
 
     def initialize(user)
       @user = user
-      @permission, @role, @team = user.permission, user.role, user.team
+      @permission, @roles, @team = user.permission, user.roles, user.team
     end
 
     # New Task:

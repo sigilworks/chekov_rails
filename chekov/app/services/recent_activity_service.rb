@@ -7,7 +7,7 @@ module RecentActivityService
   MAX_TOP_ACTIVITIES = 7
 
   def for_user(user)
-    last_visit = user.last_visited_at - 1.week # - 1.day
+    last_visit = user.last_visited_at #- 1.week # - 1.day
     return [] if last_visit.nil?
 
     @recents = {}

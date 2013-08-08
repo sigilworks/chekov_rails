@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  belongs_to :role
+  # belongs_to :role
+  has_and_belongs_to_many :roles
   belongs_to :team
   belongs_to :permission
 
