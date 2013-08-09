@@ -27,10 +27,6 @@ Browser.create([
   { id: 15, name: 'All browsers', shortname: 'ALL' }
 ])
 
-Permission.create([ { id: 1, name: 'READ_ONLY' }, { id: 2, name: 'ADD_ONLY' }, { id: 4, name: 'BASIC' }, { id: 8, name: 'ADMIN' } ])
-
-Role.create([ { id: 1, name: 'ASSIGNEE' }, { id: 2, name: 'COMMENTER' }, { id: 4, name: 'REPORTER' } ])
-
 Status.create([
   { id: 1, name: 'CLOSED', shortname: 'closed', description: 'Closed' },
   { id: 2, name: 'OPEN', shortname: 'open', description: 'Open' },
@@ -41,6 +37,10 @@ Status.create([
 ])
 
 Team.create([ { id: 1, name: 'PRODUCT' }, { id: 2, name: 'DEVELOPMENT' }, { id: 3, name: 'OPS' }, { id: 4, name: 'MGMT' }, { id: 5, name: 'OTHER' } ])
+
+Permission.create([ { id: 1, name: 'READ_ONLY' }, { id: 2, name: 'ADD_ONLY' }, { id: 4, name: 'BASIC' }, { id: 8, name: 'ADMIN' } ])
+
+Role.create([ { id: 1, name: 'ASSIGNEE' }, { id: 2, name: 'COMMENTER' }, { id: 4, name: 'REPORTER' } ])
 
 # User.nobody already added by AddNobodyUser migration, so now adding further info,
 # now that their seed data has now been added...
