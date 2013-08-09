@@ -43,3 +43,6 @@
  - task-stats: express as MetroUI-style, flat/matte-colored heatmap square?
 
  - make .meta icons darker (maybe opacity: 0.5?)
+
+- YAML site config file
+	- include option to pre-load values in Status, Team, Role, Permission so theyre done in initializer?
