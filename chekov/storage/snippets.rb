@@ -17,3 +17,15 @@ $("#load_events").html('<%= escape_javascript(render :partial => "your_partial",
 # in <controller_action_name>.js
 
 $.get("/ajax_load_events/"), {}, null, "script" );
+
+
+# reading YAML files
+YAML.load(ERB.new(File.new("#{Rails.root}/config/chekov.yml").read).result)['top_level_key'].symbolize_keys
+
+# launching Redis server:
+To have launchd start redis at login:
+    ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+Then to load redis now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+Or, if you don't want/need launchctl, you can just run:
+    redis-server /usr/local/etc/redis.conf
