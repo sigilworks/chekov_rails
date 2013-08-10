@@ -2,9 +2,9 @@
 module RecentActivityService
   extend self
 
-  MAX_TOP_COMMENTERS = 5
-  MAX_TOP_REPORTERS = 5
-  MAX_TOP_ACTIVITIES = 7
+  MAX_TOP_COMMENTERS = AppConfig.activity_feed.top_commenters.max || 5
+  MAX_TOP_REPORTERS = AppConfig.activity_feed.top_reporters.max || 5
+  MAX_TOP_ACTIVITIES = AppConfig.activity_feed.top_activities.max || 7
 
   def for_user(user)
     last_visit = user.last_visited_at #- 1.week # - 1.day

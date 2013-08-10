@@ -1,0 +1,23 @@
+# Chekov application configuration
+defaults: &defaults
+  enumables: 
+    constantize?: true
+    classes: [ 'Status', 'Role', 'Permission', 'Team' ]
+  view:
+    custom_filters: [ 'mine', 'unassigned', 'active' ]
+  activity_feed:
+    top_commenters:
+        max: 5
+    top_reporters: 
+        max: 5
+    top_activities:
+        max: 7
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
