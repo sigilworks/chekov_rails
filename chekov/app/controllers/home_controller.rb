@@ -4,9 +4,6 @@ class HomeController < ApplicationController
   skip_before_action :require_login
 
   def index
-    # needed (for now) down in header menu
-    @is_logged_in = logged_in?
-
     # current user variable, used almost everywhere, often as `me`
     @user = logged_in? ? current_user : User.nobody
 

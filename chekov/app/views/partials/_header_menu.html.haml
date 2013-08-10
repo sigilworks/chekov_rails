@@ -2,11 +2,7 @@
 %menu
   %li
     %span#welcome{ :data => { :userid => me.id }}
-    - if @is_logged_in
-      You are
-      %strong #{ me.full_name}
-      %span.team [#{ me.team_abbrev}]
-    - else
+    - if @user.is_nobody?
       %strong Please log in &#9658;
 
       %select{ :id => 'user-login-list', :class => [ 'login-list' ]}
@@ -15,3 +11,7 @@
         - login_user_list.each do |user|
           %option{ :value => user.username}
             #{ user.index_name}
+    - else
+      You are
+      %strong #{ me.full_name}
+      %span.team [#{ me.team_abbrev}]
