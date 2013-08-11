@@ -3,11 +3,11 @@ class User < ActiveRecord::Base
   belongs_to :team
   belongs_to :permission
 
-  scope :assignees, -> { where(:role_id => [ 1, 4 ]) }
-  scope :reporters, -> { where(:role_id => [ 2, 4 ]) }
-  scope :commenters, -> { where(:role_id => [ 3, 4 ]) }
+  scope :assignees, -> { joins(:roles).where(:roles => { :id => Role.ASSIGNEE }) }
+  scope :reporters, -> { joins(:roles).where(:roles => { :id => Role.REPORTER }) }
+  scope :commenters, -> { joins(:roles).where(:roles => { :id => Role.COMMENTER }) }
    # all users except for the "nobody"/"unassigned" user at id: 1
-  scope :reals, -> { where 'id > 1' }
+  scope :reals, -> { where.not(:id => 1) }
 
   has_many :assignments, :class_name => "Task", :foreign_key => :assignee_id
   has_many :reported, :class_name => "Task", :foreign_key => :reporter_id

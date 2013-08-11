@@ -1,6 +1,13 @@
 module Enumable
   extend ActiveSupport::Concern
 
+  autoload :Status, "app/models/status"
+  autoload :Team, "app/models/team"
+  autoload :Role, "app/models/role"
+  autoload :Permission, "app/models/permission"
+
+
+
   included do
     # get class name that this is being mixed into...
     CLASS_NAME = name.constantize
