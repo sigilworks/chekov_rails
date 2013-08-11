@@ -3,10 +3,17 @@ module Enumable
 
   included do
     # get class name that this is being mixed into...
-    klass = self.name.constantize
-    # create dynamic assignment of constants on eigenclass
-    Hash[ klass.pluck(:name, :id) ].each do |name, id|
-      define_singleton_method(name.to_sym) { id }
+    CLASS_NAME = name.constantize
+    # imitate dynamic assignment of constants on eigenclass
+    # using `method_missing`
+    class << self
+      def method_missing(name, *args, &block)
+        if name.to_s.in? CLASS_NAME.pluck(:name)
+          CLASS_NAME.where(:name => name.to_s).first.id
+        else
+          super
+        end
+      end
     end
 
     def <=>(other)
