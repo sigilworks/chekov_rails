@@ -9,7 +9,7 @@ class Task < ActiveRecord::Base
 
   scope :by_reporter, ->(user) { where(:reporter => user).order(:id => :desc)  }
   scope :by_assignee, ->(user) { where(:assignee => user).order(:id => :desc) }
-  scope :by_commenter, ->(user) { includes(:comments).where('commenter_id = ?', user.id).order(:id => :desc).references(:comments) }
+  scope :by_commenter, ->(user) { includes(:comments).where(:comments => { :commenter => user }).order(:id => :desc).references(:comments) }
 
   has_many :comments, :dependent => :destroy
   has_many :commenters, :through => :comments, :source => :commenter, :class_name => "User"
