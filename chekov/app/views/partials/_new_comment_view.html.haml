@@ -2,6 +2,8 @@
 %div#new-comment
   %h3 #{ mode } comment
 
+  -# TODO: form_for can take a nested object to get remaining fields
+  =# e.g., form_for @comment.task do |t|...to get t.status, t.assignee, &c.
   = form_for @comment do |f|
     - if @comment.errors.any?
       #error_explanation
