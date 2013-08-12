@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   def current_user
     @_current_user ||= cookies.permanent.signed[:current_user_id] && User.find_by(:username => cookies.permanent.signed[:current_user_id])
   end
+  helper_method :current_user
 
   def require_login
     # unless logged_in?

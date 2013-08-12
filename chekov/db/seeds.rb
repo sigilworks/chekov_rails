@@ -44,6 +44,7 @@ Role.create([ { id: 1, name: 'ASSIGNEE' }, { id: 2, name: 'COMMENTER' }, { id: 4
 
 # User.nobody already added by AddNobodyUser migration, so now adding further info,
 # now that their seed data has now been added...
+User.find_or_create_by(id: 1, first_name: ' ', last_name: ' ', username: 'nobody')
 User.find(1).update_attributes(role_ids: [ 1 ], team_id: 5, permission_id: 1)
 
 User.create([

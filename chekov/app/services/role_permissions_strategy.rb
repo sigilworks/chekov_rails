@@ -6,10 +6,11 @@ module RolePermissionsStrategy
     RolePermissionsMatrix.new(user)
   end
 
-  # Permission:: 'ADMIN', 'READ_ONLY', 'ADD_ONLY'
-  # *Permission:: 'READ_ONLY', 'ADD_ONLY', 'BASIC', 'ADMIN'
-  # Role:: 'ASSIGNEE', 'REPORTER', 'COMMENTER', 'ANY'
-  # *Role:: 'ASSIGNEE', 'COMMENTER', 'REPORTER'
+  # Permission (old):: 'ADMIN', 'READ_ONLY', 'ADD_ONLY'
+  # Role (old):: 'ASSIGNEE', 'REPORTER', 'COMMENTER', 'ANY'
+  #
+  # Permission:: 'READ_ONLY', 'ADD_ONLY', 'BASIC', 'ADMIN'
+  # Role:: 'ASSIGNEE', 'COMMENTER', 'REPORTER'
   # Team:: 'PRODUCT', 'DEVELOPMENT', 'OPS', 'MGMT', 'OTHER'
 
   class RolePermissionsMatrix

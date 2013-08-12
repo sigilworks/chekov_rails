@@ -2,8 +2,8 @@
 module QueueService
   extend self
 
-  MODELS_WITH_EVENTS = [ 'task', 'comment', 'user' ]
-  COMMON_EVENT_PREFIXES = [ 'creat', 'updat', 'delet' ]
+  MODELS_WITH_EVENTS = AppConfig.events.models_audited
+  COMMON_EVENT_PREFIXES = AppConfig.events.prefixes
 
   def method_missing(name, *args, &block)
     # make sure to only parse incoming methods that end in `*_event`

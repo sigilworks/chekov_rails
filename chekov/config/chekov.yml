@@ -1,14 +1,17 @@
 # Chekov application configuration
 defaults: &defaults
-  enumables: 
+  enumables:
     constantize?: true
     classes: [ 'Status', 'Role', 'Permission', 'Team' ]
   view:
     custom_filters: [ 'mine', 'unassigned', 'active' ]
+  events:
+    models_audited: [ 'task', 'comment', 'user' ]
+    prefixes: [ 'creat', 'updat', 'delet' ]
   activity_feed:
     top_commenters:
         max: 5
-    top_reporters: 
+    top_reporters:
         max: 5
     top_activities:
         max: 7
