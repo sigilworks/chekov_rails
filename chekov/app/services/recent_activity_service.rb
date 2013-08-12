@@ -7,7 +7,7 @@ module RecentActivityService
   MAX_TOP_ACTIVITIES = AppConfig.activity_feed.top_activities.max || 7
 
   def for_user(user)
-    last_visit = user.last_visited_at.midnight - 1.week
+    last_visit = (user.last_visited_at || Time.now).midnight - 1.week
     return [] if last_visit.nil?
 
     @recents = {}

@@ -16,8 +16,9 @@ module Enumable
       # using `method_missing`
       class << self
         def method_missing(name, *args, &block)
-          if name.to_s.in? CLASS_NAME.pluck(:name)
-            CLASS_NAME.where(:name => name.to_s).first.id
+          name = name.to_s.upcase
+          if name.in? CLASS_NAME.pluck(:name)
+            CLASS_NAME.where(:name => name).first.id
           else
             super
           end
