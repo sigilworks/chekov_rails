@@ -21,15 +21,15 @@ $.get("/ajax_load_events/"), {}, null, "script" );
 
 # reading YAML files...can have ERB in it too.
 YAML.load(ERB.new(File.new("#{Rails.root}/config/chekov.yml").read).result)['top_level_key'].symbolize_keys
-# don't need #symbolize_keys, if you prepend keys with a colon in the .yml file! 
+# don't need #symbolize_keys, if you prepend keys with a colon in the .yml file!
 # or append .with_indifferent_access and you can access with either string or symbol keys
 
---- 
-- !ruby/object:Person 
+---
+- !ruby/object:Person
   name: John Doe
   sname: jdoe
   email: jdoe@gmail.com
-- !ruby/object:Person 
+- !ruby/object:Person
   name: Jane Doe
   sname: jdoe
   email: jane@hotmail.com
@@ -39,6 +39,11 @@ require "yaml"
 data = YAML::load(File.open("data.yml"))
 # Will print out the first object in the array's name. #=> John Doe
 puts data.first.name
+
+
+content_tag :li, :class => 'vehicle_list' do
+  link_to("#{vehicle.title.upcase} Sale", show_all_styles_path(vehicle.id, vehicle.url_title))
+end
 
 
 
