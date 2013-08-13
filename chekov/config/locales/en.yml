@@ -21,3 +21,26 @@
 
 en:
   hello: "Hello world"
+
+  # header and login
+  login_directive: Please log in
+  username_prefix: You are
+
+  # task stats
+  stats_open: open
+  stats_need_attention: need attention
+  stats_closed: closed
+
+  # main task table headers
+  task_id: id
+  app: app
+  build: builditup
+  description: description
+  browser: browser
+  bz_id: bz id
+  reporter: reporter
+
+  # recent activity feed
+  recent_activity: Recent Activity
+  top_commenters: Top Commenters
+  top_reporters: Top Reporters

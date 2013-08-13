@@ -3,7 +3,9 @@
   %li
     %span#welcome{ :data => { :userid => me.id }}
     - if @user.is_nobody?
-      %strong Please log in &#9658;
+      %strong
+        =t :login_directive
+        &#9658;
 
       %select{ :id => 'user-login-list', :class => [ 'login-list' ]}
         -# leave a blank option at top of <select> list
@@ -12,6 +14,6 @@
           %option{ :value => user.username}
             #{ user.index_name}
     - else
-      You are
+      =t :username_prefix
       %strong #{ me.full_name}
       %span.team [#{ me.team_abbrev}]

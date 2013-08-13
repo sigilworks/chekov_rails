@@ -23,13 +23,13 @@
     %table#task-table{ :role => 'main' }
       %thead
         %tr.header-row
-          %th.id-header id
-          %th app
-          %th build
-          %th description
-          %th browser
-          %th bz id
-          %th reporter
+          %th.id-header=t :task_id
+          %th=t :app
+          %th=t :build
+          %th=t :description
+          %th=t :browser
+          %th=t :bz_id
+          %th=t :reporter
 
       - if !task_list.empty?
         - task_list.each do |task|
@@ -37,5 +37,5 @@
       - else
         = render :partial => "partials/empty_table_view", :locals => { :filter => params[:filter] }
 
-  = render :partial => "partials/recent_activity_feed", 
+  = render :partial => "partials/recent_activity_feed",
            :locals => { :recents => @recents, :top_commenters => RecentActivityService.top_commenters, :top_reporters => RecentActivityService.top_reporters }

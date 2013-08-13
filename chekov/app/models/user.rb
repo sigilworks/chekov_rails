@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   belongs_to :team
   belongs_to :permission
 
-  scope :assignees, -> { joins(:roles).where(:roles => { :id => Role.ASSIGNEE }) }
-  scope :reporters, -> { joins(:roles).where(:roles => { :id => Role.REPORTER }) }
-  scope :commenters, -> { joins(:roles).where(:roles => { :id => Role.COMMENTER }) }
+  scope :assignees, -> { joins(:roles).where(:roles => { :id => 1 }) } # Role.ASSIGNEE }) }
+  scope :reporters, -> { joins(:roles).where(:roles => { :id => 4 }) } # Role.REPORTER }) }
+  scope :commenters, -> { joins(:roles).where(:roles => { :id => 2 }) } # Role.COMMENTER }) }
    # all users except for the "nobody"/"unassigned" user at id: 1
   scope :reals, -> { where.not(:id => 1) }
 

@@ -1,7 +1,7 @@
 
 %div#recent-activity.activity-feed
   %h3
-    Recent Activity
+    =t :recent_activity
     %span &#9660;
   - if !@recents.empty?
     %ul
@@ -16,7 +16,7 @@
 
 %div#top-commenters.activity-feed
   %h3
-    Top Commenters
+    =t :top_commenters
     %span &#9660;
   - if !top_commenters.empty?
     %ol
@@ -31,7 +31,7 @@
 
 %div#top-reporters.activity-feed
   %h3
-    Top Reporters
+    =t :top_reporters
     %span &#9660;
   - if !top_reporters.empty?
     %ol

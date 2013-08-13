@@ -1,13 +1,6 @@
 module Enumable
   extend ActiveSupport::Concern
 
-  # TODO: move this sort of functionality to an
-  # initializer instead, based on options switch in chekov.yml
-  autoload :Status, "app/models/status"
-  autoload :Team, "app/models/team"
-  autoload :Role, "app/models/role"
-  autoload :Permission, "app/models/permission"
-
   included do
     if AppConfig.enumables.constantize?
       # get class name that this is being mixed into...
@@ -16,9 +9,10 @@ module Enumable
       # using `method_missing`
       class << self
         def method_missing(name, *args, &block)
+          # binding.pry
           name = name.to_s.upcase
           if name.in? CLASS_NAME.pluck(:name)
-            CLASS_NAME.where(:name => name).first.id
+            define_singleton_method(name.to_sym) { CLASS_NAME.where(:name => name).first.id }
           else
             super
           end
