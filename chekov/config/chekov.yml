@@ -5,6 +5,9 @@ defaults: &defaults
     classes: [ 'Status', 'Role', 'Permission', 'Team' ]
   view:
     custom_filters: [ 'mine', 'unassigned', 'active' ]
+  datetime:
+    # Jul 4, 2013 2:09 PM
+    med: "%b %e, %Y  %l:%M %p"
   events:
     models_audited: [ 'task', 'comment', 'user' ]
     prefixes: [ 'creat', 'updat', 'delet' ]

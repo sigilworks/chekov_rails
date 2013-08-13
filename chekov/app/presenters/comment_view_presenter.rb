@@ -20,7 +20,7 @@ class CommentViewPresenter
 
   def comment_date
     # Jul 12, 2013 2:09 PM
-  	@comment.created_at.strftime('%b %d, %Y  %l:%M %p')
+  	@comment.created_at.strftime("#{ AppConfig.datetime.med }")
   end
 
   def comment_date_in_words
