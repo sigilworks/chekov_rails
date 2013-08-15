@@ -1,7 +1,10 @@
 
 if AppConfig.enumables.constantize?
-  # klasses = AppConfig.enumables.classes
-  # klasses.each do |klass|
-  #   require_dependency File.join(Rails.root, 'app', 'models', "#{ klass }.rb")
-  # end
+
+#   AppConfig.enumables.classes.each do |klass|
+#     Clazz = klass.constantize
+#     map = Hash[Clazz.all.map { |x| [ x.id, x.name ] }]
+#     map.each { |val, const| Clazz.const_set(const, val) }
+#   end
+
 end
