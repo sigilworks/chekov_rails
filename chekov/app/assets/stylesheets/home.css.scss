@@ -211,7 +211,7 @@ a.edit-comment            { opacity: 0.3; @include icon-only-link(url('iconsOthe
     li                    { line-height: normal;
         small             { text-align: right; color: #777; float: right; }
     }
-    li.no-activity        { list-style-type: none; text-align: center; }
+    li.no-activity        { list-style-type: none; text-align: center; padding-bottom: 15px; }
 }
 #recent-activity          { height: auto; }
 

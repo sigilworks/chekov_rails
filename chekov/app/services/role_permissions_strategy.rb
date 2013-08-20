@@ -63,15 +63,23 @@ module RolePermissionsStrategy
   private
 
     def is_all_except_readonly?
-      Permission.where.not(:id => Permission.READ_ONLY).include? @permission
+      Permission
+        .where
+        .not(:id => Permission.READ_ONLY)
+        .include? @permission
     end
 
     def is_all_except_readonly_addonly?
-      Permission.where.not(:id => [ Permission.READ_ONLY, Permission.ADD_ONLY ]).include? @permission
+      Permission
+        .where
+        .not(:id => [ Permission.READ_ONLY, Permission.ADD_ONLY ])
+        .include? @permission
     end
 
     def is_admin?
-      Permission.where(:id => Permission.ADMIN).include? @permission
+      Permission
+        .where(:id => Permission.ADMIN)
+        .include? @permission
     end
 
     def is_admin_or_commenter?(commentid)
