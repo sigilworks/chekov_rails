@@ -1,5 +1,6 @@
 module Enumable
   extend ActiveSupport::Concern
+  include Comparable
 
   included do
     if AppConfig.enumables.constantize?
@@ -8,15 +9,17 @@ module Enumable
       # imitate dynamic assignment of constants on eigenclass
       # using `method_missing`
       class << self
-        def method_missing(name, *args, &block)
+
+        def method_missing(method, *args, &block)
           # binding.pry
-          name = name.to_s.upcase
-          if name.in? CLASS_NAME.pluck(:name)
-            define_singleton_method(name.to_sym) { CLASS_NAME.where(:name => name).first.id }
+          method_name = method.to_s.upcase
+          if method_name.in? CLASS_NAME.pluck(:name)
+            define_singleton_method(method_name.to_sym) { CLASS_NAME.where(:name => method_name).first.id }
           else
             super
           end
         end
+
       end
     end # /if
 

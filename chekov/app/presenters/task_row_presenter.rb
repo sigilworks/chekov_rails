@@ -39,8 +39,13 @@ class TaskRowPresenter
   end
 
   # method missing to delegate to @user or super
-  def method_missing(name, *args, &block)
-    @task.send(name, *args, &block)
+  def method_missing(method, *args, &block)
+    @task.send(method, *args, &block)
+  end
+
+  # handling respond_to? alongside method_missing
+  def respond_to?(method, include_private = false)
+    method.in? self.public_methods(false) || super
   end
 
 end

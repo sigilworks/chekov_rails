@@ -59,43 +59,16 @@ Or, if you dont want/need launchctl, you can just run:
 
 
 #  -------------------------------------------------------------------------------------------  */
-
-## FOR ATOM/RSS FEED:
-## from http://stackoverflow.com/questions/4827232/generating-rss-feed-in-rails-3
-
-
-# => all.atom.builder
-atom_feed :language => 'en-US' do |feed|
-  feed.title "Articles"
-  feed.updated Time.now
-
-  @articles.each do |item|
-    next if item.published_at.blank?
-
-    feed.entry( item ) do |entry|
-      entry.url article_url(item)
-      entry.title item.title
-      entry.content item.content, :type => 'html'
-
-      # the strftime is needed to work with Google Reader.
-      entry.updated(item.published_at.strftime("%Y-%m-%dT%H:%M:%SZ"))
-      entry.author item.user.handle
-    end
+def method_missing(method, *args, &block)
+  if method.to_s =~ /user_(.*)/
+    user.send($1, *args, &block)
+  else
+    super
   end
 end
 
-# => controller
-  def index
-    if current_user && current_user.admin?
-      @articles = Article.paginate :page => params[:page], :order => 'created_at DESC'
-    else
-      respond_to do |format|
-        format.html { @articles = Article.published.paginate :page => params[:page], :order => 'published_at DESC' }
-        format.atom { @articles = Article.published }
-      end
-    end
-  end
+def respond_to?(method, include_private = false)
+  method.to_s.start_with?('user_') || super
+end
 
-# => index.haml.html
-= auto_discovery_link_tag :atom, "/feed"
-= auto_discovery_link_tag :rss, "/feed.rss"
+#  -------------------------------------------------------------------------------------------  */

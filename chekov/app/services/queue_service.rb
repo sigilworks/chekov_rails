@@ -5,11 +5,11 @@ module QueueService
   MODELS_WITH_EVENTS = AppConfig.events.models_audited
   COMMON_EVENT_PREFIXES = AppConfig.events.prefixes
 
-  def method_missing(name, *args, &block)
+  def method_missing(method, *args, &block)
     # make sure to only parse incoming methods that end in `*_event`
-    if name.to_s.ends_with? '_event'
+    if method.to_s.ends_with? '_event'
       # split on underscores, and cleave off the final '_event'
-      parts = name.to_s.downcase.split('_')[0...-1]
+      parts = method.to_s.downcase.split('_')[0...-1]
       # parse out the `type`, `action`, and `id` tokens
       type, action = process_tokens(parts)
       id = extract_id(args)
@@ -17,8 +17,13 @@ module QueueService
       emit("#{ type }:#{ action }", "#{ type } #{ id } #{ action }")
     # ...otherwise, give up and pass the call up the chain.
     else
-      super(name, *args, &block)
+      super(method, *args, &block)
     end
+  end
+
+  # handling respond_to? alongside method_missing
+  def respond_to?(method, include_private = false)
+    method.to_s.ends_with? '_event' || super
   end
 
   private
