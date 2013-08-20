@@ -1,4 +1,9 @@
 Chekov::Application.routes.draw do
+  get "feeds/all"
+  get "feeds/tasks"
+  get "feeds/comments"
+  get "feeds/mine"
+  get "feeds/unassigned"
   resources :tasks
   resources :users
   resources :comments

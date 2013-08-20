@@ -34,7 +34,6 @@ class EditTaskPresenter
   end
 
   def mode=(mode)
-    binding.pry
     if [ :add, :edit ].include? mode
       @mode = mode.to_sym
     end
