@@ -4,23 +4,14 @@ module Enumable
 
   included do
     if AppConfig.enumables.constantize?
-      # get class name that this is being mixed into...
-      CLASS_NAME = name.constantize
       # imitate dynamic assignment of constants on eigenclass
-      # using `method_missing`
-      class << self
-
-        def method_missing(method, *args, &block)
-          # binding.pry
-          method_name = method.to_s.upcase
-          if method_name.in? CLASS_NAME.pluck(:name)
-            define_singleton_method(method_name.to_sym) { CLASS_NAME.where(:name => method_name).first.id }
-          else
-            super
-          end
+      def self.load_enumables
+        self.pluck(:name).each do |const|
+          define_singleton_method(const.to_sym) { self.where(:name => const).first.id }
         end
-
       end
+      # call immediately
+      load_enumables
     end # /if
 
     def <=>(other)
