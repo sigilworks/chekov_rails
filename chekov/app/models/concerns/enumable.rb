@@ -5,13 +5,13 @@ module Enumable
   included do
     if AppConfig.enumables.constantize?
       # imitate dynamic assignment of constants on eigenclass
-      def self.load_enumables
+      def self.load_enumables!
         self.pluck(:name).each do |const|
           define_singleton_method(const.to_sym) { self.where(:name => const).first.id }
         end
       end
       # call immediately
-      load_enumables
+      load_enumables!
     end # /if
 
     def <=>(other)
