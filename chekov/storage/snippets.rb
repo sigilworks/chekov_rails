@@ -72,3 +72,10 @@ def respond_to?(method, include_private = false)
 end
 
 #  -------------------------------------------------------------------------------------------  */
+  # another way of doing the Enumables constantization...
+  Hash[pluck :name, :id].each { |name, id|
+    instance_eval("def #{ name }; @@_#{ name } ||= #{ id }; end")
+  end
+
+#  -------------------------------------------------------------------------------------------  */
+
