@@ -16,7 +16,7 @@ module TaskPromotionStrategy
   end
 
   def promote!(task)
-    task.update_attribute(:status_id, Status.where(:name => 'OPEN')) # Status.OPEN)
+    task.update_attribute(:status_id, Status.where(:name => 'OPEN')) # Status.OPEN
   end
 
 end
