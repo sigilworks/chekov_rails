@@ -30,15 +30,16 @@ class TasksController < ApplicationController
   # POST /tasks(.json)
   def create
     @task = Task.new(task_params)
+    @task.assignee = User.nobody
     @user = current_user
 
     if @task.save
       render :partial => 'partials/task_row_view',
-             :locals => { :task => TaskRowPresenter.new(@task), :me => UserPresenter.new(@user) } 
+             :locals => { :task => TaskRowPresenter.new(@task), :me => UserPresenter.new(@user) }
     else
       render json: @task.errors, status: :unprocessable_entity
     end
-    
+
   end
 
   # PATCH/PUT /tasks/1(.json)

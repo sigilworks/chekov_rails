@@ -1,6 +1,8 @@
 class Task < ActiveRecord::Base
   include Auditable
 
+  before_save :assess_task_status
+
   belongs_to :application
   belongs_to :reporter, :class_name => "User"
   belongs_to :assignee, :class_name => "User"
@@ -16,5 +18,14 @@ class Task < ActiveRecord::Base
 
   validates :application, :presence => true, :on => :save
   validates :reporter, :presence => true, :on => :save
+
+
+  private
+
+  # when a task with previously assigned to User.nobody
+  # gets a "real" assignee, its status gets promoted to `open`...
+  def assess_task_status
+    TaskPromotionStrategy.assess(self)
+  end
 
 end

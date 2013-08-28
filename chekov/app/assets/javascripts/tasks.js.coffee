@@ -49,20 +49,24 @@ $ ->
 
     $(document).on "click", "#edit-task-submit", ->
         taskId = $(this).data "taskId"
-        $.get "/tasks/#{ taskId }/edit",
-            application_id: $("#add-application").val(),
-            build_observed: $("#new-build").val(),
-            status_id: $("#task_status_id").val(),
-            browser_id: $("#new-browser").val(),
-            bz_id: $("#new-bzId").val(),
-            reporter_id: $("#new-reporter").val(),
-            description: $("#new-description").val()
-            , (data) ->
+        $.ajax
+            type: "PUT",
+            url: "/tasks/#{ taskId }",
+            data:
+                application_id: $("#add-application").val(),
+                build_observed: $("#new-build").val(),
+                status_id: $("#task_status_id").val(),
+                browser_id: $("#new-browser").val(),
+                assignee_id: $("#task-assignee").val(),
+                bz_id: $("#new-bzId").val(),
+                reporter_id: $("#new-reporter").val(),
+                description: $("#new-description").val()
+            success: (data) ->
                 $("#new-task").remove()
-                $("#task-table").find("tbody").prepend(data);
+                $("#task-table").find("tbody").prepend data
                 # clear any flash messages remaining
                 clearMessages()
-                successMessage("Task added successfully!");
+                successMessage "Task updated successfully!"
 
 
     # dealing with clicking on the X-icon to delete a particular task
