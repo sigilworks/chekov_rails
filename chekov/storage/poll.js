@@ -1,6 +1,7 @@
-var allow = true;
-var startUrl;
-var pollUrl;
+
+var startUrl,
+    pollUrl,
+    allow = true;
 
 function Poll() {
 
@@ -9,20 +10,14 @@ function Poll() {
     startUrl = start;
     pollUrl = poll;
 
-    if (request) {
-      request.abort(); // abort any pending request
-    }
+    // abort any pending request
+    request && request.abort();
 
     // fire off the request to MatchUpdateController
     var request = $.ajax({
       url : startUrl,
-      type : "get",
-    });
-
-    // This is jQuery 1.8+
-    // callback handler that will be called on success
-    request.done(function(reply) {
-
+      type : "get" })
+    .done(function(reply) {
       console.log("Game on..." + reply);
       setInterval(function() {
         if (allow === true) {
@@ -30,10 +25,9 @@ function Poll() {
           getUpdate();
         }
       }, 500);
-    });
-
+    })
     // callback handler that will be called on failure
-    request.fail(function(jqXHR, textStatus, errorThrown) {
+    .fail(function(jqXHR, textStatus, errorThrown) {
       // log the error to the console
       console.log("Start - the following error occured: " + textStatus, errorThrown);
     });
@@ -41,64 +35,51 @@ function Poll() {
   };
 
   function getUpdate() {
-
     console.log("Okay let's go...");
 
-    if (request) {
-      request.abort();  // abort any pending request
-    }
+    // abort any pending request
+    request && request.abort();
 
     // fire off the request to MatchUpdateController
     var request = $.ajax({
       url : pollUrl,
-      type : "get",
-    });
-
-    // This is jQuery 1.8+
-    // callback handler that will be called on success
-    request.done(function(message) {
+      type : "get" })
+    .done(function(message) {
       console.log("Received a message");
+      var update = createResponse(message);
+      $(update).insertAfter('#first_row'); })
+    // callback handler that will be called on failure
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      // log the error to the console
+      console.log("Polling - the following error occured: " + textStatus, errorThrown); })
+    // callback handler that will be called regardless if the request failed or succeeded
+    .always(function() { allow = true; });
 
-      var update = getUpdate(message);
-      $(update).insertAfter('#first_row');
-    });
-
-    function getUpdate(message) {
-
-      var update = "<div class='span-4  prepend-2'>"
+    function createResponse(message) {
+      var resp = "<div>"
             + "<p class='update'>Time:</p>"
             + "</div>"
-            + "<div class='span-3 border'>"
+            + "<div>"
             + "<p id='time' class='update'>"
             + message.matchTime
             + "</p>"
             + "</div>"
-            + "<div class='span-13 append-2 last' id='update-div'>"
+            + "<div id='update-div'>"
             + "<p id='message' class='update'>"
             + message.messageText
             + "</p>"
             + "</div>";
-      return update;
+      return resp;
     };
 
-    // callback handler that will be called on failure
-    request.fail(function(jqXHR, textStatus, errorThrown) {
-      // log the error to the console
-      console.log("Polling - the following error occured: " + textStatus, errorThrown);
-    });
-
-    // callback handler that will be called regardless if the request failed or succeeded
-    request.always(function() {
-      allow = true;
-    });
-  };
 };
 
 $(document).ready(function() {
 
-  var startUrl = "matchupdate/subscribe";
-  var pollUrl = "matchupdate/simple";
+  var startUrl = "matchupdate/subscribe",
+      pollUrl = "matchupdate/simple",
+      poll = new Poll();
 
-  var poll = new Poll();
-  poll.start(startUrl,pollUrl);
- });
+  poll.start(startUrl, pollUrl);
+
+});
