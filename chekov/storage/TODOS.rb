@@ -16,7 +16,19 @@
 
  - make .meta icons darker (maybe opacity: 0.5?)
 
-- YAML site config file
-	- include option to pre-load values in Status, Team, Role, Permission so theyre done in initializer?
 
-- RSS feed => of activity, and of table contents, as well as individual feeds of each task w/its comments
+
+ - https://github.com/dkubb/equalizer/blob/master/lib/equalizer.rb
+
+-- remove @deprecated in RecentActivityQueue ll. 30,39; using styles below:
+FROM:
+Session.where(:date_at => date_from..date_to).order("date_at").count("DISTINCT(user_id)", :group => "date(convert_tz(date_at, 'UTC', 'Europe/Warsaw'))")
+TO:
+Session.where(:date_at => date_from..date_to)       .select('user_id').distinct       .group("date(convert_tz(date_at, 'UTC', 'Europe/Warsaw'))")       .count
+
+
+ - Error form fields => :indianred
+
+ - Empty out helper methods to controller?
+
+ - Validations on task and comment submissions. Errors

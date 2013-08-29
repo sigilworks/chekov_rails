@@ -13,8 +13,6 @@ $ ->
         # clear any flash messages remaining
         clearMessages()
 
-
-
     # TODO: DRY this and ^^ out!!
     # ajax handling of clicking Edit Comment icon
     $("#task-table").on "click", "a.edit-row", ->

@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :task, :touch => true, :autosave => true
   belongs_to :commenter, :class_name => "User"
 
-  after_validation :assess_task_status
+  # after_validation :assess_task_status
 
   accepts_nested_attributes_for :task, :update_only => true
 
@@ -17,8 +17,8 @@ class Comment < ActiveRecord::Base
 
   # when a task with `new` status gets its first comment,
   # its status gets promoted to `open`...
-  def assess_task_status
-    TaskPromotionStrategy.assess(self.task)
-  end
+  # def assess_task_status
+  #   TaskPromotionStrategy.assess(self.task, self)
+  # end
 
 end
