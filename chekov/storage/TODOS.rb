@@ -22,10 +22,15 @@
 
 -- remove @deprecated in RecentActivityQueue ll. 30,39; using styles below:
 FROM:
-Session.where(:date_at => date_from..date_to).order("date_at").count("DISTINCT(user_id)", :group => "date(convert_tz(date_at, 'UTC', 'Europe/Warsaw'))")
+Session.where(:date_at => date_from..date_to)
+       .order("date_at")
+       .count("DISTINCT(user_id)", :group => "date(convert_tz(date_at, 'UTC', 'Europe/Warsaw'))")
 TO:
-Session.where(:date_at => date_from..date_to)       .select('user_id').distinct       .group("date(convert_tz(date_at, 'UTC', 'Europe/Warsaw'))")       .count
-
+Session.where(:date_at => date_from..date_to)
+       .select('user_id')
+       .distinct
+       .group("date(convert_tz(date_at, 'UTC', 'Europe/Warsaw'))")
+       .count
 
  - Error form fields => :indianred
 

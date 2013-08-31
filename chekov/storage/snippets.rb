@@ -79,3 +79,26 @@ end
 
 #  -------------------------------------------------------------------------------------------  */
 
+class Equalizer < Module
+
+
+  def initialize(*args)
+    @key = "tj"
+    puts "Equalizer initialized."
+    puts "@key = #{ @key }"
+    puts "*args = #{ args }"
+  end
+end
+
+
+class GuineaPig
+  include Equalizer.new(:test_me)
+
+
+  def initialize
+    puts "GuineaPig initialized."
+  end
+end
+
+
+#  -------------------------------------------------------------------------------------------  */

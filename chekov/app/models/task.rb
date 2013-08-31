@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
   scope :by_assignee, ->(user) { where(:assignee => user).order(:id => :desc) }
   scope :by_commenter, ->(user) { includes(:comments).where(:comments => { :commenter => user }).order(:id => :desc).references(:comments) }
 
-  has_many :comments, :dependent => :destroy
+  has_many :comments, :dependent => :destroy, :before_add => :assess_before_add
   has_many :commenters, :through => :comments, :source => :commenter, :class_name => "User"
 
   validates :application, :presence => true, :on => :save
@@ -25,8 +25,11 @@ class Task < ActiveRecord::Base
   # when a task with previously assigned to User.nobody
   # gets a "real" assignee, its status gets promoted to `open`...
   def assess_task_status
-    # binding.pry
     TaskPromotionStrategy.assess(self)
+  end
+
+  def assess_before_add
+    binding.pry
   end
 
 end
