@@ -28,7 +28,8 @@ module RecentActivityService
   def top_commenters
     Comment
       .limit(MAX_TOP_COMMENTERS)
-      .count(:group => :commenter)
+      .group(:commenter)
+      .count
       .map { |user, count| { :name => UserPresenter.new(user), :count  => count } }
       .sort_by { |entry| entry[:count] }
       .reverse
@@ -37,7 +38,8 @@ module RecentActivityService
   def top_reporters
     Task
       .limit(MAX_TOP_REPORTERS)
-      .count(:group => :reporter)
+      .group(:reporter)
+      .count
       .map { |user, count| { :name => UserPresenter.new(user), :count  => count } }
       .sort_by { |entry| entry[:count] }
       .reverse
