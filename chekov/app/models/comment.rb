@@ -8,6 +8,7 @@ class Comment < ActiveRecord::Base
 
   validates :task, :presence => true, :on => :save
   validates :commenter, :presence => true, :on => :save
+  validates :description, :presence => true, :on => :save
 
   def is_edited
     updated_at > created_at

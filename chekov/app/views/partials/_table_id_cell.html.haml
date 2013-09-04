@@ -1,16 +1,20 @@
 
 %span.meta
-  %span
-    =link_to "X", task_path(task.id), :method => :delete, :remote => true, :class => [ 'delete-row', 'icon-hidden' ], :data => { :confirm => "Delete task?", :rowid => task.get.id }, :title => "Delete task"
 
-  %span
-    =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ], :remote => true, :data => { :task_id => task.id }, :title => "Edit task"
+  - if current_user.able.delete_task? task.get.id
+    %span
+      =link_to "X", task_path(task.id), :method => :delete, :remote => true, :class => [ 'delete-row', 'icon-hidden' ], :data => { :confirm => "Delete task?", :rowid => task.get.id }, :title => "Delete task"
 
-  %span
-    =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id),
-    	:class => [ 'add-comment', 'icon-hidden' ], :title => "New comment",
-    	:data => { :task_id => task.id, :commenter_id => me.id },
-    	:remote => true
+  - if current_user.able.edit_task? task.get.id
+    %span
+      =link_to "E", edit_task_path(task.get), :class => [ 'edit-row', 'icon-hidden' ], :remote => true, :data => { :task_id => task.id }, :title => "Edit task"
+
+  - if current_user.able.new_comment?
+    %span
+      =link_to "+", new_comment_path(:task_id => task.id, :commenter_id => me.id),
+      	:class => [ 'add-comment', 'icon-hidden' ], :title => "New comment",
+      	:data => { :task_id => task.id, :commenter_id => me.id },
+      	:remote => true
 
 - if task.has_comments?
   %span.comments-count=task.comments_count

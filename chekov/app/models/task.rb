@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
 
   validates :application, :presence => true, :on => :save
   validates :reporter, :presence => true, :on => :save
+  validates :description, :presence => true, :on => :save
 
 
   private

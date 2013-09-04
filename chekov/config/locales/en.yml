@@ -34,7 +34,7 @@ en:
   # main task table headers
   task_id: id
   app: app
-  build: builditup
+  build: build
   description: description
   browser: browser
   bz_id: bz id

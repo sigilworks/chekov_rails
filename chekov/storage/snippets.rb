@@ -102,3 +102,13 @@ end
 
 
 #  -------------------------------------------------------------------------------------------  */
+
+
+  with_options :presence => true, :on => :save do |assoc|
+    assoc.validates :application
+    assoc.validates :reporter
+    assoc.validates :description
+  end
+
+# -------------------------------------------------------------------------------------------- */
+
