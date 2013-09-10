@@ -21,3 +21,5 @@
  - Empty out helper methods to controller?
 
  - Validations on task and comment submissions. Errors
+
+ - HomeController: skip_before_action should be qualified with :only => [ :index ] ??
