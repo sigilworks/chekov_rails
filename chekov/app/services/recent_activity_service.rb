@@ -22,6 +22,10 @@ module RecentActivityService
       @recents[entry.timestamp] = entry
     end
 
+    # update internal flag in user record of last time they accessed the application
+    # is used to determine update 'deltas' since data on client was last retrieved
+    user.update_attribute(:last_visited_at, Time.now)
+
     @recents.sort.reverse[0...MAX_TOP_ACTIVITIES]
   end
 

@@ -1,7 +1,7 @@
 
 class HomeController < ApplicationController
   # prevent redirect loop. Need index page to be able to login, anyways!
-  skip_before_action :require_login
+  skip_before_action :require_login, :only => [ :index ]
 
   def index
     # current user variable, used almost everywhere, often as `me`
@@ -24,9 +24,6 @@ class HomeController < ApplicationController
         .filtered_tasks
 
     @recents = RecentActivityService.for_user(@user)
-    # update internal flag in user record of last time they accessed the application
-    # is used to determine update 'deltas' since data on client was last retrieved
-    @user.update_attribute(:last_visited_at, Time.now)
 
     respond_to do |format|
       format.html
