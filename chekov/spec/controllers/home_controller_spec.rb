@@ -1,8 +1,12 @@
 require 'spec_helper'
 
 describe HomeController do
-  it "should return the application homepage" do
-    get :index
-    expect(response.status).to eq(200)
+
+  describe "should return the application homepage" do
+    it "returns http success" do
+      get 'index'
+      response.should be_success
+    end
   end
+
 end
