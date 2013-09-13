@@ -14,7 +14,7 @@ module TaskPromotionStrategy
   def is_promotable?(task)
     # perhaps here because of new first comment:
     if task.after_add_for_comments?
-      task.status_id == Status.NEW # Status.where(:name => 'NEW').pluck(:id) # Status.NEW
+      task.status_id == Status.where(:name => 'NEW').pluck(:id) # Status.NEW
     # otherwise, perhaps here because of assignee change from Nobody to a real user:
     elsif task.assignee_id_changed?
       task.assignee_id_change.first == User.nobody.id
@@ -22,7 +22,7 @@ module TaskPromotionStrategy
   end
 
   def promote!(task)
-    task.update_attribute(:status_id, Status.OPEN) # Status.where(:name => 'OPEN').pluck(:id))
+    task.update_attribute(:status_id, Status.where(:name => 'OPEN').pluck(:id)) # Status.OPEN
   end
 
 end
