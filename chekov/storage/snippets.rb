@@ -77,7 +77,7 @@ end
     instance_eval("def #{ name }; @@_#{ name } ||= #{ id }; end")
   end
 
-#  -------------------------------------------------------------------------------------------  */
+#  -------------------------------------------------------------------------------------------  #
 
 class Equalizer < Module
 
@@ -136,3 +136,61 @@ Comment
 
 # -------------------------------------------------------------------------------------------- #
 
+Customer = Struct.new :first_name, :last_name, :title, :address
+
+# Subclasses of SimpleDelegator delegate
+# everything they don't respond to to whatever
+# you pass into the constructor
+class CustomerDecoratator < SimpleDelegator
+  def name
+    "#{title}. #{first_name} #{last_name}"
+  end
+
+  def reversed_name
+    "#{last_name}, #{first_name}".upcase
+  end
+
+  def to_hash
+    {
+      name: reversed_name,
+      address: address
+    }
+  end
+end
+
+# Create a simple customer struct
+fred = Customer.new({
+  first_name: 'Freddie',
+  last_name: 'Mercury',
+  title: 'Mr',
+  address: 'London'
+})
+
+# Decorate it with our decorator
+fred = CustomerDecoratator.new(fred)
+fred.name #=> "Mr. Freddie Mercury"
+fred.to_hash #=> { name: "MERCURY, FREDDIE", address: "London" }
+
+# Decorators can be stacked arbitrarily
+class CustomerLocaleDecorator < SimpleDelegator
+  def initialize(obj, locale)
+    super(obj)
+    @locale = locale
+  end
+
+  def to_s
+    "#{field_names[:name]}: #{name}, #{field_names[:address]}: #{address}"
+  end
+
+  def field_names
+    {
+      ja: { name: '名前', address: '住所' },
+      en: { name: 'name', address: 'address' }
+    }[@locale]
+  end
+end
+
+fred = CustomerLocaleDecorator.new(fred, :ja)
+fred.to_s #=> "名前: Mr. Freddie Mercury, 住所: London"
+
+#  -------------------------------------------------------------------------------------------  #
