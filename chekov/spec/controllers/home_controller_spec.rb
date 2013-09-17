@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HomeController, :type => :controller do
+describe HomeController do
 
   describe "should return the application homepage" do
     it "returns http success" do

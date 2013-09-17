@@ -1,4 +1,3 @@
-class Application < ActiveRecord::Base
-  include Enumable
+class Application < EnumableModel
   validates :name, :presence => true, :uniqueness => true, :on => :create
 end
