@@ -79,5 +79,5 @@ Task.create([
   { id: 10, application_id: 1, build_observed: "b16", description: "This is a description, too! And a bland one at that!", bz_id: nil, reporter_id: 2, assignee_id: 3, status_id: 1, browser_id: 13 }
 ])
 
-
 Version.create(name: '5.2.0')
+
