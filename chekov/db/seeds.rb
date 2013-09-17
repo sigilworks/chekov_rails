@@ -56,6 +56,16 @@ User.create([
   { id: 7, first_name: 'Justin', last_name: 'Case', role_ids: [ 1, 2 ], team_id: 1, permission_id: 4, username: 'jcase' }
 ])
 
+Comment.create([
+  { id: 1, task_id: 1, commenter_id: 4, description: 'I thought you already did...!?' },
+  { id: 2, task_id: 3, commenter_id: 4, description: 'Wait, which one is the "other" thing?' },
+  { id: 3, task_id: 4, commenter_id: 5, description: 'Care to be more specific??' },
+  { id: 4, task_id: 4, commenter_id: 2, description: 'I thought it was...' },
+  { id: 5, task_id: 7, commenter_id: 2, description: 'I cannot even read that mess...' },
+  { id: 6, task_id: 4, commenter_id: 3, description: 'Apparently not!' },
+  { id: 7, task_id: 1, commenter_id: 6, description: 'Guess not!' }
+])
+
 Task.create([
   { id: 1, application_id: 1, build_observed: "b16", description: "Fix the thing that's broken...", bz_id: nil, reporter_id: 2, assignee_id: 2, status_id: 6, browser_id: 15 },
   { id: 2, application_id: 2, build_observed: "b17", description: "This is a description", bz_id: 12345, reporter_id: 2, assignee_id: 7, status_id: 3, browser_id: 8 },
@@ -69,14 +79,5 @@ Task.create([
   { id: 10, application_id: 1, build_observed: "b16", description: "This is a description, too! And a bland one at that!", bz_id: nil, reporter_id: 2, assignee_id: 3, status_id: 1, browser_id: 13 }
 ])
 
-Comment.create([
-  { id: 1, task_id: 1, commenter_id: 4, description: 'I thought you already did...!?' },
-  { id: 2, task_id: 3, commenter_id: 4, description: 'Wait, which one is the "other" thing?' },
-  { id: 3, task_id: 4, commenter_id: 5, description: 'Care to be more specific??' },
-  { id: 4, task_id: 4, commenter_id: 2, description: 'I thought it was...' },
-  { id: 5, task_id: 7, commenter_id: 2, description: 'I cannot even read that mess...' },
-  { id: 6, task_id: 4, commenter_id: 3, description: 'Apparently not!' },
-  { id: 7, task_id: 1, commenter_id: 6, description: 'Guess not!' }
-])
 
 Version.create(name: '5.2.0')

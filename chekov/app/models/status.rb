@@ -1,5 +1,5 @@
-class Status < ActiveRecord::Base
-  include Enumable
+class Status < EnumableModel # < ActiveRecord::Base
+  # include Enumable
 
   scope :open, -> { where id: [ 2, 3 ] }
   scope :closed, -> { where id: 1 }

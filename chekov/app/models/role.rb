@@ -1,4 +1,4 @@
-class Role < ActiveRecord::Base
-  include Enumable
+class Role < EnumableModel # < ActiveRecord::Base
+  # include Enumable
   validates :name, :presence => true, :uniqueness => true, :on => :create
 end

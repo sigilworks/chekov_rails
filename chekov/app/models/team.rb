@@ -1,4 +1,4 @@
-class Team < ActiveRecord::Base
-  include Enumable
+class Team < EnumableModel # < ActiveRecord::Base
+  # include Enumable
   validates :name, :presence => true, :uniqueness => true, :on => :create
 end
