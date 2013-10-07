@@ -27,4 +27,10 @@ Chekov::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # needed for TurboDev patch from Discourse project
+  # https://github.com/discourse/discourse/blob/master/lib/middleware/turbo_dev.rb
+
+  require 'middleware/turbo_dev'
+  config.middleware.insert 0, Middleware::TurboDev
+
 end
