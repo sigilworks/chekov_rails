@@ -11,6 +11,11 @@
 
     %h3 #{ task.mode.to_s.capitalize } Task
     %fieldset
+      - if task.is_edit_mode?
+        %span.last-update
+          %strong Last updated:
+          = task.last_update
+
       %ul
         %li.field
           %label{ :for => "new-application" } App:

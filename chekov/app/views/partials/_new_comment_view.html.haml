@@ -15,6 +15,12 @@
     %fieldset
       = f.hidden_field :task_id, :id => "comment-taskid"
       = f.hidden_field :commenter_id, :id => "comment-commenter"
+
+      - if mode == :edit
+        %span.last-update
+          %strong Last updated:
+          = comment.last_update
+
       %ul
         %li.field
           %label{ :for => "comment-reporter" } Reporter:

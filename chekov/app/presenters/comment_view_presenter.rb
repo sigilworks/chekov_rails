@@ -23,6 +23,10 @@ class CommentViewPresenter
   	@comment.created_at.strftime("#{ AppConfig.datetime.med }")
   end
 
+  def last_update
+    @comment.updated_at.strftime("#{ AppConfig.datetime.med }")
+  end
+
   def comment_date_in_words
     time_ago_in_words(@comment.created_at, :include_seconds => true)
   end

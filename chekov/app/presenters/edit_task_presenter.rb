@@ -44,6 +44,10 @@ class EditTaskPresenter
     @mode == :edit
   end
 
+  def last_update
+    @task.updated_at.strftime("#{ AppConfig.datetime.med }")
+  end
+
   # method missing to delegate to @user or super
   def method_missing(method, *args, &block)
     @task.send(method, *args, &block)

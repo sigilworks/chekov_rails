@@ -3,8 +3,6 @@
 
  - Add creation/updation dates in Task/Comment add/edit popups?
 
- - RolePermissionsStrategy implmentation around the .meta options that appear
-
  - DateTimeFormattingService/-Provider? to hold date/time formatting constants, &c., for uniformity
 
 
@@ -21,5 +19,3 @@
  - Empty out helper methods to controller?
 
  - Validations on task and comment submissions. Errors
-
- - HomeController: skip_before_action should be qualified with :only => [ :index ] ??
