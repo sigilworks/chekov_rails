@@ -8,25 +8,24 @@ module RecentActivityService
 
   def for_user(user)
     last_visit = (user.last_visited_at || Time.now).midnight - 1.week
-    return [] if last_visit.nil?
 
-    @recents = {}
+    recents = {}
 
     Task.where('updated_at >= ?', last_visit).each do |task|
       entry = TaskActivityEntry.new(task)
-      @recents[entry.timestamp] = entry
+      recents[entry.timestamp] = entry
     end
 
     Comment.where('updated_at >= ?', last_visit).each do |comment|
       entry = CommentActivityEntry.new(comment)
-      @recents[entry.timestamp] = entry
+      recents[entry.timestamp] = entry
     end
 
     # update internal flag in user record of last time they accessed the application
     # is used to determine update 'deltas' since data on client was last retrieved
     user.update_attribute(:last_visited_at, Time.now)
 
-    @recents.sort.reverse[0...MAX_TOP_ACTIVITIES]
+    recents.sort.reverse[0...MAX_TOP_ACTIVITIES]
   end
 
   def top_commenters
@@ -63,6 +62,9 @@ module RecentActivityService
     def formatted_time
       @entry.updated_at.strftime("#{ AppConfig.datetime.med }")
     end
+
+    def agent; raise NotImplementedError end
+    def action; raise NotImplementedError end
   end
 
   class TaskActivityEntry < AbstractActivityEntry
