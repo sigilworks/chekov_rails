@@ -60,7 +60,8 @@ class TasksController < ApplicationController
     @task.destroy
     respond_to do |format|
       #format.html { redirect_to :back }
-      format.json { head :no_content }
+      #format.json { head :no_content }
+      format.json { render json: @task.id }
     end
   end
 

@@ -77,9 +77,7 @@ $ ->
 
 
     # dealing with clicking on the X-icon to delete a particular task
-    $(".delete-row").on "ajax:success", (event, status, xhr) ->
-        $target = $(event.target)
-        rowId = $target.data 'rowid'
+    $(".delete-row").on "ajax:success", (event, rowId) ->
         $row = $("#row_#{ rowId }")
         $row.remove()
         # clear any flash messages remaining
