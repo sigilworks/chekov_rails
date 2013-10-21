@@ -34,3 +34,5 @@ function clearMessages(sel) {
 	var $sel = sel || $(".flash")
 	$sel.slideUp(500, function() { $sel.remove(); });
 }
+
+function capitalize(str) { return String(str)[0].toUpperCase() + String(str).substring(1); }

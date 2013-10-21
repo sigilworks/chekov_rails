@@ -37,12 +37,21 @@ $ ->
             bz_id: $("#new-bzId").val(),
             reporter_id: $("#new-reporter").val(),
             description: $("#new-description").val()
-            , (data) ->
+        .then (data) ->
                 $("#new-task").remove()
                 $("#task-table").find("tbody").prepend(data);
                 # clear any flash messages remaining
                 clearMessages()
                 successMessage("Task added successfully!");
+            , (xhr) ->
+                errors = xhr.responseJSON
+                $fset = $("fieldset")
+                $fset.find(".field-with-errors").removeClass("field-with-errors")
+                $fset.find(".validation-error").remove()
+                for field, error of errors
+                    error = error.join()
+                    $fset.find("#new-#{ field }").addClass("field-with-errors")
+                    $fset.prepend("<p class=validation-error>#{ capitalize(field) } #{ error }</p>")
 
 
     $(document).on "click", "#edit-task-submit", ->
