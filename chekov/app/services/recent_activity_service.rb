@@ -29,26 +29,26 @@ module RecentActivityService
   end
 
   def top_commenters
-    Comment
-      .limit(MAX_TOP_COMMENTERS)
-      .group(:commenter)
-      .count
-      .map { |user, count| { :name => UserPresenter.new(user), :count  => count } }
-      .sort_by { |entry| entry[:count] }
-      .reverse
+    top_actives(Comment, :commenter, MAX_TOP_COMMENTERS)
   end
 
   def top_reporters
-    Task
-      .limit(MAX_TOP_REPORTERS)
-      .group(:reporter)
-      .count
-      .map { |user, count| { :name => UserPresenter.new(user), :count  => count } }
-      .sort_by { |entry| entry[:count] }
-      .reverse
+    top_actives(Task, :reporter, MAX_TOP_REPORTERS)
   end
 
   private
+
+  def top_actives(model, agent, limit)
+    Proc.new {
+        model
+          .limit(limit)
+          .group(agent.to_sym)
+          .count
+          .map { |user, count| { :name => UserPresenter.new(user), :count => count } }
+          .sort_by { |entry| entry[:count] }
+          .reverse
+    }.call
+  end
 
   class AbstractActivityEntry
     attr_accessor :type, :action, :agent, :timestamp
