@@ -22,3 +22,5 @@
 
  - For tasks, add :comments_count using :counter_cache,
    so that each task knows its comments count, and can search against Task based on most/least/none comments...
+
+ - In RecentActivityService, change Proc.new {} to proc do...end
