@@ -9,6 +9,10 @@ module HomeHelper
     UserPresenter.new(@user)
   end
 
+  def current_user
+    UserPresenter.new(@user)
+  end
+
   def task_list
     @tasks.map { |task| TaskRowPresenter.new(task) }
   end
